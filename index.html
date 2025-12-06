@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oetlisberg 22 - Clarity in Living</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+        :root {
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+
+        .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Image Overlay Gradient */
+        .image-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 100%);
+        }
+
+        /* Menu Link Hover Effects */
+        .menu-link {
+            display: inline-flex;
+            align-items: center;
+            opacity: 0.5;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Custom Scrollbar for aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a; 
+            border-radius: 3px;
+        }
+
+        /* Text Reveal Mask */
+        .char-mask {
+            overflow: hidden;
+        }
+        
+        /* Custom Cursor (Optional but premium) */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            mix-blend-mode: difference;
+        }
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot hidden lg:block"></div>
+    <div class="cursor-outline hidden lg:block"></div>
+
+    <!-- Main Container -->
+    <div class="relative w-full h-screen overflow-hidden">
+
+        <!-- Full Screen Hero Image -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden group z-0">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Modern A-Frame House" 
+                 class="absolute inset-0 w-full h-full object-cover scale-110"
+                 id="hero-image">
+            
+            <!-- Dark Overlay -->
+            <div class="absolute inset-0 image-overlay pointer-events-none" id="hero-overlay"></div>
+
+            <!-- Hero Content -->
+            <div class="absolute inset-0 p-8 lg:p-20 flex flex-col justify-between text-white z-10 pointer-events-none">
+                <!-- Top Left Identifier -->
+                <div class="opacity-0 text-sm tracking-[0.2em] uppercase" id="brand-id">Oetlisberg 22</div>
+
+                <!-- Main Headline Area -->
+                <div class="flex flex-col gap-8 max-w-4xl mt-auto mb-20 lg:mb-0">
+                    <h1 class="text-6xl lg:text-9xl font-semibold leading-[0.9] tracking-tight" id="hero-title">
+                        Clarity <span class="font-light italic serif opacity-90">in</span><br>
+                        Living.
+                    </h1>
+                    
+                    <p class="text-lg lg:text-2xl font-light opacity-0 leading-relaxed max-w-xl" id="hero-desc">
+                        Modern living, shaped by the tranquility of the rolling hills and pure natural light. A sanctuary of minimalism.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Toggle Button (Fixed Top Right) -->
+        <div class="fixed top-8 right-8 z-50 text-white">
+            <button id="menu-toggle" class="group flex items-center gap-6 hover-trigger focus:outline-none">
+                <span class="text-lg font-medium tracking-widest uppercase hidden lg:block opacity-90 group-hover:opacity-100 transition-opacity" id="menu-text">Menu</span>
+                <div class="relative w-16 h-16 flex items-center justify-center border border-white/50 bg-white/10 backdrop-blur-md rounded-full group-hover:bg-white/20 group-hover:border-white transition-all duration-300">
+                    <div class="flex flex-col gap-2 items-end w-6">
+                        <span class="w-full h-[2px] bg-white transition-all duration-300 group-hover:w-4" id="burger-top"></span>
+                        <span class="w-4 h-[2px] bg-white transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
+                    </div>
+                </div>
+            </button>
+        </div>
+
+        <!-- Full Screen Menu Overlay -->
+        <div id="menu-overlay" class="fixed inset-0 bg-black z-40 transform translate-x-full flex flex-col lg:flex-row">
+            
+            <!-- Menu Left: Image Preview -->
+            <div class="hidden lg:block w-full lg:w-3/4 h-full relative overflow-hidden bg-gray-900">
+                <div class="absolute inset-0 opacity-60">
+                    
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="story">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="gallery">
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="news">
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="contact">
+                </div>
+                <div class="absolute bottom-12 left-12 text-white/50 text-sm tracking-widest uppercase">
+                    Selected Works &mdash; 2024
+                </div>
+            </div>
+
+            <!-- Menu Right: Links -->
+            <div class="w-full lg:w-1/4 h-full bg-white text-black flex flex-col justify-center px-8 lg:px-12 relative">
+                <div class="flex flex-col gap-2 lg:gap-4" id="menu-links-container">
+                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="home">
+                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">01</span>
+                        <span class="menu-text">Home</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="story">
+                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">02</span>
+                        <span class="menu-text">Story</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="gallery">
+                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">03</span>
+                        <span class="menu-text">Gallery</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="news">
+                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">04</span>
+                        <span class="menu-text">News</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="contact">
+                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">05</span>
+                        <span class="menu-text">Contact</span>
+                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
+                    </a>
+                </div>
+
+                <div class="absolute bottom-12 left-8 lg:left-12 flex gap-8 text-sm text-gray-400">
+                    <a href="#" class="hover:text-black transition-colors">Instagram</a>
+                    <a href="#" class="hover:text-black transition-colors">Facebook</a>
+                    <a href="#" class="hover:text-black transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Optional Detail Modal (Hidden by default, for interaction demo) -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white p-8 max-w-lg w-full shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="text-2xl font-bold">The Gallery</h2>
+                <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Experience the architectural masterpiece located at Oetlisberg 22. 
+                Our gallery showcases the seamless blend of interior luxury and exterior nature.
+            </p>
+            <button class="w-full bg-black text-white py-3 font-medium hover:bg-gray-800 transition-colors">
+                View Full Collection
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Register GSAP Plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Hero Text Animations (Premium Reveal) ---
+            const heroTitle = new SplitType('#hero-title', { types: 'lines, chars' });
+            const heroDesc = new SplitType('#hero-desc', { types: 'lines' });
+
+            const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+            // Initial State Setters
+            gsap.set('#hero-image', { scale: 1.2 });
+            gsap.set('#brand-id', { y: -20, opacity: 0 });
+            
+            // Animation Sequence
+            tl.to('#hero-image', {
+                scale: 1,
+                duration: 2.5,
+                ease: "expo.out"
+            })
+            .to('#brand-id', {
+                y: 0,
+                opacity: 0.7,
+                duration: 1
+            }, "-=2")
+            .from(heroTitle.chars, {
+                y: 100,
+                opacity: 0,
+                stagger: 0.02,
+                duration: 1,
+                ease: "power4.out"
+            }, "-=1.8")
+            .to('#hero-desc', {
+                opacity: 0.8,
+                y: 0,
+                duration: 1
+            }, "-=1.2");
+
+
+            // --- 2. Menu Logic & Animations ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const burgerTop = document.getElementById('burger-top');
+            const burgerBottom = document.getElementById('burger-bottom');
+            const menuText = document.getElementById('menu-text');
+            const heroOverlay = document.getElementById('hero-overlay');
+
+            let isMenuOpen = false;
+
+            // Menu Timeline (Paused initially)
+            const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power3.inOut" } });
+
+            menuTl
+                .to(menuOverlay, {
+                    x: '0%',
+                    duration: 0.6, // Faster for snappier feel
+                    ease: "power3.inOut"
+                })
+                .to(heroOverlay, {
+                    backgroundColor: "rgba(0,0,0,0.6)", // Lighter overlay
+                    // Removed backdropFilter for performance
+                    duration: 0.6
+                }, "<")
+                .from(menuItems, {
+                    y: 30, // Reduced movement
+                    opacity: 0,
+                    stagger: 0.05, // Faster stagger
+                    duration: 0.4,
+                    ease: "power2.out"
+                }, "-=0.3");
+
+            menuToggle.addEventListener('click', () => {
+                const menuCircle = menuToggle.querySelector('div'); // The circle container
+
+                if (!isMenuOpen) {
+                    // Open Menu
+                    menuTl.play();
+                    isMenuOpen = true;
+                    menuText.textContent = "Close";
+                    
+                    // Animate Burger to X
+                    gsap.to(burgerTop, { rotation: 45, y: 4, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                    gsap.to(burgerBottom, { rotation: -45, y: -3, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                    
+                    // Change Text & Circle to Black
+                    gsap.to(menuText, { color: "#000000", duration: 0.3 });
+                    gsap.to(menuCircle, { borderColor: "rgba(0,0,0,0.5)", backgroundColor: "rgba(0,0,0,0.05)", duration: 0.3 });
+
+                } else {
+                    // Close Menu
+                    menuTl.reverse();
+                    isMenuOpen = false;
+                    menuText.textContent = "Menu";
+
+                    // Animate X back to Burger
+                    gsap.to(burgerTop, { rotation: 0, y: 0, width: '1px', backgroundColor: "#ffffff", duration: 0.3 }); // Reset to dot/line
+                    gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#ffffff", duration: 0.3 });
+
+                    // Change Text & Circle back to White
+                    gsap.to(menuText, { color: "#ffffff", duration: 0.3 });
+                    gsap.to(menuCircle, { borderColor: "rgba(255,255,255,0.5)", backgroundColor: "rgba(255,255,255,0.1)", duration: 0.3 });
+                }
+            });
+
+            // --- 3. Menu Image Slideshow & Parallax ---
+            const previewImages = document.querySelectorAll('.menu-preview-img');
+            let activeImageIndex = 0;
+            
+            // Initialize first image
+            if(previewImages.length > 0) {
+                // Reset all
+                gsap.set(previewImages, { opacity: 0, zIndex: 1, scale: 1.1 });
+                // Show first
+                gsap.set(previewImages[0], { opacity: 1, zIndex: 2 });
+            }
+
+            // Automatic Slideshow Function
+            function nextImage() {
+                if(previewImages.length === 0) return;
+
+                const currentImg = previewImages[activeImageIndex];
+                activeImageIndex = (activeImageIndex + 1) % previewImages.length;
+                const nextImg = previewImages[activeImageIndex];
+
+                // Fade out current
+                gsap.to(currentImg, { 
+                    opacity: 0, 
+                    zIndex: 1, 
+                    duration: 1.5, 
+                    ease: "power2.inOut" 
+                });
+
+                // Fade in next
+                gsap.set(nextImg, { zIndex: 2 });
+                gsap.to(nextImg, { 
+                    opacity: 1, 
+                    duration: 1.5, 
+                    ease: "power2.inOut" 
+                });
+            }
+
+            // Start Slideshow (Change every 5 seconds)
+            // We store the interval ID so we could clear it if needed (e.g. on close), 
+            // but keeping it running is fine for this effect.
+            setInterval(nextImage, 5000);
+
+            // Menu Parallax Effect (Independent of slideshow)
+            const menuOverlayContainer = document.getElementById('menu-overlay');
+            
+            menuOverlayContainer.addEventListener('mousemove', (e) => {
+                // Apply parallax to ALL images so they move together
+                const { width, height } = menuOverlayContainer.getBoundingClientRect();
+                const x = (e.clientX / width - 0.5) * 30; 
+                const y = (e.clientY / height - 0.5) * 30;
+
+                gsap.to(previewImages, {
+                    x: x,
+                    y: y,
+                    duration: 1.5, 
+                    ease: "power2.out"
+                });
+            });
+
+
+            // --- 4. Custom Cursor Logic ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+
+                // Dot follows instantly
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+
+                // Outline follows with delay (using GSAP for smoothness)
+                gsap.to(cursorOutline, {
+                    x: posX,
+                    y: posY,
+                    duration: 0.15,
+                    ease: "power2.out"
+                });
+            });
+
+            // Cursor Hover Effects
+            const hoverTriggers = document.querySelectorAll('a, button, .hover-trigger, .menu-item');
+            
+            hoverTriggers.forEach(trigger => {
+                trigger.addEventListener('mouseenter', () => {
+                    gsap.to(cursorOutline, {
+                        scale: 1.5,
+                        backgroundColor: "rgba(255, 255, 255, 0.2)",
+                        duration: 0.2
+                    });
+                });
+                trigger.addEventListener('mouseleave', () => {
+                    gsap.to(cursorOutline, {
+                        scale: 1,
+                        backgroundColor: "transparent",
+                        duration: 0.2
+                    });
+                });
+            });
+
+            // --- 5. Image Parallax on Mouse Move ---
+            const heroSection = document.querySelector('.group'); // The image container
+            const heroImage = document.getElementById('hero-image');
+
+            heroSection.addEventListener('mousemove', (e) => {
+                const { left, top, width, height } = heroSection.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+
+                gsap.to(heroImage, {
+                    x: x * 20, // Move image slightly opposite to mouse
+                    y: y * 20,
+                    duration: 1,
+                    ease: "power2.out"
+                });
+            });
+            
+            // Reset image position on leave
+            heroSection.addEventListener('mouseleave', () => {
+                gsap.to(heroImage, { x: 0, y: 0, duration: 1 });
+            });
+        });
+
+        // Modal Logic (Preserved but simplified)
+        const modal = document.getElementById('detail-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        function openModal() {
+            if(!modal) return;
+            modal.classList.remove('hidden');
+            gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+            gsap.fromTo(modalContent, { scale: 0.9, y: 20 }, { scale: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" });
+        }
+
+        function closeModal() {
+            if(!modal) return;
+            gsap.to(modal, { opacity: 0, duration: 0.3, onComplete: () => modal.classList.add('hidden') });
+            gsap.to(modalContent, { scale: 0.9, y: 20, duration: 0.3 });
+        }
+
+        if(modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+        }
+    </script>
+</body>
+</html>
