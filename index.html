@@ -91,10 +91,11 @@
     <div class="cursor-outline hidden lg:block"></div>
 
     <!-- Main Container -->
-    <div class="relative w-full h-screen overflow-hidden">
+    <div class="relative w-full overflow-x-hidden">
 
         <!-- Split Screen Hero Images -->
-        <div class="absolute inset-0 w-full h-full flex z-0" id="hero-split-container">
+        <section class="relative w-full h-screen overflow-hidden">
+            <div class="absolute inset-0 w-full h-full flex z-0" id="hero-split-container">
             <!-- Left: Chail -->
             <div class="w-1/2 h-full relative overflow-hidden group transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)]" id="split-left">
                 <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop" 
@@ -120,6 +121,7 @@
                     <p class="text-sm opacity-0 group-hover:opacity-70 transition-opacity duration-500 mt-2 max-w-xs ml-auto">Where the mist meets the mountains.</p>
                 </div>
             </div>
+            </div>
             
             <!-- Dark Overlay for Text Readability -->
             <div class="absolute inset-0 image-overlay pointer-events-none" id="hero-overlay"></div>
@@ -139,19 +141,130 @@
             </div>
         </div>
 
+        <!-- Essence Section -->
+        <section class="relative w-full py-24 lg:py-32 bg-white text-black z-10" id="essence-section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10">
+                <!-- Header -->
+                <div class="flex flex-col items-center text-center mb-20 opacity-0" id="essence-header">
+                    <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-500 mb-6">Essence</span>
+                    <h2 class="text-4xl lg:text-6xl font-serif font-medium mb-8 leading-tight">What makes this place different</h2>
+                    <p class="max-w-2xl text-lg lg:text-xl font-light text-gray-600 leading-relaxed">
+                        A boutique community of thirty-six apartments, each one considered and placed with intention. 
+                        No sprawl, no excess, just the right number of homes for those who understand the value of restraint.
+                    </p>
+                </div>
+
+                <!-- Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+                    <!-- Card 1 -->
+                    <div class="essence-card group cursor-pointer opacity-0 translate-y-10">
+                        <div class="w-full aspect-[4/3] overflow-hidden mb-8 bg-gray-100 relative">
+                            <img src="https://images.unsplash.com/photo-1511884642898-4c92249f20b6?q=80&w=2070&auto=format&fit=crop" 
+                                 alt="Boutique Community" 
+                                 class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                        </div>
+                        <h3 class="text-2xl font-serif mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">Boutique community</h3>
+                        <p class="text-gray-500 font-light leading-relaxed">Limited to thirty-six residences, each one matters.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="essence-card group cursor-pointer opacity-0 translate-y-10">
+                        <div class="w-full aspect-[4/3] overflow-hidden mb-8 bg-gray-100 relative">
+                            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" 
+                                 alt="Ultra Luxury" 
+                                 class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                        </div>
+                        <h3 class="text-2xl font-serif mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">Ultra luxury apartments</h3>
+                        <p class="text-gray-500 font-light leading-relaxed">Built with materials and finishes that will outlast trends.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="essence-card group cursor-pointer opacity-0 translate-y-10">
+                        <div class="w-full aspect-[4/3] overflow-hidden mb-8 bg-gray-100 relative">
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" 
+                                 alt="Himalayan Serenity" 
+                                 class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
+                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                        </div>
+                        <h3 class="text-2xl font-serif mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">Himalayan serenity</h3>
+                        <p class="text-gray-500 font-light leading-relaxed">The mountains hold their silence close, and you live within it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Numbers Section -->
+        <section class="relative w-full py-24 lg:py-32 bg-[#1a1a1a] text-white z-10" id="numbers-section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+                    
+                    <!-- Left Content -->
+                    <div class="w-full lg:w-5/12 flex flex-col justify-center opacity-0 -translate-x-10" id="numbers-content">
+                        <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 mb-8">Numbers</span>
+                        <h2 class="text-4xl lg:text-5xl font-serif font-medium mb-8 leading-[1.1]">
+                            The facts speak clearly about what we've built
+                        </h2>
+                        <p class="text-lg font-light text-gray-400 mb-12 leading-relaxed">
+                            Thirty-six apartments. One vision. A place where less means more.
+                        </p>
+                        <div class="flex items-center gap-8">
+                            <button class="px-8 py-3 border border-white/30 hover:bg-white hover:text-black transition-all duration-300 uppercase text-xs tracking-widest font-medium">
+                                Discover
+                            </button>
+                            <a href="#" class="text-sm font-medium hover:text-[#D4AF37] transition-colors flex items-center gap-2 group">
+                                Explore <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Stats Grid -->
+                    <div class="w-full lg:w-7/12 grid grid-cols-1 md:grid-cols-2">
+                        <!-- Stat 1 -->
+                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-b md:border-b-0 md:border-r relative group">
+                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 counter" data-target="36">0</h3>
+                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Residences total</p>
+                        </div>
+                        
+                        <!-- Stat 2 -->
+                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-b md:border-b-0 relative group">
+                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 flex items-baseline gap-1">
+                                <span class="counter" data-target="8000">0</span><span class="text-3xl lg:text-4xl">+</span>
+                            </h3>
+                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Square feet each</p>
+                        </div>
+
+                        <!-- Stat 3 -->
+                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-t border-white/10 md:border-t-0 md:border-r relative group">
+                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 counter" data-target="7500">0</h3>
+                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Feet elevation</p>
+                        </div>
+
+                        <!-- Stat 4 -->
+                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-t border-white/10 md:border-t-0 relative group">
+                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 flex items-baseline gap-1">
+                                <span class="counter" data-target="100">0</span><span class="text-3xl lg:text-4xl">%</span>
+                            </h3>
+                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Mountain views guaranteed</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <!-- Top Navigation Bar -->
-        <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none">
+        <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black/80 to-transparent">
             
             <!-- Left: Menu Button -->
             <div class="pointer-events-auto">
-                <button id="menu-toggle" class="group flex items-center gap-4 hover-trigger focus:outline-none text-white">
-                    <div class="relative w-14 h-14 flex items-center justify-center border border-white/30 rounded-full group-hover:border-white group-hover:bg-white/10 transition-all duration-300 backdrop-blur-sm">
-                        <div class="flex flex-col gap-1.5 items-start w-5">
-                            <span class="w-full h-[1.5px] bg-white transition-all duration-300 group-hover:w-3" id="burger-top"></span>
-                            <span class="w-3 h-[1.5px] bg-white transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
-                        </div>
+                <button id="menu-toggle" class="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-black transition-all duration-300 hover-trigger focus:outline-none text-white">
+                    <div class="flex flex-col gap-1.5 items-start w-5">
+                        <span class="w-full h-[1.5px] bg-current transition-all duration-300 group-hover:w-3" id="burger-top"></span>
+                        <span class="w-3 h-[1.5px] bg-current transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
                     </div>
-                    <span class="text-sm font-medium tracking-widest uppercase hidden lg:block opacity-80 group-hover:opacity-100 transition-opacity" id="menu-text">Menu</span>
+                    <span class="text-xs font-medium tracking-widest uppercase" id="menu-text">Menu</span>
                 </button>
             </div>
 
@@ -174,56 +287,76 @@
         </div>
 
         <!-- Full Screen Menu Overlay -->
-        <div id="menu-overlay" class="fixed inset-0 bg-black z-40 transform translate-x-full flex flex-col lg:flex-row">
+        <div id="menu-overlay" class="fixed inset-0 bg-[#FDFBF7] z-40 transform -translate-x-full flex flex-col lg:flex-row">
             
-            <!-- Menu Left: Image Preview -->
-            <div class="hidden lg:block w-full lg:w-3/4 h-full relative overflow-hidden bg-gray-900">
-                <div class="absolute inset-0 opacity-60">
-                    
+            <!-- Menu Left: Links (Swapped for Left Opening) -->
+            <div class="w-full lg:w-1/3 h-full flex flex-col justify-center px-8 lg:px-16 relative border-r border-black/5">
+                <div class="flex flex-col gap-1 lg:gap-2" id="menu-links-container">
+                    <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="home">
+                        <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">
+                            Home
+                        </span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]">
+                            <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                        </span>
+                    </a>
+                    <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="story">
+                        <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">
+                            Story
+                        </span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]">
+                            <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                        </span>
+                    </a>
+                    <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="gallery">
+                        <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">
+                            Gallery
+                        </span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]">
+                            <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                        </span>
+                    </a>
+                    <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="news">
+                        <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">
+                            News
+                        </span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]">
+                            <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                        </span>
+                    </a>
+                    <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="contact">
+                        <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">
+                            Contact
+                        </span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]">
+                            <i data-lucide="arrow-right" class="w-8 h-8"></i>
+                        </span>
+                    </a>
+                </div>
+
+                <div class="absolute bottom-12 left-8 lg:left-16 flex gap-6">
+                    <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group">
+                        <i data-lucide="instagram" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group">
+                        <i data-lucide="facebook" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group">
+                        <i data-lucide="linkedin" class="w-4 h-4 group-hover:scale-110 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Menu Right: Image Preview -->
+            <div class="hidden lg:block w-full lg:w-2/3 h-full relative overflow-hidden bg-[#F5F5F0]">
+                <div class="absolute inset-0">
                     <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="story">
                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="gallery">
                     <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="news">
                     <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="contact">
                 </div>
-                <div class="absolute bottom-12 left-12 text-white/50 text-sm tracking-widest uppercase">
-                    Selected Works &mdash; 2024
-                </div>
-            </div>
-
-            <!-- Menu Right: Links -->
-            <div class="w-full lg:w-1/4 h-full bg-white text-black flex flex-col justify-center px-8 lg:px-12 relative">
-                <div class="flex flex-col gap-2 lg:gap-4" id="menu-links-container">
-                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="home">
-                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">01</span>
-                        <span class="menu-text">Home</span>
-                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
-                    </a>
-                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="story">
-                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">02</span>
-                        <span class="menu-text">Story</span>
-                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
-                    </a>
-                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="gallery">
-                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">03</span>
-                        <span class="menu-text">Gallery</span>
-                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
-                    </a>
-                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="news">
-                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">04</span>
-                        <span class="menu-text">News</span>
-                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
-                    </a>
-                    <a href="#" class="menu-item text-3xl lg:text-5xl font-medium tracking-tighter hover:text-gray-500 transition-colors duration-300 flex items-center gap-4 group" data-target="contact">
-                        <span class="text-sm font-normal opacity-30 group-hover:opacity-100 transition-opacity duration-300 -translate-x-4 group-hover:translate-x-0 transform">05</span>
-                        <span class="menu-text">Contact</span>
-                        <i data-lucide="arrow-right" class="w-6 h-6 lg:w-8 lg:h-8 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300"></i>
-                    </a>
-                </div>
-
-                <div class="absolute bottom-12 left-8 lg:left-12 flex gap-8 text-sm text-gray-400">
-                    <a href="#" class="hover:text-black transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-black transition-colors">Facebook</a>
-                    <a href="#" class="hover:text-black transition-colors">LinkedIn</a>
+                <div class="absolute bottom-12 right-12 text-black/40 text-sm tracking-widest uppercase font-medium">
+                    King's Landing &mdash; 2025
                 </div>
             </div>
         </div>
@@ -303,30 +436,30 @@
             let isMenuOpen = false;
 
             // Menu Timeline (Paused initially)
-            const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power3.inOut" } });
+            const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power4.inOut" } });
+
+            // Ensure items are hidden initially
+            gsap.set(menuItems, { y: 50, opacity: 0 });
 
             menuTl
                 .to(menuOverlay, {
                     x: '0%',
-                    duration: 0.6, // Faster for snappier feel
-                    ease: "power3.inOut"
+                    duration: 0.8, 
+                    ease: "power4.inOut"
                 })
                 .to(heroOverlay, {
-                    backgroundColor: "rgba(0,0,0,0.6)", // Lighter overlay
-                    // Removed backdropFilter for performance
-                    duration: 0.6
+                    backgroundColor: "rgba(0,0,0,0.4)", 
+                    duration: 0.8
                 }, "<")
-                .from(menuItems, {
-                    y: 30, // Reduced movement
-                    opacity: 0,
-                    stagger: 0.05, // Faster stagger
-                    duration: 0.4,
-                    ease: "power2.out"
-                }, "-=0.3");
+                .to(menuItems, {
+                    y: 0, 
+                    opacity: 1,
+                    stagger: 0.05, 
+                    duration: 0.8,
+                    ease: "power3.out"
+                }, "<0.1");
 
             menuToggle.addEventListener('click', () => {
-                const menuCircle = menuToggle.querySelector('div'); // The circle container
-
                 if (!isMenuOpen) {
                     // Open Menu
                     menuTl.play();
@@ -337,9 +470,13 @@
                     gsap.to(burgerTop, { rotation: 45, y: 4, width: '100%', backgroundColor: "#000000", duration: 0.3 });
                     gsap.to(burgerBottom, { rotation: -45, y: -3, width: '100%', backgroundColor: "#000000", duration: 0.3 });
                     
-                    // Change Text & Circle to Black
-                    gsap.to(menuText, { color: "#000000", duration: 0.3 });
-                    gsap.to(menuCircle, { borderColor: "rgba(0,0,0,0.5)", backgroundColor: "rgba(0,0,0,0.05)", duration: 0.3 });
+                    // Change Button Style to Dark
+                    gsap.to(menuToggle, { 
+                        color: "#000000", 
+                        backgroundColor: "rgba(0,0,0,0.05)", 
+                        borderColor: "rgba(0,0,0,0.1)",
+                        duration: 0.3 
+                    });
 
                 } else {
                     // Close Menu
@@ -348,12 +485,16 @@
                     menuText.textContent = "Menu";
 
                     // Animate X back to Burger
-                    gsap.to(burgerTop, { rotation: 0, y: 0, width: '1px', backgroundColor: "#ffffff", duration: 0.3 }); // Reset to dot/line
+                    gsap.to(burgerTop, { rotation: 0, y: 0, width: '100%', backgroundColor: "#ffffff", duration: 0.3 }); 
                     gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#ffffff", duration: 0.3 });
 
-                    // Change Text & Circle back to White
-                    gsap.to(menuText, { color: "#ffffff", duration: 0.3 });
-                    gsap.to(menuCircle, { borderColor: "rgba(255,255,255,0.5)", backgroundColor: "rgba(255,255,255,0.1)", duration: 0.3 });
+                    // Change Button Style back to Light
+                    gsap.to(menuToggle, { 
+                        color: "#ffffff", 
+                        backgroundColor: "rgba(255,255,255,0.1)", 
+                        borderColor: "rgba(255,255,255,0.3)",
+                        duration: 0.3 
+                    });
                 }
             });
 
@@ -481,6 +622,96 @@
                 // Mouse Leave: Reset to 50/50
                 splitContainer.addEventListener('mouseleave', () => {
                     gsap.to([splitLeft, splitRight], { width: '50%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+                });
+            }
+            // --- 6. Essence Section Animations ---
+            const essenceHeader = document.getElementById('essence-header');
+            const essenceCards = document.querySelectorAll('.essence-card');
+
+            if(essenceHeader) {
+                gsap.to(essenceHeader, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: essenceHeader,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
+
+            if(essenceCards.length > 0) {
+                gsap.to(essenceCards, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".essence-card", // Trigger on the first card
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
+
+            // --- 7. Numbers Section Animations ---
+            const numbersContent = document.getElementById('numbers-content');
+            const statItems = document.querySelectorAll('.stat-item');
+            const counters = document.querySelectorAll('.counter');
+
+            if(numbersContent) {
+                gsap.to(numbersContent, {
+                    opacity: 1,
+                    x: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: numbersContent,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
+
+            if(statItems.length > 0) {
+                // Fade in stats
+                gsap.fromTo(statItems, 
+                    { opacity: 0, y: 20 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        stagger: 0.1,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: "#numbers-section",
+                            start: "top 75%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+
+                // Count up animation
+                counters.forEach(counter => {
+                    const target = +counter.getAttribute('data-target');
+                    
+                    gsap.to(counter, {
+                        innerText: target,
+                        duration: 2,
+                        snap: { innerText: 1 },
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: "#numbers-section",
+                            start: "top 75%",
+                            toggleActions: "play none none reverse"
+                        },
+                        onUpdate: function() {
+                            counter.innerText = Math.ceil(this.targets()[0].innerText);
+                        }
+                    });
                 });
             }
         });
