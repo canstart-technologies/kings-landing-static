@@ -402,24 +402,28 @@
             // Menu Parallax Effect (Independent of slideshow)
             const menuOverlayContainer = document.getElementById('menu-overlay');
             
+            // Optimize: Use quickTo for performance
+            const menuXTo = gsap.quickTo(previewImages, "x", { duration: 1.5, ease: "power2.out" });
+            const menuYTo = gsap.quickTo(previewImages, "y", { duration: 1.5, ease: "power2.out" });
+
             menuOverlayContainer.addEventListener('mousemove', (e) => {
                 // Apply parallax to ALL images so they move together
                 const { width, height } = menuOverlayContainer.getBoundingClientRect();
                 const x = (e.clientX / width - 0.5) * 30; 
                 const y = (e.clientY / height - 0.5) * 30;
 
-                gsap.to(previewImages, {
-                    x: x,
-                    y: y,
-                    duration: 1.5, 
-                    ease: "power2.out"
-                });
+                menuXTo(x);
+                menuYTo(y);
             });
 
 
             // --- 4. Custom Cursor Logic ---
             const cursorDot = document.querySelector('.cursor-dot');
             const cursorOutline = document.querySelector('.cursor-outline');
+
+            // Optimize: Use quickTo for cursor
+            const cursorXTo = gsap.quickTo(cursorOutline, "x", { duration: 0.15, ease: "power2.out" });
+            const cursorYTo = gsap.quickTo(cursorOutline, "y", { duration: 0.15, ease: "power2.out" });
 
             window.addEventListener('mousemove', (e) => {
                 const posX = e.clientX;
@@ -429,13 +433,9 @@
                 cursorDot.style.left = `${posX}px`;
                 cursorDot.style.top = `${posY}px`;
 
-                // Outline follows with delay (using GSAP for smoothness)
-                gsap.to(cursorOutline, {
-                    x: posX,
-                    y: posY,
-                    duration: 0.15,
-                    ease: "power2.out"
-                });
+                // Outline follows with optimized tween
+                cursorXTo(posX);
+                cursorYTo(posY);
             });
 
             // Cursor Hover Effects
@@ -446,14 +446,16 @@
                     gsap.to(cursorOutline, {
                         scale: 1.5,
                         backgroundColor: "rgba(255, 255, 255, 0.2)",
-                        duration: 0.2
+                        duration: 0.2,
+                        overwrite: true
                     });
                 });
                 trigger.addEventListener('mouseleave', () => {
                     gsap.to(cursorOutline, {
                         scale: 1,
                         backgroundColor: "transparent",
-                        duration: 0.2
+                        duration: 0.2,
+                        overwrite: true
                     });
                 });
             });
@@ -466,29 +468,19 @@
             if (splitLeft && splitRight && splitContainer) {
                 // Hover Left: Expand Left, Shrink Right
                 splitLeft.addEventListener('mouseenter', () => {
-                    gsap.to(splitLeft, { width: '60%', duration: 1, ease: "power4.out" });
-                    gsap.to(splitRight, { width: '40%', duration: 1, ease: "power4.out" });
+                    gsap.to(splitLeft, { width: '60%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+                    gsap.to(splitRight, { width: '40%', duration: 1, ease: "power4.out", overwrite: 'auto' });
                 });
 
                 // Hover Right: Expand Right, Shrink Left
                 splitRight.addEventListener('mouseenter', () => {
-                    gsap.to(splitRight, { width: '60%', duration: 1, ease: "power4.out" });
-                    gsap.to(splitLeft, { width: '40%', duration: 1, ease: "power4.out" });
+                    gsap.to(splitRight, { width: '60%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+                    gsap.to(splitLeft, { width: '40%', duration: 1, ease: "power4.out", overwrite: 'auto' });
                 });
 
                 // Mouse Leave: Reset to 50/50
                 splitContainer.addEventListener('mouseleave', () => {
-                    gsap.to([splitLeft, splitRight], { width: '50%', duration: 1, ease: "power4.out" });
-                });
-                
-                // Add subtle parallax to images within the split
-                splitContainer.addEventListener('mousemove', (e) => {
-                    const { width, height } = splitContainer.getBoundingClientRect();
-                    const x = (e.clientX / width - 0.5) * 30;
-                    const y = (e.clientY / height - 0.5) * 30;
-                    
-                    gsap.to('#hero-image-left', { x: x, y: y, duration: 1.5, ease: "power2.out" });
-                    gsap.to('#hero-image-right', { x: -x, y: -y, duration: 1.5, ease: "power2.out" }); // Inverted for depth
+                    gsap.to([splitLeft, splitRight], { width: '50%', duration: 1, ease: "power4.out", overwrite: 'auto' });
                 });
             }
         });
