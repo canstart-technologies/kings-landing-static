@@ -254,6 +254,73 @@
             </div>
         </section>
 
+        <!-- Sustainability Section -->
+        <section class="relative w-full py-24 lg:py-32 bg-white text-black overflow-hidden" id="sustainability-section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    
+                    <!-- Left Content -->
+                    <div class="w-full lg:w-1/2 z-10" id="sus-text">
+                        <h2 class="text-6xl lg:text-8xl font-serif font-medium leading-[0.9] mb-12">
+                            Life.<br>
+                            <span class="text-gray-400">Sustainable</span><br>
+                            by nature.
+                        </h2>
+                        
+                        <div class="flex items-center gap-6 group cursor-pointer w-fit">
+                            <div class="w-16 h-16 rounded-full border border-black flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+                                <i data-lucide="arrow-right" class="w-6 h-6"></i>
+                            </div>
+                            <span class="text-sm font-medium tracking-widest uppercase">Future Ready Living</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Circular Interaction -->
+                    <div class="w-full lg:w-1/2 relative flex justify-center items-center" id="sus-circle-container">
+                        <!-- Main Image Circle -->
+                        <div class="relative w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] shrink-0 rounded-full z-10 shadow-2xl flex items-center justify-center bg-gray-100">
+                            <div class="absolute inset-0 rounded-full overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?q=80&w=2025&auto=format&fit=crop" 
+                                     alt="Sustainable Living" 
+                                     class="w-full h-full object-cover scale-110" id="sus-main-img">
+                                
+                                <!-- Info Overlay (Appears on Hover) -->
+                                <div class="absolute inset-0 bg-black/40 backdrop-blur-md flex items-center justify-center opacity-0 transition-opacity duration-500" id="sus-info-overlay">
+                                    <p class="text-white text-2xl lg:text-3xl font-serif italic text-center px-12 leading-tight" id="sus-info-text">
+                                        Eco-friendly living
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Corrected Structure for Icons -->
+                            <div class="absolute inset-0 pointer-events-none" id="sus-orbit-ring" style="z-index: 20;">
+                                <!-- Icon 1 -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" data-angle="0" data-info="Biophilic design integrating nature">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="leaf" class="w-6 h-6 lg:w-10 lg:h-10"></i>
+                                    </div>
+                                </div>
+                                <!-- Icon 2 -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" data-angle="120" data-info="100% Solar powered common areas">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="sun" class="w-6 h-6 lg:w-10 lg:h-10"></i>
+                                    </div>
+                                </div>
+                                <!-- Icon 3 -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" data-angle="240" data-info="Advanced rainwater harvesting">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300">
+                                        <i data-lucide="droplets" class="w-6 h-6 lg:w-10 lg:h-10"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
         <!-- Top Navigation Bar -->
         <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black/80 to-transparent">
             
@@ -711,6 +778,106 @@
                         onUpdate: function() {
                             counter.innerText = Math.ceil(this.targets()[0].innerText);
                         }
+                    });
+                });
+            }
+            // --- 8. Sustainability Section Animations ---
+            const susOrbitRing = document.getElementById('sus-orbit-ring');
+            const susIcons = document.querySelectorAll('.sus-icon-item');
+            const susInfoOverlay = document.getElementById('sus-info-overlay');
+            const susInfoText = document.getElementById('sus-info-text');
+            const susMainImg = document.getElementById('sus-main-img');
+
+            if(susOrbitRing && susIcons.length > 0) {
+                // Initial setup: Position icons on the ring
+                const radius = susOrbitRing.offsetWidth / 2; // Radius of the container
+                
+                // Create a proxy object to animate rotation
+                const orbitState = { rotation: 0 };
+
+                // Animation Loop
+                gsap.to(orbitState, {
+                    rotation: 360,
+                    duration: 20,
+                    repeat: -1,
+                    ease: "none",
+                    onUpdate: updateIcons
+                });
+
+                function updateIcons() {
+                    const currentRotation = orbitState.rotation;
+
+                    susIcons.forEach(icon => {
+                        const offsetAngle = +icon.getAttribute('data-angle');
+                        const totalAngle = (currentRotation + offsetAngle) % 360;
+                        
+                        // Calculate visibility based on angle (Visible around 0 degrees / 360 degrees - Right side)
+                        // Let's say visible range is 300 to 60 degrees
+                        let opacity = 0;
+                        let scale = 0.8;
+                        
+                        // Normalize angle for easier comparison
+                        let normalizedAngle = totalAngle;
+                        if (normalizedAngle > 180) normalizedAngle -= 360; // Range: -180 to 180
+                        
+                        // Active zone: around 0 degrees (Right side)
+                        if (Math.abs(normalizedAngle) < 60) {
+                            // Fade in/out smoothly
+                            opacity = 1 - (Math.abs(normalizedAngle) / 60);
+                            scale = 0.8 + (0.2 * opacity); // Scale up to 1
+                        }
+
+                        // Apply rotation to the ring container logic (simulated)
+                        // Actually, we rotate the whole ring div? No, we want them to stay upright.
+                        // So we calculate X/Y manually.
+                        
+                        const rad = (totalAngle * Math.PI) / 180;
+                        // Radius calculation: 
+                        // We want icons INSIDE the circle image, so we multiply by a factor < 1 (e.g., 0.75)
+                        const r = (susOrbitRing.offsetWidth / 2) * 0.75; 
+                        
+                        const x = Math.cos(rad) * r;
+                        const y = Math.sin(rad) * r;
+
+                        // Apply transforms
+                        // We need to center them first, then move
+                        // The icons are absolute centered.
+                        gsap.set(icon, {
+                            x: x,
+                            y: y,
+                            opacity: opacity,
+                            scale: scale,
+                            zIndex: opacity > 0.5 ? 10 : 1
+                        });
+                    });
+                }
+
+                // Hover Interaction
+                susIcons.forEach(icon => {
+                    icon.addEventListener('mouseenter', () => {
+                        gsap.globalTimeline.getChildren().forEach(t => {
+                            if(t.vars && t.vars.rotation === 360) t.pause(); // Pause orbit
+                        });
+                        
+                        // Show Info
+                        const info = icon.getAttribute('data-info');
+                        if(susInfoText) susInfoText.textContent = info;
+                        if(susInfoOverlay) susInfoOverlay.style.opacity = '1';
+                        
+                        // Scale Image slightly
+                        gsap.to(susMainImg, { scale: 1, duration: 0.5 });
+                        
+                        // Make hovered icon fully visible
+                        gsap.to(icon, { opacity: 1, scale: 1.1, duration: 0.3 });
+                    });
+
+                    icon.addEventListener('mouseleave', () => {
+                        gsap.globalTimeline.getChildren().forEach(t => {
+                            if(t.vars && t.vars.rotation === 360) t.play(); // Resume orbit
+                        });
+
+                        if(susInfoOverlay) susInfoOverlay.style.opacity = '0';
+                        gsap.to(susMainImg, { scale: 1.1, duration: 0.5 });
                     });
                 });
             }
