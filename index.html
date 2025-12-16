@@ -321,6 +321,140 @@
             </div>
         </section>
 
+        <!-- NEW SECTION: KING'S Text Mask with Sliding Images -->
+        <section id="kings-mask-section" class="relative w-full h-[60vh] lg:h-[80vh] overflow-hidden bg-white">
+            <!-- 1. The Sliding Images (Bottom Layer) -->
+            <div class="absolute inset-0 flex items-center" id="kings-marquee-container">
+                <div class="flex gap-0 w-max" id="kings-marquee">
+                    <!-- Images repeated enough to fill width -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    
+                    <!-- Duplicate for seamless loop -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                </div>
+            </div>
+
+            <!-- 2. The Mask Layer (Top Layer) -->
+            <!-- mix-blend-screen: White BG + Black Text. 
+                 White + Image = White. 
+                 Black + Image = Image. -->
+            <div class="absolute inset-0 bg-white flex items-center justify-center mix-blend-screen z-10 pointer-events-none select-none">
+                <h2 class="text-[25vw] font-black text-black leading-none tracking-tighter uppercase font-serif" style="font-family: 'Playfair Display', serif;">
+                    KING'S
+                </h2>
+            </div>
+        </section>
+
+        <!-- Footer Section -->
+        <footer class="bg-[#050505] text-white pt-20 pb-10 px-6 lg:px-20 relative z-10">
+            <div class="max-w-screen-2xl mx-auto">
+                
+                <!-- Top: CTA -->
+                <div class="border-b border-white/10 pb-16 mb-16 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
+                    <div>
+                        <h2 class="text-5xl lg:text-8xl font-serif italic mb-6">Unlock your legacy.</h2>
+                        <p class="text-white/60 text-lg max-w-md">
+                            Experience the pinnacle of sustainable luxury living at King's Landing. 
+                            Where nature meets architectural excellence.
+                        </p>
+                    </div>
+                    <button class="group relative px-8 py-4 bg-white text-black rounded-full overflow-hidden hover-trigger">
+                        <span class="relative z-10 font-medium uppercase tracking-widest text-sm group-hover:text-white transition-colors duration-300">Schedule a Visit</span>
+                        <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                    </button>
+                </div>
+
+                <!-- Middle: Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+                    
+                    <!-- Brand -->
+                    <div class="flex flex-col gap-6">
+                        <a href="#" class="text-3xl font-serif italic">King's Landing</a>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
+                                <i data-lucide="instagram" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
+                                <i data-lucide="facebook" class="w-4 h-4"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
+                                <i data-lucide="linkedin" class="w-4 h-4"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Links -->
+                    <div>
+                        <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Explore</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">The Story</a></li>
+                            <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Residences</a></li>
+                            <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Amenities</a></li>
+                            <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Gallery</a></li>
+                            <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Neighborhood</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact -->
+                    <div>
+                        <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Contact</h3>
+                        <ul class="flex flex-col gap-4">
+                            <li class="flex gap-3 items-start">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-1"></i>
+                                <span class="text-white/80">Oetlisberg 22,<br>8053 Zurich, Switzerland</span>
+                            </li>
+                            <li class="flex gap-3 items-center">
+                                <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                                <a href="tel:+41441234567" class="text-white/80 hover:text-white transition-colors">+41 44 123 45 67</a>
+                            </li>
+                            <li class="flex gap-3 items-center">
+                                <i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                                <a href="mailto:info@kingslanding.ch" class="text-white/80 hover:text-white transition-colors">info@kingslanding.ch</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div>
+                        <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Newsletter</h3>
+                        <p class="text-white/60 mb-4 text-sm">Subscribe for exclusive updates and private viewing invitations.</p>
+                        <form class="flex flex-col gap-3">
+                            <input type="email" placeholder="Your email address" class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors">
+                            <button type="submit" class="bg-[#D4AF37] text-black font-medium px-4 py-3 rounded-lg hover:bg-[#b5952f] transition-colors">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- Bottom -->
+                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
+                    <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
+                        <p>&copy; 2025 King's Landing. All rights reserved.</p>
+                        <span class="hidden md:block text-white/20">|</span>
+                        <p class="group">
+                            Crafted by <a href="#" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a>
+                        </p>
+                    </div>
+                    <div class="flex gap-8">
+                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                        <a href="#" class="hover:text-white transition-colors">Impressum</a>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
         <!-- Top Navigation Bar -->
         <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black/80 to-transparent">
             
@@ -879,6 +1013,18 @@
                         if(susInfoOverlay) susInfoOverlay.style.opacity = '0';
                         gsap.to(susMainImg, { scale: 1.1, duration: 0.5 });
                     });
+                });
+            }
+
+            // --- 8. King's Marquee Animation ---
+            const kingsMarquee = document.getElementById('kings-marquee');
+            if(kingsMarquee) {
+                // Simple infinite scroll
+                gsap.to(kingsMarquee, {
+                    xPercent: -50, // Move half the width (since we duplicated images)
+                    ease: "none",
+                    duration: 20, // Adjust speed
+                    repeat: -1
                 });
             }
         });
