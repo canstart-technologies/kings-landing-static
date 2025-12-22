@@ -290,8 +290,7 @@
                         
                         <!-- Dynamic Active Value Indicator -->
                         <div class="border-l-2 border-black/10 pl-8 py-2 transition-all duration-500" id="sus-dynamic-content">
-                            <span class="text-sm font-bold tracking-widest uppercase text-[#D4AF37] mb-3 block" id="sus-active-label">01. The Foundation</span>
-                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-4" id="sus-active-title">Sustainability</h3>
+                            <h3 class="text-4xl lg:text-5xl font-serif italic mb-4" id="sus-active-title">01. Sustainability</h3>
                             <p class="text-gray-500 leading-relaxed max-w-md text-lg font-light" id="sus-active-desc">
                                 Eco-homes, renewable energy, and permaculture gardens that give back more than they take.
                             </p>
@@ -1026,7 +1025,6 @@
             const susBgImg = document.getElementById('sus-bg-img'); // Back buffer
             const susActiveTitle = document.getElementById('sus-active-title');
             const susActiveDesc = document.getElementById('sus-active-desc');
-            const susActiveLabel = document.getElementById('sus-active-label');
             const susBgMarquee = document.getElementById('sus-bg-marquee');
 
             // Background Marquee Animation
@@ -1063,11 +1061,15 @@
                     const bg = icon.getAttribute('data-bg');
                     
                     // Text Update (Premium Staggered Reveal)
-                    if(susActiveTitle && susActiveTitle.innerText !== title) {
+                    // Check if title needs update (ignoring the number prefix for comparison if needed, but simple check works)
+                    // We construct the full string to compare
+                    const newTitleString = `0${index + 1}. ${title}`;
+
+                    if(susActiveTitle && susActiveTitle.innerText !== newTitleString) {
                         const tl = gsap.timeline();
                         
                         // Animate Out
-                        tl.to([susActiveLabel, susActiveTitle, susActiveDesc], { 
+                        tl.to([susActiveTitle, susActiveDesc], { 
                             y: -20, 
                             opacity: 0, 
                             stagger: 0.05, 
@@ -1076,12 +1078,11 @@
                         })
                         .call(() => {
                             // Update Text Content
-                            if(susActiveTitle) susActiveTitle.innerText = title;
+                            if(susActiveTitle) susActiveTitle.innerText = newTitleString;
                             if(susActiveDesc) susActiveDesc.innerText = desc;
-                            if(susActiveLabel) susActiveLabel.innerText = `0${index + 1}. ${title}`;
                         })
                         // Animate In
-                        .to([susActiveLabel, susActiveTitle, susActiveDesc], { 
+                        .to([susActiveTitle, susActiveDesc], { 
                             y: 0, 
                             opacity: 1, 
                             stagger: 0.1, 
