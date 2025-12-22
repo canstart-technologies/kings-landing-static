@@ -11,25 +11,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <style>
-        /* Imported Cormorant Garamond as a high-quality free alternative to Latienne Pro */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+        /* Imported Cormorant Garamond (Latienne Pro alternative) and Manrope (Euclid Square alternative) */
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 
         :root {
             --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Manrope', sans-serif; /* Euclid Square alternative */
             overflow-x: hidden;
             background-color: #f9fafb;
         }
 
-        .serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Latienne Pro Alternative Class */
-        .font-latienne {
+        /* Latienne Pro Alternative Class (Applied to all headings and serif elements) */
+        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
             font-family: 'Cormorant Garamond', serif;
         }
 
@@ -380,7 +376,7 @@
                  White + Image = White. 
                  Black + Image = Image. -->
             <div class="absolute inset-0 bg-white flex items-center justify-center mix-blend-screen z-10 pointer-events-none select-none">
-                <h2 class="text-[13vw] font-black text-black leading-none tracking-tighter uppercase font-serif" style="font-family: 'Playfair Display', serif;">
+                <h2 class="text-[12vw] font-black text-black leading-none tracking-tighter uppercase font-serif" style="font-family: 'Playfair Display', serif;">
                     KING'S LANDING
                 </h2>
             </div>
