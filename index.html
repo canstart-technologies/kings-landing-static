@@ -11,7 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+        /* Imported Cormorant Garamond as a high-quality free alternative to Latienne Pro */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 
         :root {
             --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -27,7 +28,10 @@
             font-family: 'Playfair Display', serif;
         }
 
-        
+        /* Latienne Pro Alternative Class */
+        .font-latienne {
+            font-family: 'Cormorant Garamond', serif;
+        }
 
         /* Menu Link Hover Effects */
         .menu-link {
@@ -86,7 +90,7 @@
     <!-- Preloader -->
     <!-- <div id="preloader" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center text-white">
         <div class="overflow-hidden mb-6">
-            <h1 id="preloader-text" class="text-5xl lg:text-8xl font-serif italic tracking-tighter translate-y-full opacity-0">
+            <h1 id="preloader-text" class="text-5xl lg:text-8xl font-latienne italic tracking-tighter translate-y-full opacity-0">
                 King's Landing
             </h1>
         </div>
@@ -140,8 +144,8 @@
             <div class="absolute inset-0 p-8 lg:p-20 flex flex-col justify-center items-center text-white z-10 pointer-events-none text-center">
                 <!-- Main Headline Area -->
                 <div class="flex flex-col gap-6 max-w-5xl">
-                    <h1 class="text-6xl lg:text-9xl font-semibold leading-[0.9] tracking-tight" id="hero-title">
-                        King's <span class="font-light italic serif opacity-90">Landing</span>
+                    <h1 class="text-6xl lg:text-9xl font-latienne font-semibold leading-[0.9] tracking-tight" id="hero-title">
+                        King's <span class="font-latienne font-light italic opacity-90">Landing</span>
                     </h1>
                     
                     <p class="text-lg lg:text-2xl font-light opacity-0 leading-relaxed max-w-2xl mx-auto" id="hero-desc">
