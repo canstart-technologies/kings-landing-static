@@ -208,61 +208,68 @@
             </div>
         </section>
 
-        <!-- Numbers Section -->
-        <section class="relative w-full py-24 lg:py-32 bg-[#1a1a1a] text-white z-10" id="numbers-section">
-            <div class="max-w-7xl mx-auto px-6 lg:px-10">
-                <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
-                    
-                    <!-- Left Content -->
-                    <div class="w-full lg:w-5/12 flex flex-col justify-center opacity-0 -translate-x-10" id="numbers-content">
-                        <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 mb-8">Numbers</span>
-                        <h2 class="text-4xl lg:text-5xl font-serif font-medium mb-8 leading-[1.1]">
-                            The facts speak clearly about what we've built
+        <!-- Our Story Section (Replaces Numbers) -->
+        <section id="story-section" class="relative w-full bg-white text-black">
+            
+            <!-- Sticky Image Container (Starts Full, Shrinks to Right) -->
+            <div class="h-screen w-full sticky top-0 left-0 overflow-hidden z-0" id="story-image-wrapper">
+                <div class="absolute inset-0 w-full h-full bg-gray-100" id="story-image-inner">
+                     <!-- Image 1: Discovery -->
+                     <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop" 
+                          class="story-img absolute inset-0 w-full h-full object-cover transition-transform duration-1000" 
+                          id="story-img-0" style="z-index: 1;">
+                     
+                     <!-- Image 2: Vision -->
+                     <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop" 
+                          class="story-img absolute inset-0 w-full h-full object-cover opacity-0 transition-transform duration-1000" 
+                          id="story-img-1" style="z-index: 2;">
+                     
+                     <!-- Image 3: Community -->
+                     <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=2070&auto=format&fit=crop" 
+                          class="story-img absolute inset-0 w-full h-full object-cover opacity-0 transition-transform duration-1000" 
+                          id="story-img-2" style="z-index: 3;">
+                </div>
+            </div>
+        
+            <!-- Scrolling Content -->
+            <div class="relative z-10 -mt-[100vh]"> 
+                
+                <!-- Intro Block (Overlay on full image) -->
+                <div class="h-screen flex items-center justify-center px-6" id="story-intro">
+                    <div class="text-center text-white drop-shadow-lg"> 
+                        <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block opacity-0 translate-y-10" id="story-intro-label">Our Vision</span>
+                        <h2 class="text-5xl lg:text-8xl font-serif font-medium leading-tight opacity-0 translate-y-10" id="story-intro-title">
+                            A Dream Reimagined<br>in the Mountains
                         </h2>
-                        <p class="text-lg font-light text-gray-400 mb-12 leading-relaxed">
-                            Thirty-six apartments. One vision. A place where less means more.
-                        </p>
-                        <div class="flex items-center gap-8">
-                            <button class="px-8 py-3 border border-white/30 hover:bg-white hover:text-black transition-all duration-300 uppercase text-xs tracking-widest font-medium">
-                                Discover
-                            </button>
-                            <a href="#" class="text-sm font-medium hover:text-[#D4AF37] transition-colors flex items-center gap-2 group">
-                                Explore <i data-lucide="chevron-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                            </a>
+                    </div>
+                </div>
+        
+                <!-- Spacer for transition -->
+                <div class="h-[20vh]"></div>
+        
+                <!-- Split Content Blocks -->
+                <div class="flex flex-col lg:flex-row">
+                    <div class="w-full lg:w-1/2 bg-white/95 backdrop-blur-sm lg:bg-white pt-20"> 
+                         <!-- Point 1 -->
+                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="0">
+                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                                Two minds discovered a serene patch of land while wandering through a mountain village.
+                            </p>
+                        </div>
+                        <!-- Point 2 -->
+                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="1">
+                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                                What began as their dream retirement spot grew into a shared vision — a haven for those seeking simplicity, nature, and community.
+                            </p>
+                        </div>
+                        <!-- Point 3 -->
+                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="2">
+                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                                Today, that dream stands as an eco-hamlet where people live in harmony with the earth and each other.
+                            </p>
                         </div>
                     </div>
-
-                    <!-- Right Stats Grid -->
-                    <div class="w-full lg:w-7/12 grid grid-cols-1 md:grid-cols-2">
-                        <!-- Stat 1 -->
-                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-b md:border-b-0 md:border-r relative group">
-                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 counter" data-target="36">0</h3>
-                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Residences total</p>
-                        </div>
-                        
-                        <!-- Stat 2 -->
-                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-b md:border-b-0 relative group">
-                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 flex items-baseline gap-1">
-                                <span class="counter" data-target="8000">0</span><span class="text-3xl lg:text-4xl">+</span>
-                            </h3>
-                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Square feet each</p>
-                        </div>
-
-                        <!-- Stat 3 -->
-                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-t border-white/10 md:border-t-0 md:border-r relative group">
-                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 counter" data-target="7500">0</h3>
-                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Feet elevation</p>
-                        </div>
-
-                        <!-- Stat 4 -->
-                        <div class="stat-item p-8 lg:p-12 border-l border-white/10 border-t border-white/10 md:border-t-0 relative group">
-                            <h3 class="text-5xl lg:text-7xl font-medium mb-2 flex items-baseline gap-1">
-                                <span class="counter" data-target="100">0</span><span class="text-3xl lg:text-4xl">%</span>
-                            </h3>
-                            <p class="text-sm font-medium text-gray-400 uppercase tracking-wider">Mountain views guaranteed</p>
-                        </div>
-                    </div>
-
+                    <div class="hidden lg:block w-1/2"></div> <!-- Spacer for right side -->
                 </div>
             </div>
         </section>
@@ -961,62 +968,73 @@
                 });
             }
 
-            // --- 7. Numbers Section Animations ---
-            const numbersContent = document.getElementById('numbers-content');
-            const statItems = document.querySelectorAll('.stat-item');
-            const counters = document.querySelectorAll('.counter');
-
-            if(numbersContent) {
-                gsap.to(numbersContent, {
+            // --- 7. Story Section Animations (Replaces Numbers) ---
+            const storySection = document.getElementById('story-section');
+            const storyImageWrapper = document.getElementById('story-image-wrapper');
+            const storyIntroLabel = document.getElementById('story-intro-label');
+            const storyIntroTitle = document.getElementById('story-intro-title');
+            
+            if (storySection && storyImageWrapper) {
+                // 1. Intro Text Reveal
+                gsap.to([storyIntroLabel, storyIntroTitle], {
                     opacity: 1,
-                    x: 0,
-                    duration: 1,
+                    y: 0,
+                    duration: 1.5,
+                    stagger: 0.2,
                     ease: "power3.out",
                     scrollTrigger: {
-                        trigger: numbersContent,
-                        start: "top 80%",
-                        toggleActions: "play none none reverse"
+                        trigger: storySection,
+                        start: "top 60%",
                     }
                 });
-            }
 
-            if(statItems.length > 0) {
-                // Fade in stats
-                gsap.fromTo(statItems, 
-                    { opacity: 0, y: 20 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        stagger: 0.1,
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: "#numbers-section",
-                            start: "top 75%",
-                            toggleActions: "play none none reverse"
-                        }
+                // 2. The "Shrink to Right" Animation
+                // This timeline handles the transition from full-screen image to split-screen
+                const shrinkTl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#story-intro", // Use the intro container as trigger
+                        start: "top top",
+                        end: "bottom top", 
+                        scrub: true,
                     }
-                );
+                });
 
-                // Count up animation
-                counters.forEach(counter => {
-                    const target = +counter.getAttribute('data-target');
-                    
-                    gsap.to(counter, {
-                        innerText: target,
-                        duration: 2,
-                        snap: { innerText: 1 },
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: "#numbers-section",
-                            start: "top 75%",
-                            toggleActions: "play none none reverse"
-                        },
-                        onUpdate: function() {
-                            counter.innerText = Math.ceil(this.targets()[0].innerText);
-                        }
+                shrinkTl.to(storyImageWrapper, {
+                    width: "50%", // Shrink to half width
+                    left: "50%",  // Move to right side
+                    ease: "none"
+                })
+                .to([storyIntroLabel, storyIntroTitle], {
+                    opacity: 0,
+                    y: -50,
+                    ease: "power1.in"
+                }, "<"); 
+
+                // 3. Image Switching on Scroll
+                const storyBlocks = document.querySelectorAll('.story-text-block');
+                const storyImages = document.querySelectorAll('.story-img');
+
+                storyBlocks.forEach((block, i) => {
+                    ScrollTrigger.create({
+                        trigger: block,
+                        start: "top 60%", // Trigger when text is near center
+                        end: "bottom 60%",
+                        onEnter: () => updateStoryImage(i),
+                        onEnterBack: () => updateStoryImage(i)
                     });
                 });
+
+                function updateStoryImage(index) {
+                    storyImages.forEach((img, i) => {
+                        if (i === index) {
+                            gsap.to(img, { opacity: 1, duration: 1, ease: "power2.out" });
+                            gsap.to(img, { scale: 1.05, duration: 10, ease: "none" }); // Slow zoom effect
+                        } else {
+                            gsap.to(img, { opacity: 0, duration: 1, ease: "power2.out" });
+                            gsap.to(img, { scale: 1, duration: 1 }); // Reset scale
+                        }
+                    });
+                }
             }
             // --- 8. Sustainability Section Animations ---
             const susOrbitRing = document.getElementById('sus-orbit-ring');
