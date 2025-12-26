@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amenities - King's Landing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <style>
+        /* Imported Cormorant Garamond (Latienne Pro alternative) and Manrope (Euclid Square alternative) */
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+        :root {
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+
+        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a; 
+            border-radius: 3px;
+        }
+
+        /* Stacking Cards Effect */
+        .card-stack-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .card-stack-item {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Top Navigation Bar (Fixed) -->
+    <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none mix-blend-difference text-white">
+        
+        <!-- Left: Menu Button -->
+        <div class="pointer-events-auto">
+            <button id="menu-toggle" class="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-black transition-all duration-300 hover-trigger focus:outline-none text-white">
+                <div class="flex flex-col gap-1.5 items-start w-5">
+                    <span class="w-full h-[1.5px] bg-current transition-all duration-300 group-hover:w-3" id="burger-top"></span>
+                    <span class="w-3 h-[1.5px] bg-current transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
+                </div>
+                <span class="text-xs font-medium tracking-widest uppercase" id="menu-text">Menu</span>
+            </button>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="pointer-events-auto absolute left-1/2 top-10 lg:top-12 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <a href="index.html" class="text-2xl lg:text-3xl font-serif italic tracking-widest text-white hover:opacity-80 transition-opacity drop-shadow-md">
+                King's Landing
+            </a>
+        </div>
+
+        <!-- Right: CTA -->
+        <div class="pointer-events-auto flex items-center gap-6 text-white">
+            <button class="bg-white text-black px-8 py-4 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-all hover:scale-105 duration-300 hover-trigger shadow-lg shadow-white/10">
+                Request Call Back
+            </button>
+        </div>
+    </div>
+
+    <!-- Full Screen Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-[#FDFBF7] z-40 transform -translate-x-full flex flex-col lg:flex-row">
+        <!-- Menu Left: Links -->
+        <div class="w-full lg:w-1/3 h-full flex flex-col justify-center px-8 lg:px-16 relative border-r border-black/5">
+            <div class="flex flex-col gap-1 lg:gap-2" id="menu-links-container">
+                <a href="index.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Home</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="amenities.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Amenities</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <!-- Add other links as needed -->
+            </div>
+        </div>
+        <!-- Menu Right: Image Preview -->
+        <div class="hidden lg:block w-full lg:w-2/3 h-full relative overflow-hidden bg-[#F5F5F0]">
+             <div class="absolute inset-0 bg-gray-200"></div> <!-- Placeholder -->
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative w-full h-[80vh] flex items-center justify-center bg-[#1a1a1a] text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-60">
+            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Amenities Hero">
+        </div>
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block text-[#D4AF37]">Lifestyle</span>
+            <h1 class="text-6xl lg:text-9xl font-serif font-medium mb-8 leading-none">Amenities</h1>
+            <p class="text-lg lg:text-2xl font-light text-gray-200 leading-relaxed">
+                Experience unmatched indulgence with world-class amenities, from a serene spa to an inspiring clubhouse. Every corner is designed for comfort, recreation, and elegance.
+            </p>
+        </div>
+    </section>
+
+    <!-- Intro Quote -->
+    <section class="py-24 lg:py-32 bg-white text-center px-6">
+        <div class="max-w-3xl mx-auto">
+            <p class="text-3xl lg:text-5xl font-serif italic leading-tight text-gray-900">
+                "King's Landing isn't just a place to live, it's where life flourishes. Luxury is not added here; it's built in."
+            </p>
+        </div>
+    </section>
+
+    <!-- Stacking Cards Container -->
+    <div class="card-stack-wrapper bg-[#f9fafb]">
+        
+        <!-- SECTION 1: NATURE (Animation: Dreamy Blur Fade) -->
+        <div class="amenity-section relative h-[300vh]" id="amenity-nature">
+            <div class="sticky top-0 h-screen overflow-hidden bg-[#F5F5F0] text-black flex flex-col lg:flex-row">
+                <!-- Left: Content -->
+                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10">
+                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">01</span>
+                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Nature & Wellness</h2>
+                    <p class="text-xl font-serif italic text-gray-600 mb-12">"Where Stillness Becomes an Address"</p>
+                    
+                    <ul class="space-y-8 relative">
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
+                            <i data-lucide="trees" class="w-6 h-6 text-[#D4AF37]"></i> Forest trails with meditation nooks
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
+                            <i data-lucide="flower-2" class="w-6 h-6 text-[#D4AF37]"></i> Community herbal gardens
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
+                            <i data-lucide="sun" class="w-6 h-6 text-[#D4AF37]"></i> Open-air yoga & wellness pavilion
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
+                            <i data-lucide="armchair" class="w-6 h-6 text-[#D4AF37]"></i> Hammock groves and mountain-view benches
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right: Images -->
+                <div class="w-full lg:w-1/2 h-full relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gray-200">
+                        <!-- Images set to opacity 0 initially (except first) handled by JS -->
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop" 
+                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 1;">
+                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2074&auto=format&fit=crop" 
+                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 2; opacity: 0;">
+                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 3; opacity: 0;">
+                        <img src="https://images.unsplash.com/photo-1528154291023-a6dee39d496d?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 4; opacity: 0;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 2: SUSTAINABLE (Animation: Circular Reveal) -->
+        <div class="amenity-section relative h-[300vh]" id="amenity-sustainable">
+            <div class="sticky top-0 h-screen overflow-hidden bg-[#EAECE5] text-black flex flex-col lg:flex-row">
+                <!-- Left: Content -->
+                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10 order-2 lg:order-1">
+                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">02</span>
+                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Sustainable Living</h2>
+                    <p class="text-xl font-serif italic text-gray-600 mb-12">"In Harmony with the Mountains"</p>
+                    
+                    <ul class="space-y-8 relative">
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
+                            <i data-lucide="recycle" class="w-6 h-6 text-[#D4AF37]"></i> Composting & zero-waste systems
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
+                            <i data-lucide="zap" class="w-6 h-6 text-[#D4AF37]"></i> EV charging stations
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
+                            <i data-lucide="sprout" class="w-6 h-6 text-[#D4AF37]"></i> Green, edible landscaping
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
+                            <i data-lucide="home" class="w-6 h-6 text-[#D4AF37]"></i> Minimalist tiny-home options
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right: Images -->
+                <div class="w-full lg:w-1/2 h-full relative overflow-hidden order-1 lg:order-2">
+                    <div class="absolute inset-0 bg-gray-200">
+                        <!-- Clip path will be animated -->
+                        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 1;">
+                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" 
+                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 2; clip-path: circle(0% at 50% 50%);">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop" 
+                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 3; clip-path: circle(0% at 50% 50%);">
+                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 4; clip-path: circle(0% at 50% 50%);">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 3: COMMUNITY (Animation: Vertical Slide Up Stack) -->
+        <div class="amenity-section relative h-[300vh]" id="amenity-community">
+            <div class="sticky top-0 h-screen overflow-hidden bg-[#F0F0F0] text-black flex flex-col lg:flex-row">
+                <!-- Left: Content -->
+                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10">
+                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">03</span>
+                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Community & Culture</h2>
+                    <p class="text-xl font-serif italic text-gray-600 mb-12">"A place to belong, built for togetherness"</p>
+                    
+                    <ul class="space-y-8 relative">
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
+                            <i data-lucide="users" class="w-6 h-6 text-[#D4AF37]"></i> Common house with kitchen, dining & library
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
+                            <i data-lucide="palette" class="w-6 h-6 text-[#D4AF37]"></i> Art & craft studios
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
+                            <i data-lucide="laptop" class="w-6 h-6 text-[#D4AF37]"></i> Co-work space amid nature
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
+                            <i data-lucide="baby" class="w-6 h-6 text-[#D4AF37]"></i> Children’s natural play area
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right: Images -->
+                <div class="w-full lg:w-1/2 h-full relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1517560177111-a34752893478?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 1;">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover translate-y-full" 
+                             style="z-index: 2;">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover translate-y-full" 
+                             style="z-index: 3;">
+                        <img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover translate-y-full" 
+                             style="z-index: 4;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 4: MODERN (Animation: Curtain Wipe) -->
+        <div class="amenity-section relative h-[300vh]" id="amenity-modern">
+            <div class="sticky top-0 h-screen overflow-hidden bg-[#E5E5E5] text-black flex flex-col lg:flex-row">
+                <!-- Left: Content -->
+                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10 order-2 lg:order-1">
+                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">04</span>
+                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Modern Essentials</h2>
+                    <p class="text-xl font-serif italic text-gray-600 mb-12">"Built for effortless living"</p>
+                    
+                    <ul class="space-y-8 relative">
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
+                            <i data-lucide="wifi" class="w-6 h-6 text-[#D4AF37]"></i> Smart home systems & High-speed internet
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
+                            <i data-lucide="chef-hat" class="w-6 h-6 text-[#D4AF37]"></i> Modular kitchens with eco appliances
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
+                            <i data-lucide="thermometer" class="w-6 h-6 text-[#D4AF37]"></i> Energy-efficient heating & cooling
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
+                            <i data-lucide="droplets" class="w-6 h-6 text-[#D4AF37]"></i> Water-saving fixtures & recycling
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right: Images -->
+                <div class="w-full lg:w-1/2 h-full relative overflow-hidden order-1 lg:order-2">
+                    <div class="absolute inset-0 bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1558002038-1091a166111c?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 1;">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 2; clip-path: inset(0 100% 0 0);">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c54be3852f9d?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 3; clip-path: inset(0 100% 0 0);">
+                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 4; clip-path: inset(0 100% 0 0);">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 5: ECO (Animation: Scale Reveal) -->
+        <div class="amenity-section relative h-[300vh]" id="amenity-eco">
+            <div class="sticky top-0 h-screen overflow-hidden bg-[#DCDCDC] text-black flex flex-col lg:flex-row">
+                <!-- Left: Content -->
+                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10">
+                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">05</span>
+                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Eco-Friendly</h2>
+                    <p class="text-xl font-serif italic text-gray-600 mb-12">"In Harmony with the Mountains"</p>
+                    
+                    <ul class="space-y-8 relative">
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
+                            <i data-lucide="sun-medium" class="w-6 h-6 text-[#D4AF37]"></i> Rooftop solar panels
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
+                            <i data-lucide="cloud-rain" class="w-6 h-6 text-[#D4AF37]"></i> Rainwater harvesting
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
+                            <i data-lucide="wind" class="w-6 h-6 text-[#D4AF37]"></i> Natural ventilation & daylighting
+                        </li>
+                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
+                            <i data-lucide="hammer" class="w-6 h-6 text-[#D4AF37]"></i> Sustainable materials
+                        </li>
+                    </ul>
+                </div>
+                <!-- Right: Images -->
+                <div class="w-full lg:w-1/2 h-full relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 1;">
+                        <img src="https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 2; transform: scale(0); opacity: 0;">
+                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 3; transform: scale(0); opacity: 0;">
+                        <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=2070&auto=format&fit=crop" 
+                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
+                             style="z-index: 4; transform: scale(0); opacity: 0;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] text-white py-24 lg:py-32 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10">
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-24">
+                <div class="max-w-md">
+                    <h2 class="text-4xl lg:text-6xl font-serif mb-8">King's Landing</h2>
+                    <p class="text-gray-400 leading-relaxed mb-8">
+                        A sanctuary in the Himalayas. Where luxury meets nature, and silence speaks volumes.
+                    </p>
+                </div>
+                <div class="flex gap-16 lg:gap-24">
+                    <div class="flex flex-col gap-4">
+                        <h4 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2">Explore</h4>
+                        <a href="index.html" class="hover:text-[#D4AF37] transition-colors">Home</a>
+                        <a href="amenities.html" class="hover:text-[#D4AF37] transition-colors">Amenities</a>
+                        <a href="#" class="hover:text-[#D4AF37] transition-colors">Gallery</a>
+                        <a href="#" class="hover:text-[#D4AF37] transition-colors">Contact</a>
+                    </div>
+                    <div class="flex flex-col gap-4">
+                        <h4 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2">Contact</h4>
+                        <p class="text-gray-400">info@kingslanding.com</p>
+                        <p class="text-gray-400">+91 98765 43210</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
+                <p>&copy; 2025 King's Landing. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Menu Toggle Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuText = document.getElementById('menu-text');
+        const burgerTop = document.getElementById('burger-top');
+        const burgerBottom = document.getElementById('burger-bottom');
+        let isMenuOpen = false;
+
+        if(menuToggle && menuOverlay) {
+            menuToggle.addEventListener('click', () => {
+                isMenuOpen = !isMenuOpen;
+                
+                if(isMenuOpen) {
+                    // Open Menu
+                    gsap.to(menuOverlay, { x: "0%", duration: 0.8, ease: "power4.inOut" });
+                    menuText.innerText = "Close";
+                    burgerTop.classList.add('rotate-45', 'translate-y-[3px]');
+                    burgerBottom.classList.add('-rotate-45', '-translate-y-[3px]');
+                    
+                    // Animate Links
+                    gsap.fromTo(".menu-item", 
+                        { x: -50, opacity: 0 },
+                        { x: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.4 }
+                    );
+                } else {
+                    // Close Menu
+                    gsap.to(menuOverlay, { x: "-100%", duration: 0.8, ease: "power4.inOut" });
+                    menuText.innerText = "Menu";
+                    burgerTop.classList.remove('rotate-45', 'translate-y-[3px]');
+                    burgerBottom.classList.remove('-rotate-45', '-translate-y-[3px]');
+                }
+            });
+        }
+
+        // --- UNIQUE ANIMATIONS FOR EACH SECTION ---
+
+        // Helper to setup timeline
+        function createSectionTimeline(sectionId) {
+            const section = document.getElementById(sectionId);
+            if(!section) return null;
+            return gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top top",
+                    end: "bottom bottom",
+                    scrub: true,
+                    markers: false
+                }
+            });
+        }
+
+        // 1. NATURE: Dreamy Blur Fade
+        const natureTl = createSectionTimeline('amenity-nature');
+        if(natureTl) {
+            const items = document.querySelectorAll('#amenity-nature .amenity-item');
+            const images = document.querySelectorAll('.amenity-img-nature');
+            const step = 1 / (items.length - 1);
+
+            items.forEach((item, i) => {
+                if(i === 0) return;
+                const startTime = (i - 1) * step;
+                
+                // Text
+                natureTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
+                        .to(item, { opacity: 1, duration: 0.1 }, startTime);
+                
+                // Image: Fade in with Blur
+                natureTl.fromTo(images[i], 
+                    { opacity: 0, filter: "blur(20px)" },
+                    { opacity: 1, filter: "blur(0px)", duration: step, ease: "power2.inOut" }, 
+                    startTime
+                );
+            });
+        }
+
+        // 2. SUSTAINABLE: Circular Reveal
+        const susTl = createSectionTimeline('amenity-sustainable');
+        if(susTl) {
+            const items = document.querySelectorAll('#amenity-sustainable .amenity-item');
+            const images = document.querySelectorAll('.amenity-img-sus');
+            const step = 1 / (items.length - 1);
+
+            items.forEach((item, i) => {
+                if(i === 0) return;
+                const startTime = (i - 1) * step;
+                
+                // Text
+                susTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
+                     .to(item, { opacity: 1, duration: 0.1 }, startTime);
+                
+                // Image: Expand Circle
+                susTl.to(images[i], { 
+                    clipPath: "circle(150% at 50% 50%)", 
+                    duration: step, 
+                    ease: "power1.inOut" 
+                }, startTime);
+            });
+        }
+
+        // 3. COMMUNITY: Vertical Slide Stack
+        const commTl = createSectionTimeline('amenity-community');
+        if(commTl) {
+            const items = document.querySelectorAll('#amenity-community .amenity-item');
+            const images = document.querySelectorAll('.amenity-img-comm');
+            const step = 1 / (items.length - 1);
+
+            items.forEach((item, i) => {
+                if(i === 0) return;
+                const startTime = (i - 1) * step;
+                
+                // Text
+                commTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
+                      .to(item, { opacity: 1, duration: 0.1 }, startTime);
+                
+                // Image: Slide Up
+                commTl.to(images[i], { 
+                    y: "0%", 
+                    duration: step, 
+                    ease: "power2.out" 
+                }, startTime);
+            });
+        }
+
+        // 4. MODERN: Curtain Wipe (Left to Right)
+        const modernTl = createSectionTimeline('amenity-modern');
+        if(modernTl) {
+            const items = document.querySelectorAll('#amenity-modern .amenity-item');
+            const images = document.querySelectorAll('.amenity-img-modern');
+            const step = 1 / (items.length - 1);
+
+            items.forEach((item, i) => {
+                if(i === 0) return;
+                const startTime = (i - 1) * step;
+                
+                // Text
+                modernTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
+                        .to(item, { opacity: 1, duration: 0.1 }, startTime);
+                
+                // Image: Clip Path Wipe
+                modernTl.to(images[i], { 
+                    clipPath: "inset(0 0% 0 0)", 
+                    duration: step, 
+                    ease: "power2.inOut" 
+                }, startTime);
+            });
+        }
+
+        // 5. ECO: Scale Reveal
+        const ecoTl = createSectionTimeline('amenity-eco');
+        if(ecoTl) {
+            const items = document.querySelectorAll('#amenity-eco .amenity-item');
+            const images = document.querySelectorAll('.amenity-img-eco');
+            const step = 1 / (items.length - 1);
+
+            items.forEach((item, i) => {
+                if(i === 0) return;
+                const startTime = (i - 1) * step;
+                
+                // Text
+                ecoTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
+                     .to(item, { opacity: 1, duration: 0.1 }, startTime);
+                
+                // Image: Scale Up & Fade In
+                ecoTl.to(images[i], { 
+                    scale: 1,
+                    opacity: 1,
+                    duration: step, 
+                    ease: "back.out(1.2)" 
+                }, startTime);
+            });
+        }
+
+        // Stacking Cards Animation (Global Section Stacking)
+        const cards = document.querySelectorAll('.amenity-section');
+        cards.forEach((card, index) => {
+            gsap.to(card, {
+                scale: 0.95, 
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top top",
+                    end: "bottom top",
+                    scrub: true,
+                    markers: false
+                }
+            });
+        });
+
+    </script>
+</body>
+</html>
