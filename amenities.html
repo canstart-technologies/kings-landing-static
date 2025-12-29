@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amenities - King's Landing</title>
+    <title>Lifestyle - King's Landing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- GSAP & SplitType -->
@@ -11,17 +11,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <style>
-        /* Imported Cormorant Garamond (Latienne Pro alternative) and Manrope (Euclid Square alternative) */
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 
         :root {
             --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --gold: #D4AF37;
         }
 
         body {
             font-family: 'Manrope', sans-serif;
             overflow-x: hidden;
             background-color: #f9fafb;
+            color: #111827;
         }
 
         .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
@@ -29,39 +30,124 @@
         }
 
         /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1a1a1a; 
-            border-radius: 3px;
+        .cursor-dot { width: 8px; height: 8px; background-color: white; mix-blend-mode: difference; }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s;
         }
 
-        /* Stacking Cards Effect */
-        .card-stack-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .card-stack-item {
-            position: sticky;
-            top: 0;
+        /* Horizontal Scroll Section */
+        .horizontal-scroll-container {
+            width: 400%; /* 4 sections */
             height: 100vh;
-            width: 100%;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+        .horizontal-section {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            box-shadow: 0 -10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Scroll Down Animation */
+        @keyframes scroll-down {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+        .animate-scroll-down {
+            animation: scroll-down 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+
+        /* Inner Carousel Styles */
+        .inner-carousel {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+        .carousel-item {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+            z-index: 1;
+        }
+        .carousel-item.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.1);
+            transition: transform 6s ease-out;
+        }
+        .carousel-item.active img {
+            transform: scale(1);
+        }
+        
+        /* Carousel Navigation Dots */
+        .carousel-dots {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 12px;
+            z-index: 20;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        .dot.active {
+            background: #D4AF37;
+            border-color: #D4AF37;
+            transform: scale(1.2);
+        }
+        .dot:hover {
+            border-color: #fff;
+        }
+
+        /* Text Overlay on Slide */
+        .slide-text-overlay {
+            position: absolute;
+            bottom: 40px;
+            left: 40px; /* Or center, based on design preference */
+            z-index: 10;
+            max-width: 600px;
+            pointer-events: none;
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
 
-    <!-- Top Navigation Bar (Fixed) -->
-    <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none mix-blend-difference text-white">
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot hidden lg:block"></div>
+    <div class="cursor-outline hidden lg:block"></div>
+
+    <!-- Top Navigation Bar (Identical to Index) -->
+    <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black/80 to-transparent">
         
         <!-- Left: Menu Button -->
         <div class="pointer-events-auto">
@@ -89,7 +175,7 @@
         </div>
     </div>
 
-    <!-- Full Screen Menu Overlay -->
+    <!-- Full Screen Menu Overlay (Identical to Index) -->
     <div id="menu-overlay" class="fixed inset-0 bg-[#FDFBF7] z-40 transform -translate-x-full flex flex-col lg:flex-row">
         <!-- Menu Left: Links -->
         <div class="w-full lg:w-1/3 h-full flex flex-col justify-center px-8 lg:px-16 relative border-r border-black/5">
@@ -102,486 +188,543 @@
                     <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Amenities</span>
                     <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
                 </a>
-                <!-- Add other links as needed -->
+                <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Story</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Gallery</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">News</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Contact</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+            </div>
+            <div class="absolute bottom-12 left-8 lg:left-16 flex gap-6">
+                <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group"><i data-lucide="instagram" class="w-4 h-4 group-hover:scale-110 transition-transform"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group"><i data-lucide="facebook" class="w-4 h-4 group-hover:scale-110 transition-transform"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group"><i data-lucide="linkedin" class="w-4 h-4 group-hover:scale-110 transition-transform"></i></a>
             </div>
         </div>
         <!-- Menu Right: Image Preview -->
         <div class="hidden lg:block w-full lg:w-2/3 h-full relative overflow-hidden bg-[#F5F5F0]">
-             <div class="absolute inset-0 bg-gray-200"></div> <!-- Placeholder -->
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500">
+            </div>
+            <div class="absolute bottom-12 right-12 text-black/40 text-sm tracking-widest uppercase font-medium">King's Landing &mdash; 2025</div>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative w-full h-[80vh] flex items-center justify-center bg-[#1a1a1a] text-white overflow-hidden">
-        <div class="absolute inset-0 opacity-60">
-            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover" alt="Amenities Hero">
+    <header class="relative h-screen w-full overflow-hidden flex items-center justify-center text-white">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Lifestyle Hero" 
+                 class="w-full h-full object-cover opacity-90 scale-110"
+                 id="hero-bg">
+            <div class="absolute inset-0 bg-black/30"></div>
         </div>
-        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block text-[#D4AF37]">Lifestyle</span>
-            <h1 class="text-6xl lg:text-9xl font-serif font-medium mb-8 leading-none">Amenities</h1>
-            <p class="text-lg lg:text-2xl font-light text-gray-200 leading-relaxed">
-                Experience unmatched indulgence with world-class amenities, from a serene spa to an inspiring clubhouse. Every corner is designed for comfort, recreation, and elegance.
-            </p>
-        </div>
-    </section>
-
-    <!-- Intro Quote -->
-    <section class="py-24 lg:py-32 bg-white text-center px-6">
-        <div class="max-w-3xl mx-auto">
-            <p class="text-3xl lg:text-5xl font-serif italic leading-tight text-gray-900">
-                "King's Landing isn't just a place to live, it's where life flourishes. Luxury is not added here; it's built in."
-            </p>
-        </div>
-    </section>
-
-    <!-- Stacking Cards Container -->
-    <div class="card-stack-wrapper bg-[#f9fafb]">
         
-        <!-- SECTION 1: NATURE (Animation: Dreamy Blur Fade) -->
-        <div class="amenity-section relative h-[300vh]" id="amenity-nature">
-            <div class="sticky top-0 h-screen overflow-hidden bg-[#F5F5F0] text-black flex flex-col lg:flex-row">
-                <!-- Left: Content -->
-                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10">
-                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">01</span>
-                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Nature & Wellness</h2>
-                    <p class="text-xl font-serif italic text-gray-600 mb-12">"Where Stillness Becomes an Address"</p>
-                    
-                    <ul class="space-y-8 relative">
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
-                            <i data-lucide="trees" class="w-6 h-6 text-[#D4AF37]"></i> Forest trails with meditation nooks
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
-                            <i data-lucide="flower-2" class="w-6 h-6 text-[#D4AF37]"></i> Community herbal gardens
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
-                            <i data-lucide="sun" class="w-6 h-6 text-[#D4AF37]"></i> Open-air yoga & wellness pavilion
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
-                            <i data-lucide="armchair" class="w-6 h-6 text-[#D4AF37]"></i> Hammock groves and mountain-view benches
-                        </li>
-                    </ul>
-                </div>
-                <!-- Right: Images -->
-                <div class="w-full lg:w-1/2 h-full relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-200">
-                        <!-- Images set to opacity 0 initially (except first) handled by JS -->
-                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop" 
-                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 1;">
-                        <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2074&auto=format&fit=crop" 
-                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 2; opacity: 0;">
-                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 3; opacity: 0;">
-                        <img src="https://images.unsplash.com/photo-1528154291023-a6dee39d496d?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-nature absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 4; opacity: 0;">
-                    </div>
-                </div>
+        <div class="relative z-10 text-center px-6 max-w-5xl mt-10">
+            <h1 class="text-6xl md:text-8xl lg:text-9xl font-serif italic leading-none tracking-tight mb-8" id="hero-title">
+                LIFESTYLE
+            </h1>
+            <p class="text-lg md:text-xl font-light leading-relaxed text-white/90 opacity-0 max-w-3xl mx-auto" id="hero-subtitle">
+                Experience unmatched indulgence with world-class amenities. Whether you’re unwinding at the spa, reading in the library lounge, or working remotely from the wellness deck, each day unfolds with ease and elegance. Here, luxury is not an addition - it is intrinsic.
+            </p>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 opacity-60">
+            <span class="text-[10px] uppercase tracking-[0.2em]">Scroll</span>
+            <div class="w-[1px] h-12 bg-white/50 overflow-hidden">
+                <div class="w-full h-full bg-white animate-scroll-down"></div>
             </div>
         </div>
+    </header>
 
-        <!-- SECTION 2: SUSTAINABLE (Animation: Circular Reveal) -->
-        <div class="amenity-section relative h-[300vh]" id="amenity-sustainable">
-            <div class="sticky top-0 h-screen overflow-hidden bg-[#EAECE5] text-black flex flex-col lg:flex-row">
-                <!-- Left: Content -->
-                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10 order-2 lg:order-1">
-                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">02</span>
-                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Sustainable Living</h2>
-                    <p class="text-xl font-serif italic text-gray-600 mb-12">"In Harmony with the Mountains"</p>
-                    
-                    <ul class="space-y-8 relative">
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
-                            <i data-lucide="recycle" class="w-6 h-6 text-[#D4AF37]"></i> Composting & zero-waste systems
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
-                            <i data-lucide="zap" class="w-6 h-6 text-[#D4AF37]"></i> EV charging stations
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
-                            <i data-lucide="sprout" class="w-6 h-6 text-[#D4AF37]"></i> Green, edible landscaping
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
-                            <i data-lucide="home" class="w-6 h-6 text-[#D4AF37]"></i> Minimalist tiny-home options
-                        </li>
-                    </ul>
-                </div>
-                <!-- Right: Images -->
-                <div class="w-full lg:w-1/2 h-full relative overflow-hidden order-1 lg:order-2">
-                    <div class="absolute inset-0 bg-gray-200">
-                        <!-- Clip path will be animated -->
-                        <img src="https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 1;">
-                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2072&auto=format&fit=crop" 
-                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 2; clip-path: circle(0% at 50% 50%);">
-                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1974&auto=format&fit=crop" 
-                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 3; clip-path: circle(0% at 50% 50%);">
-                        <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-sus absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 4; clip-path: circle(0% at 50% 50%);">
+    <!-- Horizontal Scroll Section -->
+    <div class="relative bg-black text-white overflow-hidden" id="horizontal-wrapper">
+        <div class="horizontal-scroll-container" id="horizontal-container">
+            
+            <!-- Section 1: Landscape -->
+            <section class="horizontal-section relative" id="section-1">
+                <!-- Carousel Background -->
+                <div class="inner-carousel">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Forest trails with meditation nooks</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Community herbal gardens</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1599447421405-0c1a11408e10?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Open-air yoga & wellness pavilion</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Hammock groves and mountain-view benches</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- SECTION 3: COMMUNITY (Animation: Vertical Slide Up Stack) -->
-        <div class="amenity-section relative h-[300vh]" id="amenity-community">
-            <div class="sticky top-0 h-screen overflow-hidden bg-[#F0F0F0] text-black flex flex-col lg:flex-row">
-                <!-- Left: Content -->
-                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10">
-                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">03</span>
-                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Community & Culture</h2>
-                    <p class="text-xl font-serif italic text-gray-600 mb-12">"A place to belong, built for togetherness"</p>
-                    
-                    <ul class="space-y-8 relative">
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
-                            <i data-lucide="users" class="w-6 h-6 text-[#D4AF37]"></i> Common house with kitchen, dining & library
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
-                            <i data-lucide="palette" class="w-6 h-6 text-[#D4AF37]"></i> Art & craft studios
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
-                            <i data-lucide="laptop" class="w-6 h-6 text-[#D4AF37]"></i> Co-work space amid nature
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
-                            <i data-lucide="baby" class="w-6 h-6 text-[#D4AF37]"></i> Children’s natural play area
-                        </li>
-                    </ul>
-                </div>
-                <!-- Right: Images -->
-                <div class="w-full lg:w-1/2 h-full relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-200">
-                        <img src="https://images.unsplash.com/photo-1517560177111-a34752893478?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 1;">
-                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover translate-y-full" 
-                             style="z-index: 2;">
-                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
-                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover translate-y-full" 
-                             style="z-index: 3;">
-                        <img src="https://images.unsplash.com/photo-1472162072942-cd5147eb3902?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-comm absolute inset-0 w-full h-full object-cover translate-y-full" 
-                             style="z-index: 4;">
+                <!-- Static Content Overlay -->
+                <div class="relative z-10 container mx-auto px-6 lg:px-20 flex flex-col justify-center h-full max-w-7xl pointer-events-none">
+                    <div class="max-w-2xl">
+                        <span class="text-[#D4AF37] text-sm tracking-[0.3em] uppercase mb-6 block">01. Environment</span>
+                        <h2 class="text-6xl lg:text-8xl font-serif italic mb-8 leading-none">Landscape as Lifestyle</h2>
+                        <p class="text-white/80 leading-relaxed font-light text-xl max-w-xl">
+                            Every outdoor space is designed to restore balance, invite pause, and deepen your connection with nature.
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- SECTION 4: MODERN (Animation: Curtain Wipe) -->
-        <div class="amenity-section relative h-[300vh]" id="amenity-modern">
-            <div class="sticky top-0 h-screen overflow-hidden bg-[#E5E5E5] text-black flex flex-col lg:flex-row">
-                <!-- Left: Content -->
-                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10 order-2 lg:order-1">
-                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">04</span>
-                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Modern Essentials</h2>
-                    <p class="text-xl font-serif italic text-gray-600 mb-12">"Built for effortless living"</p>
-                    
-                    <ul class="space-y-8 relative">
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
-                            <i data-lucide="wifi" class="w-6 h-6 text-[#D4AF37]"></i> Smart home systems & High-speed internet
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
-                            <i data-lucide="chef-hat" class="w-6 h-6 text-[#D4AF37]"></i> Modular kitchens with eco appliances
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
-                            <i data-lucide="thermometer" class="w-6 h-6 text-[#D4AF37]"></i> Energy-efficient heating & cooling
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
-                            <i data-lucide="droplets" class="w-6 h-6 text-[#D4AF37]"></i> Water-saving fixtures & recycling
-                        </li>
-                    </ul>
-                </div>
-                <!-- Right: Images -->
-                <div class="w-full lg:w-1/2 h-full relative overflow-hidden order-1 lg:order-2">
-                    <div class="absolute inset-0 bg-gray-200">
-                        <img src="https://images.unsplash.com/photo-1558002038-1091a166111c?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 1;">
-                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 2; clip-path: inset(0 100% 0 0);">
-                        <img src="https://images.unsplash.com/photo-1504384308090-c54be3852f9d?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 3; clip-path: inset(0 100% 0 0);">
-                        <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-modern absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 4; clip-path: inset(0 100% 0 0);">
+                <!-- Navigation Dots -->
+                <div class="carousel-dots"></div>
+            </section>
+
+            <!-- Section 2: Sustainable -->
+            <section class="horizontal-section relative" id="section-2">
+                <div class="inner-carousel">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Natural ventilation & daylighting</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Materials such as bamboo & reclaimed wood</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">EV charging stations</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1584473457406-6240486418e9?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Composting & zero-waste systems</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Rooftop solar panels</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1518005020951-ecc8e54333b0?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Rainwater harvesting & greywater recycling</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- SECTION 5: ECO (Animation: Scale Reveal) -->
-        <div class="amenity-section relative h-[300vh]" id="amenity-eco">
-            <div class="sticky top-0 h-screen overflow-hidden bg-[#DCDCDC] text-black flex flex-col lg:flex-row">
-                <!-- Left: Content -->
-                <div class="w-full lg:w-1/2 h-full flex flex-col justify-center px-6 lg:px-24 relative z-10">
-                    <span class="text-xs font-bold tracking-[0.2em] uppercase text-gray-500 mb-4 block">05</span>
-                    <h2 class="text-5xl lg:text-7xl font-serif mb-6">Eco-Friendly</h2>
-                    <p class="text-xl font-serif italic text-gray-600 mb-12">"In Harmony with the Mountains"</p>
-                    
-                    <ul class="space-y-8 relative">
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="0">
-                            <i data-lucide="sun-medium" class="w-6 h-6 text-[#D4AF37]"></i> Rooftop solar panels
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="1">
-                            <i data-lucide="cloud-rain" class="w-6 h-6 text-[#D4AF37]"></i> Rainwater harvesting
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="2">
-                            <i data-lucide="wind" class="w-6 h-6 text-[#D4AF37]"></i> Natural ventilation & daylighting
-                        </li>
-                        <li class="amenity-item flex items-center gap-4 text-xl font-light opacity-30 transition-opacity duration-500" data-index="3">
-                            <i data-lucide="hammer" class="w-6 h-6 text-[#D4AF37]"></i> Sustainable materials
-                        </li>
-                    </ul>
-                </div>
-                <!-- Right: Images -->
-                <div class="w-full lg:w-1/2 h-full relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gray-200">
-                        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 1;">
-                        <img src="https://images.unsplash.com/photo-1515150144380-bca9f1650ed9?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 2; transform: scale(0); opacity: 0;">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 3; transform: scale(0); opacity: 0;">
-                        <img src="https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=2070&auto=format&fit=crop" 
-                             class="amenity-img-eco absolute inset-0 w-full h-full object-cover" 
-                             style="z-index: 4; transform: scale(0); opacity: 0;">
+                <div class="relative z-10 container mx-auto px-6 lg:px-20 flex flex-col justify-center h-full max-w-7xl pointer-events-none">
+                    <div class="max-w-2xl">
+                        <span class="text-[#D4AF37] text-sm tracking-[0.3em] uppercase mb-6 block">02. Responsibility</span>
+                        <h2 class="text-6xl lg:text-8xl font-serif italic mb-8 leading-none">Sustainable by Design</h2>
+                        <p class="text-white/80 leading-relaxed font-light text-xl max-w-xl">
+                            A way of life in harmony with the mountains.
+                        </p>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="carousel-dots"></div>
+            </section>
 
+            <!-- Section 3: Connect -->
+            <section class="horizontal-section relative" id="section-3">
+                <div class="inner-carousel">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Common house with kitchen, dining & library</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Art & craft studio</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1502086223501-68119136a60b?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Children’s natural play area</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative z-10 container mx-auto px-6 lg:px-20 flex flex-col justify-center h-full max-w-7xl pointer-events-none">
+                    <div class="max-w-2xl">
+                        <span class="text-[#D4AF37] text-sm tracking-[0.3em] uppercase mb-6 block">03. Community</span>
+                        <h2 class="text-6xl lg:text-8xl font-serif italic mb-8 leading-none">Spaces that Connect</h2>
+                        <p class="text-white/80 leading-relaxed font-light text-xl max-w-xl">
+                            A place where shared experiences create belonging and community forms naturally.
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </section>
+
+            <!-- Section 4: Designed -->
+            <section class="horizontal-section relative" id="section-4">
+                <div class="inner-carousel">
+                    <div class="carousel-item active">
+                        <img src="https://images.unsplash.com/photo-1558002038-1091a166111c?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Smart home systems for comfort & security</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Modular kitchens with eco appliances</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c54be3855833?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">Energy-efficient heating & cooling</h3>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=2560&auto=format&fit=crop">
+                        <div class="absolute inset-0 bg-black/40"></div>
+                        <div class="slide-text-overlay">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-2">High-speed internet</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative z-10 container mx-auto px-6 lg:px-20 flex flex-col justify-center h-full max-w-7xl pointer-events-none">
+                    <div class="max-w-2xl">
+                        <span class="text-[#D4AF37] text-sm tracking-[0.3em] uppercase mb-6 block">04. Aesthetics</span>
+                        <h2 class="text-6xl lg:text-8xl font-serif italic mb-8 leading-none">Designed for Today</h2>
+                        <p class="text-white/80 leading-relaxed font-light text-xl max-w-xl">
+                            Modern comforts, seamlessly integrated for effortless living.
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-dots"></div>
+            </section>
+
+        </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-[#050505] text-white py-24 lg:py-32 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-10">
-            <div class="flex flex-col lg:flex-row justify-between items-start gap-16 mb-24">
-                <div class="max-w-md">
-                    <h2 class="text-4xl lg:text-6xl font-serif mb-8">King's Landing</h2>
-                    <p class="text-gray-400 leading-relaxed mb-8">
-                        A sanctuary in the Himalayas. Where luxury meets nature, and silence speaks volumes.
+    <!-- Footer Section (Identical to Index) -->
+    <footer class="bg-[#050505] text-white pt-20 pb-10 px-6 lg:px-20 relative z-10">
+        <div class="max-w-screen-2xl mx-auto">
+            
+            <!-- Top: CTA -->
+            <div class="border-b border-white/10 pb-16 mb-16 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
+                <div>
+                    <h2 class="text-5xl lg:text-8xl font-serif italic mb-6">Unlock your legacy.</h2>
+                    <p class="text-white/60 text-lg max-w-md">
+                        Experience the pinnacle of sustainable luxury living at King's Landing. 
+                        Where nature meets architectural excellence.
                     </p>
                 </div>
-                <div class="flex gap-16 lg:gap-24">
-                    <div class="flex flex-col gap-4">
-                        <h4 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2">Explore</h4>
-                        <a href="index.html" class="hover:text-[#D4AF37] transition-colors">Home</a>
-                        <a href="amenities.html" class="hover:text-[#D4AF37] transition-colors">Amenities</a>
-                        <a href="#" class="hover:text-[#D4AF37] transition-colors">Gallery</a>
-                        <a href="#" class="hover:text-[#D4AF37] transition-colors">Contact</a>
-                    </div>
-                    <div class="flex flex-col gap-4">
-                        <h4 class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2">Contact</h4>
-                        <p class="text-gray-400">info@kingslanding.com</p>
-                        <p class="text-gray-400">+91 98765 43210</p>
+                <button class="group relative px-8 py-4 bg-white text-black rounded-full overflow-hidden hover-trigger">
+                    <span class="relative z-10 font-medium uppercase tracking-widest text-sm group-hover:text-white transition-colors duration-300">Schedule a Visit</span>
+                    <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                </button>
+            </div>
+
+            <!-- Middle: Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+                
+                <!-- Brand -->
+                <div class="flex flex-col gap-6">
+                    <a href="#" class="text-3xl font-serif italic">King's Landing</a>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
                     </div>
                 </div>
+
+                <!-- Links -->
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Explore</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">The Story</a></li>
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Residences</a></li>
+                        <li><a href="amenities.html" class="text-lg hover:text-[#D4AF37] transition-colors">Amenities</a></li>
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Gallery</a></li>
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Neighborhood</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Contact</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex gap-3 items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-1"></i>
+                            <span class="text-white/80">Canstart Technologies,<br>Bhavnagar Gujarat</span>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="tel:+41441234567" class="text-white/80 hover:text-white transition-colors">+91 98 98 45 85 21</a>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="mailto:info@kingslanding.ch" class="text-white/80 hover:text-white transition-colors">kings@canstart.co </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Newsletter</h3>
+                    <p class="text-white/60 mb-4 text-sm">Subscribe for exclusive updates and private viewing invitations.</p>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="Your email address" class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors">
+                        <button type="submit" class="bg-[#D4AF37] text-black font-medium px-4 py-3 rounded-lg hover:bg-[#b5952f] transition-colors">Subscribe</button>
+                    </form>
+                </div>
             </div>
+
+            <!-- Bottom -->
             <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
-                <p>&copy; 2025 King's Landing. All rights reserved.</p>
+                <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
+                    <p>&copy; 2025 King's Landing. All rights reserved.</p>
+                    <span class="hidden md:block text-white/20">|</span>
+                    <p class="group">Crafted by <a href="#" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a></p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Impressum</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
+        // Initialize Lucide
         lucide.createIcons();
         gsap.registerPlugin(ScrollTrigger);
 
-        // Menu Toggle Logic
+        // --- 1. Hero Animation ---
+        const heroTitle = new SplitType('#hero-title', { types: 'chars' });
+        const heroTl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+        heroTl.to('#hero-bg', { scale: 1, duration: 2.5, ease: "expo.out" })
+              .from(heroTitle.chars, { y: 150, opacity: 0, stagger: 0.03, duration: 1.5 }, "-=2")
+              .to('#hero-subtitle', { opacity: 1, y: 0, duration: 1 }, "-=1");
+
+        // Parallax Hero BG
+        gsap.to('#hero-bg', {
+            yPercent: 30,
+            ease: "none",
+            scrollTrigger: {
+                trigger: "header",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+        // --- 2. Horizontal Scroll Logic ---
+        const container = document.getElementById('horizontal-container');
+        const wrapper = document.getElementById('horizontal-wrapper');
+        
+        // Calculate total width to scroll
+        const totalWidth = container.offsetWidth;
+        const amountToScroll = totalWidth - window.innerWidth;
+
+        gsap.to(container, {
+            x: -amountToScroll,
+            ease: "none",
+            scrollTrigger: {
+                trigger: wrapper,
+                start: "top top",
+                end: "+=" + amountToScroll, // Scroll distance equals width
+                pin: true,
+                scrub: 1,
+                invalidateOnRefresh: true
+            }
+        });
+
+        // --- 3. Inner Carousel Logic ---
+        class InnerCarousel {
+            constructor(sectionId) {
+                this.section = document.getElementById(sectionId);
+                this.items = this.section.querySelectorAll('.carousel-item');
+                this.dotsContainer = this.section.querySelector('.carousel-dots');
+                this.currentIndex = 0;
+                this.interval = null;
+                this.duration = 5000; // 5 seconds per slide
+
+                this.initDots();
+                this.startAutoPlay();
+            }
+
+            initDots() {
+                this.items.forEach((_, index) => {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        this.goToSlide(index);
+                        this.resetAutoPlay();
+                    });
+                    this.dotsContainer.appendChild(dot);
+                });
+            }
+
+            goToSlide(index) {
+                if (index === this.currentIndex) return;
+
+                const currentItem = this.items[this.currentIndex];
+                const nextItem = this.items[index];
+                const dots = this.dotsContainer.querySelectorAll('.dot');
+
+                // Update Dots
+                dots[this.currentIndex].classList.remove('active');
+                dots[index].classList.add('active');
+
+                // Transition Slides
+                currentItem.classList.remove('active');
+                nextItem.classList.add('active');
+
+                this.currentIndex = index;
+            }
+
+            next() {
+                const nextIndex = (this.currentIndex + 1) % this.items.length;
+                this.goToSlide(nextIndex);
+            }
+
+            startAutoPlay() {
+                this.interval = setInterval(() => this.next(), this.duration);
+            }
+
+            stopAutoPlay() {
+                if (this.interval) clearInterval(this.interval);
+            }
+
+            resetAutoPlay() {
+                this.stopAutoPlay();
+                this.startAutoPlay();
+            }
+        }
+
+        // Initialize Carousels
+        document.addEventListener('DOMContentLoaded', () => {
+            new InnerCarousel('section-1');
+            new InnerCarousel('section-2');
+            new InnerCarousel('section-3');
+            new InnerCarousel('section-4');
+        });
+
+        // --- 4. Menu Logic (Identical to Index) ---
         const menuToggle = document.getElementById('menu-toggle');
         const menuOverlay = document.getElementById('menu-overlay');
-        const menuText = document.getElementById('menu-text');
+        const menuItems = document.querySelectorAll('.menu-item');
         const burgerTop = document.getElementById('burger-top');
         const burgerBottom = document.getElementById('burger-bottom');
+        const menuText = document.getElementById('menu-text');
         let isMenuOpen = false;
 
-        if(menuToggle && menuOverlay) {
-            menuToggle.addEventListener('click', () => {
-                isMenuOpen = !isMenuOpen;
-                
-                if(isMenuOpen) {
-                    // Open Menu
-                    gsap.to(menuOverlay, { x: "0%", duration: 0.8, ease: "power4.inOut" });
-                    menuText.innerText = "Close";
-                    burgerTop.classList.add('rotate-45', 'translate-y-[3px]');
-                    burgerBottom.classList.add('-rotate-45', '-translate-y-[3px]');
-                    
-                    // Animate Links
-                    gsap.fromTo(".menu-item", 
-                        { x: -50, opacity: 0 },
-                        { x: 0, opacity: 1, duration: 0.5, stagger: 0.1, delay: 0.4 }
-                    );
-                } else {
-                    // Close Menu
-                    gsap.to(menuOverlay, { x: "-100%", duration: 0.8, ease: "power4.inOut" });
-                    menuText.innerText = "Menu";
-                    burgerTop.classList.remove('rotate-45', 'translate-y-[3px]');
-                    burgerBottom.classList.remove('-rotate-45', '-translate-y-[3px]');
-                }
-            });
-        }
+        const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power4.inOut" } });
+        gsap.set(menuItems, { y: 50, opacity: 0 });
 
-        // --- UNIQUE ANIMATIONS FOR EACH SECTION ---
+        menuTl.to(menuOverlay, { x: '0%', duration: 0.8 })
+              .to(menuItems, { y: 0, opacity: 1, stagger: 0.05, duration: 0.8 }, "<0.1");
 
-        // Helper to setup timeline
-        function createSectionTimeline(sectionId) {
-            const section = document.getElementById(sectionId);
-            if(!section) return null;
-            return gsap.timeline({
-                scrollTrigger: {
-                    trigger: section,
-                    start: "top top",
-                    end: "bottom bottom",
-                    scrub: true,
-                    markers: false
-                }
-            });
-        }
-
-        // 1. NATURE: Dreamy Blur Fade
-        const natureTl = createSectionTimeline('amenity-nature');
-        if(natureTl) {
-            const items = document.querySelectorAll('#amenity-nature .amenity-item');
-            const images = document.querySelectorAll('.amenity-img-nature');
-            const step = 1 / (items.length - 1);
-
-            items.forEach((item, i) => {
-                if(i === 0) return;
-                const startTime = (i - 1) * step;
-                
-                // Text
-                natureTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
-                        .to(item, { opacity: 1, duration: 0.1 }, startTime);
-                
-                // Image: Fade in with Blur
-                natureTl.fromTo(images[i], 
-                    { opacity: 0, filter: "blur(20px)" },
-                    { opacity: 1, filter: "blur(0px)", duration: step, ease: "power2.inOut" }, 
-                    startTime
-                );
-            });
-        }
-
-        // 2. SUSTAINABLE: Circular Reveal
-        const susTl = createSectionTimeline('amenity-sustainable');
-        if(susTl) {
-            const items = document.querySelectorAll('#amenity-sustainable .amenity-item');
-            const images = document.querySelectorAll('.amenity-img-sus');
-            const step = 1 / (items.length - 1);
-
-            items.forEach((item, i) => {
-                if(i === 0) return;
-                const startTime = (i - 1) * step;
-                
-                // Text
-                susTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
-                     .to(item, { opacity: 1, duration: 0.1 }, startTime);
-                
-                // Image: Expand Circle
-                susTl.to(images[i], { 
-                    clipPath: "circle(150% at 50% 50%)", 
-                    duration: step, 
-                    ease: "power1.inOut" 
-                }, startTime);
-            });
-        }
-
-        // 3. COMMUNITY: Vertical Slide Stack
-        const commTl = createSectionTimeline('amenity-community');
-        if(commTl) {
-            const items = document.querySelectorAll('#amenity-community .amenity-item');
-            const images = document.querySelectorAll('.amenity-img-comm');
-            const step = 1 / (items.length - 1);
-
-            items.forEach((item, i) => {
-                if(i === 0) return;
-                const startTime = (i - 1) * step;
-                
-                // Text
-                commTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
-                      .to(item, { opacity: 1, duration: 0.1 }, startTime);
-                
-                // Image: Slide Up
-                commTl.to(images[i], { 
-                    y: "0%", 
-                    duration: step, 
-                    ease: "power2.out" 
-                }, startTime);
-            });
-        }
-
-        // 4. MODERN: Curtain Wipe (Left to Right)
-        const modernTl = createSectionTimeline('amenity-modern');
-        if(modernTl) {
-            const items = document.querySelectorAll('#amenity-modern .amenity-item');
-            const images = document.querySelectorAll('.amenity-img-modern');
-            const step = 1 / (items.length - 1);
-
-            items.forEach((item, i) => {
-                if(i === 0) return;
-                const startTime = (i - 1) * step;
-                
-                // Text
-                modernTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
-                        .to(item, { opacity: 1, duration: 0.1 }, startTime);
-                
-                // Image: Clip Path Wipe
-                modernTl.to(images[i], { 
-                    clipPath: "inset(0 0% 0 0)", 
-                    duration: step, 
-                    ease: "power2.inOut" 
-                }, startTime);
-            });
-        }
-
-        // 5. ECO: Scale Reveal
-        const ecoTl = createSectionTimeline('amenity-eco');
-        if(ecoTl) {
-            const items = document.querySelectorAll('#amenity-eco .amenity-item');
-            const images = document.querySelectorAll('.amenity-img-eco');
-            const step = 1 / (items.length - 1);
-
-            items.forEach((item, i) => {
-                if(i === 0) return;
-                const startTime = (i - 1) * step;
-                
-                // Text
-                ecoTl.to(items[i-1], { opacity: 0.3, duration: 0.1 }, startTime)
-                     .to(item, { opacity: 1, duration: 0.1 }, startTime);
-                
-                // Image: Scale Up & Fade In
-                ecoTl.to(images[i], { 
-                    scale: 1,
-                    opacity: 1,
-                    duration: step, 
-                    ease: "back.out(1.2)" 
-                }, startTime);
-            });
-        }
-
-        // Stacking Cards Animation (Global Section Stacking)
-        const cards = document.querySelectorAll('.amenity-section');
-        cards.forEach((card, index) => {
-            gsap.to(card, {
-                scale: 0.95, 
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top top",
-                    end: "bottom top",
-                    scrub: true,
-                    markers: false
-                }
-            });
+        menuToggle.addEventListener('click', () => {
+            if (!isMenuOpen) {
+                menuTl.play();
+                isMenuOpen = true;
+                menuText.textContent = "Close";
+                gsap.to(burgerTop, { rotation: 45, y: 4, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                gsap.to(burgerBottom, { rotation: -45, y: -3, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                gsap.to(menuToggle, { backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(0,0,0,0.1)", color: "#000000", duration: 0.3 });
+            } else {
+                menuTl.reverse();
+                isMenuOpen = false;
+                menuText.textContent = "Menu";
+                gsap.to(burgerTop, { rotation: 0, y: 0, width: '100%', backgroundColor: "#ffffff", duration: 0.3 });
+                gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#ffffff", duration: 0.3 });
+                gsap.to(menuToggle, { backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.3)", color: "#ffffff", duration: 0.3 });
+            }
         });
+
+        // --- 5. Custom Cursor Logic (Identical to Index) ---
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        const cursorXTo = gsap.quickTo(cursorOutline, "x", { duration: 0.15, ease: "power2.out" });
+        const cursorYTo = gsap.quickTo(cursorOutline, "y", { duration: 0.15, ease: "power2.out" });
+
+        window.addEventListener('mousemove', (e) => {
+            cursorDot.style.left = `${e.clientX}px`;
+            cursorDot.style.top = `${e.clientY}px`;
+            cursorXTo(e.clientX);
+            cursorYTo(e.clientY);
+        });
+
+        document.querySelectorAll('a, button, .hover-trigger, .dot').forEach(trigger => {
+            trigger.addEventListener('mouseenter', () => gsap.to(cursorOutline, { width: 80, height: 80, backgroundColor: "rgba(255,255,255,0.1)", overwrite: true }));
+            trigger.addEventListener('mouseleave', () => gsap.to(cursorOutline, { width: 40, height: 40, backgroundColor: "transparent", overwrite: true }));
+        });
+
+        // --- 6. Menu Image Preview Logic ---
+        const previewImages = document.querySelectorAll('.menu-preview-img');
+        let activeImageIndex = 0;
+        if(previewImages.length > 0) {
+            gsap.set(previewImages, { opacity: 0, zIndex: 1, scale: 1.1 });
+            gsap.set(previewImages[0], { opacity: 1, zIndex: 2 });
+        }
+        function nextImage() {
+            if(previewImages.length === 0) return;
+            const currentImg = previewImages[activeImageIndex];
+            activeImageIndex = (activeImageIndex + 1) % previewImages.length;
+            const nextImg = previewImages[activeImageIndex];
+            gsap.to(currentImg, { opacity: 0, zIndex: 1, duration: 1.5, ease: "power2.inOut" });
+            gsap.set(nextImg, { zIndex: 2 });
+            gsap.to(nextImg, { opacity: 1, duration: 1.5, ease: "power2.inOut" });
+        }
+        setInterval(nextImage, 5000);
 
     </script>
 </body>
