@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - King's Landing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <!-- Lenis for Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+        :root {
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+            --gold: #D4AF37;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            background-color: #FDFBF7;
+            color: #111827;
+        }
+
+        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: #fff; mix-blend-mode: difference; }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        /* Form Styles */
+        .form-input {
+            width: 100%;
+            background: transparent;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            font-family: 'Manrope', sans-serif;
+            font-size: 1.125rem;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: #D4AF37;
+        }
+        .form-input::placeholder {
+            color: rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body class="bg-[#FDFBF7] text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden lg:block"></div>
+    <div class="cursor-outline hidden lg:block"></div>
+
+    <!-- Top Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none">
+        <!-- Left: Menu Button -->
+        <div class="pointer-events-auto">
+            <button id="menu-toggle" class="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-black/20 backdrop-blur-md hover:bg-white hover:text-black transition-all duration-300 hover-trigger focus:outline-none text-white">
+                <div class="flex flex-col gap-1.5 items-start w-5">
+                    <span class="w-full h-[1.5px] bg-current transition-all duration-300 group-hover:w-3" id="burger-top"></span>
+                    <span class="w-3 h-[1.5px] bg-current transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
+                </div>
+                <span class="text-xs font-medium tracking-widest uppercase" id="menu-text">Menu</span>
+            </button>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="pointer-events-auto absolute left-1/2 top-10 lg:top-12 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <a href="index.html" class="text-2xl lg:text-3xl font-serif italic tracking-widest text-white hover:opacity-80 transition-opacity drop-shadow-md mix-blend-difference">
+                King's Landing
+            </a>
+        </div>
+
+        <!-- Right: CTA -->
+        <div class="pointer-events-auto flex items-center gap-6 text-white">
+            <button class="bg-white text-black px-8 py-4 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-all hover:scale-105 duration-300 hover-trigger shadow-lg shadow-white/10">
+                Request Call Back
+            </button>
+        </div>
+    </div>
+
+    <!-- Full Screen Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-[#FDFBF7] z-40 transform -translate-x-full flex flex-col lg:flex-row">
+        <!-- Menu Left: Links -->
+        <div class="w-full lg:w-1/3 h-full flex flex-col justify-center px-8 lg:px-16 relative border-r border-black/5">
+            <div class="flex flex-col gap-1 lg:gap-2" id="menu-links-container">
+                <a href="index.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="home">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Home</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="amenities.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="amenities">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Amenities</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="interiors.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="story">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Interiors</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="gallery.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="gallery">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Gallery</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="#" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="news">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">News</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="contact.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="contact">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Contact</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+            </div>
+            <div class="absolute bottom-12 left-8 lg:left-16 flex gap-6">
+                <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group"><i data-lucide="instagram" class="w-4 h-4 group-hover:scale-110 transition-transform"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group"><i data-lucide="facebook" class="w-4 h-4 group-hover:scale-110 transition-transform"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full border border-black/10 flex items-center justify-center text-black/60 hover:text-white hover:bg-black hover:border-black transition-all duration-300 group"><i data-lucide="linkedin" class="w-4 h-4 group-hover:scale-110 transition-transform"></i></a>
+            </div>
+        </div>
+        <!-- Menu Right: Image Preview -->
+        <div class="hidden lg:block w-full lg:w-2/3 h-full relative overflow-hidden bg-[#F5F5F0]">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="story">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="gallery">
+                <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="news">
+                <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="contact">
+            </div>
+            <div class="absolute bottom-12 right-12 text-black/40 text-sm tracking-widest uppercase font-medium">King's Landing &mdash; 2025</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- 1. Hero Section -->
+        <section class="relative w-full h-[80vh] lg:h-screen overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+                     class="w-full h-full object-cover scale-110" 
+                     id="hero-img"
+                     alt="Contact Us">
+                <div class="absolute inset-0 bg-black/40"></div>
+            </div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+                <span class="text-xs font-medium tracking-[0.3em] uppercase mb-6 opacity-0 translate-y-10" id="hero-label">Get in Touch</span>
+                <h1 class="text-6xl lg:text-9xl font-serif italic mb-8 opacity-0 translate-y-10" id="hero-title">Contact</h1>
+                <p class="max-w-2xl text-lg lg:text-xl font-light opacity-0 translate-y-10 leading-relaxed" id="hero-desc">
+                    Meaningful homes begin with meaningful conversations. Our team is here to welcome your enquiry, understand your aspirations, and guide you with patience and care.
+                </p>
+            </div>
+        </section>
+
+        <!-- 2. Contact Content (Split Layout) -->
+        <section class="relative w-full bg-white z-10">
+            <div class="flex flex-col lg:flex-row min-h-screen">
+                
+                <!-- Left: Contact Info -->
+                <div class="w-full lg:w-1/2 bg-[#F5F5F0] p-10 lg:p-24 flex flex-col justify-center">
+                    
+                    <!-- Logo -->
+                    <div class="mb-16">
+                        <h2 class="text-4xl font-serif italic text-gray-900">King's Landing</h2>
+                    </div>
+
+                    <!-- Addresses -->
+                    <div class="space-y-12 mb-16">
+                        <div>
+                            <h3 class="text-sm font-bold tracking-widest uppercase text-gray-400 mb-4">Registered & Corporate Office</h3>
+                            <p class="text-xl font-serif text-gray-800 leading-relaxed">
+                                SCO 14, Swastik Vihar, MDC Sector 5,<br>Panchkula, Haryana 134114
+                            </p>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-sm font-bold tracking-widest uppercase text-gray-400 mb-4">Site Office Chail</h3>
+                            <p class="text-xl font-serif text-gray-800 leading-relaxed">
+                                Village Nagali, Gaura Road,<br>Chail, Himachal Pradesh
+                            </p>
+                        </div>
+
+                        <div>
+                            <h3 class="text-sm font-bold tracking-widest uppercase text-gray-400 mb-4">Site Office Kumarhatti</h3>
+                            <p class="text-xl font-serif text-gray-800 leading-relaxed">
+                                Village Gandhi Gram,<br>Kumarhatti, Himachal Pradesh
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Direct Contact -->
+                    <div class="space-y-8">
+                        <a href="mailto:info@kingslanding.co.in" class="flex items-center gap-6 group">
+                            <div class="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-2xl lg:text-3xl font-serif font-medium group-hover:text-[#D4AF37] transition-colors">info@kingslanding.co.in</span>
+                        </a>
+                        
+                        <a href="tel:+919815159139" class="flex items-center gap-6 group">
+                            <div class="w-12 h-12 rounded-full border border-black/10 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-all duration-300">
+                                <i data-lucide="phone" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-2xl lg:text-3xl font-serif font-medium group-hover:text-[#D4AF37] transition-colors">+91 98151 59139, 98720 90811</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Right: Form -->
+                <div class="w-full lg:w-1/2 bg-white p-10 lg:p-24 flex flex-col justify-center">
+                    <h3 class="text-3xl font-serif italic mb-12">Send us a message</h3>
+                    
+                    <form class="space-y-10">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <div class="relative">
+                                <input type="text" placeholder="First Name" class="form-input">
+                            </div>
+                            <div class="relative">
+                                <input type="text" placeholder="Last Name" class="form-input">
+                            </div>
+                        </div>
+                        
+                        <div class="relative">
+                            <input type="email" placeholder="Email Address" class="form-input">
+                        </div>
+                        
+                        <div class="relative">
+                            <input type="tel" placeholder="Phone Number" class="form-input">
+                        </div>
+                        
+                        <div class="relative">
+                            <textarea placeholder="Your Message" rows="4" class="form-input resize-none"></textarea>
+                        </div>
+
+                        <!-- Fake Captcha -->
+                        <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-lg border border-gray-200 w-fit">
+                            <div class="w-6 h-6 border-2 border-gray-300 rounded bg-white flex items-center justify-center cursor-pointer hover:border-gray-400">
+                                <!-- Checkmark hidden by default -->
+                            </div>
+                            <span class="text-sm text-gray-600">I'm not a robot</span>
+                            <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" class="w-8 h-8 ml-4 opacity-50">
+                        </div>
+
+                        <button type="submit" class="group relative px-10 py-5 bg-black text-white rounded-full overflow-hidden hover-trigger w-full md:w-auto">
+                            <span class="relative z-10 font-medium uppercase tracking-widest text-sm group-hover:text-black transition-colors duration-300">Send Message</span>
+                            <div class="absolute inset-0 bg-white transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 3. Brochure Download Section -->
+        <section class="py-24 lg:py-32 bg-[#050505] text-white">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10">
+                <div class="text-center mb-20">
+                    <span class="text-xs font-medium tracking-[0.2em] uppercase text-white/50 mb-6 block">Downloads</span>
+                    <h2 class="text-4xl lg:text-6xl font-serif italic">Discover the Details</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-20">
+                    
+                    <!-- Card 1: Chail -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-[3/4] bg-white/5 rounded-xl overflow-hidden mb-8 border border-white/10 group-hover:border-[#D4AF37]/50 transition-colors duration-500">
+                            <!-- Placeholder for PDF Cover -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black">
+                                <span class="font-serif italic text-4xl text-white/20">Chail Brochure</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center transform scale-0 group-hover:scale-100 transition-transform duration-500 delay-100">
+                                    <i data-lucide="arrow-down" class="w-6 h-6"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-serif">Chail Residence</h3>
+                            <button class="text-[#D4AF37] uppercase tracking-widest text-xs font-bold border-b border-[#D4AF37] pb-1 hover:text-white hover:border-white transition-colors">Download PDF</button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Kumarhatti -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-[3/4] bg-white/5 rounded-xl overflow-hidden mb-8 border border-white/10 group-hover:border-[#D4AF37]/50 transition-colors duration-500">
+                            <!-- Placeholder for PDF Cover -->
+                            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-800 to-black">
+                                <span class="font-serif italic text-4xl text-white/20">Kumarhatti Brochure</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                                <div class="w-16 h-16 rounded-full bg-white text-black flex items-center justify-center transform scale-0 group-hover:scale-100 transition-transform duration-500 delay-100">
+                                    <i data-lucide="arrow-down" class="w-6 h-6"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-2xl font-serif">Kumarhatti Residence</h3>
+                            <button class="text-[#D4AF37] uppercase tracking-widest text-xs font-bold border-b border-[#D4AF37] pb-1 hover:text-white hover:border-white transition-colors">Download PDF</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Promoter Info -->
+        <section class="bg-[#050505] text-white/40 py-10 border-t border-white/10 text-center px-6">
+            <div class="max-w-4xl mx-auto space-y-2">
+                <p class="uppercase tracking-widest text-xs font-bold">Project Promoted By</p>
+                <h4 class="text-xl font-serif text-white">INFINITAS BUILDTECH LLP</h4>
+                <p class="text-sm mt-4">RERA Registration No.: <span class="text-white/60">PBRERA-HP00-00000</span></p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#050505] text-white pt-10 pb-10 px-6 lg:px-20 relative z-10 border-t border-white/5">
+        <div class="max-w-screen-2xl mx-auto">
+            <!-- Middle: Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+                <!-- Brand -->
+                <div class="flex flex-col gap-6">
+                    <a href="index.html" class="text-3xl font-serif italic">King's Landing</a>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Links -->
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Explore</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">The Story</a></li>
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Residences</a></li>
+                        <li><a href="amenities.html" class="text-lg hover:text-[#D4AF37] transition-colors">Amenities</a></li>
+                        <li><a href="gallery.html" class="text-lg hover:text-[#D4AF37] transition-colors">Gallery</a></li>
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Neighborhood</a></li>
+                    </ul>
+                </div>
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Contact</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex gap-3 items-start"><i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-1"></i><span class="text-white/80">Canstart Technologies,<br>Bhavnagar Gujarat</span></li>
+                        <li class="flex gap-3 items-center"><i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i><a href="tel:+41441234567" class="text-white/80 hover:text-white transition-colors">+91 98 98 45 85 21</a></li>
+                        <li class="flex gap-3 items-center"><i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i><a href="mailto:info@kingslanding.ch" class="text-white/80 hover:text-white transition-colors">kings@canstart.co </a></li>
+                    </ul>
+                </div>
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Newsletter</h3>
+                    <p class="text-white/60 mb-4 text-sm">Subscribe for exclusive updates and private viewing invitations.</p>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="Your email address" class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors">
+                        <button type="submit" class="bg-[#D4AF37] text-black font-medium px-4 py-3 rounded-lg hover:bg-[#b5952f] transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <!-- Bottom -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
+                <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
+                    <p>&copy; 2025 King's Landing. All rights reserved.</p>
+                    <span class="hidden md:block text-white/20">|</span>
+                    <p class="group">Crafted by <a href="#" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a></p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Impressum</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize Lenis
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Hero Animations ---
+            const heroLabel = document.getElementById('hero-label');
+            const heroTitle = document.getElementById('hero-title');
+            const heroDesc = document.getElementById('hero-desc');
+            const heroImg = document.getElementById('hero-img');
+
+            const tl = gsap.timeline({ delay: 0.2 });
+
+            tl.to(heroImg, { scale: 1, duration: 2, ease: "power3.out" })
+              .to([heroLabel, heroTitle, heroDesc], {
+                  opacity: 1,
+                  y: 0,
+                  duration: 1.2,
+                  stagger: 0.2,
+                  ease: "power3.out"
+              }, "-=1.5");
+
+            // --- 2. Menu Logic (Copied from Index) ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const burgerTop = document.getElementById('burger-top');
+            const burgerBottom = document.getElementById('burger-bottom');
+            const menuText = document.getElementById('menu-text');
+            let isMenuOpen = false;
+
+            const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power4.inOut" } });
+            gsap.set(menuItems, { y: 50, opacity: 0 });
+
+            menuTl.to(menuOverlay, { x: '0%', duration: 0.8 })
+                  .to(menuItems, { y: 0, opacity: 1, stagger: 0.05, duration: 0.8 }, "<0.1");
+
+            menuToggle.addEventListener('click', () => {
+                if (!isMenuOpen) {
+                    menuTl.play();
+                    isMenuOpen = true;
+                    menuText.textContent = "Close";
+                    gsap.to(burgerTop, { rotation: 45, y: 4, width: '100%', backgroundColor: "#000" });
+                    gsap.to(burgerBottom, { rotation: -45, y: -3, width: '100%', backgroundColor: "#000" });
+                    gsap.to(menuToggle, { backgroundColor: "#fff", borderColor: "#fff", color: "#000" });
+                } else {
+                    menuTl.reverse();
+                    isMenuOpen = false;
+                    menuText.textContent = "Menu";
+                    gsap.to(burgerTop, { rotation: 0, y: 0, width: '100%', backgroundColor: "#fff" });
+                    gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#fff" });
+                    gsap.to(menuToggle, { backgroundColor: "rgba(0,0,0,0.2)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" });
+                }
+            });
+
+            // --- 3. Custom Cursor ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+        });
+    </script>
+</body>
+</html>
