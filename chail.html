@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chail - King's Landing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <!-- Lenis for Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+        :root {
+            --gold: #D4AF37;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            background-color: #FDFBF7;
+            color: #111827;
+        }
+
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999; pointer-events: none;
+        }
+        .cursor-dot { width: 8px; height: 8px; background-color: #fff; mix-blend-mode: difference; }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s;
+        }
+
+        /* Modal Styles */
+        .modal {
+            opacity: 0; visibility: hidden; transition: all 0.5s ease;
+        }
+        .modal.active {
+            opacity: 1; visibility: visible;
+        }
+    </style>
+</head>
+<body class="bg-[#FDFBF7] text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot hidden lg:block"></div>
+    <div class="cursor-outline hidden lg:block"></div>
+
+    <!-- Top Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full p-6 lg:p-10 z-50 flex justify-between items-center pointer-events-none">
+        <div class="pointer-events-auto">
+            <button id="menu-toggle" class="group flex items-center gap-3 px-6 py-3 rounded-full border border-white/30 bg-black/20 backdrop-blur-md hover:bg-white hover:text-black transition-all duration-300 hover-trigger focus:outline-none text-white">
+                <div class="flex flex-col gap-1.5 items-start w-5">
+                    <span class="w-full h-[1.5px] bg-current transition-all duration-300 group-hover:w-3" id="burger-top"></span>
+                    <span class="w-3 h-[1.5px] bg-current transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
+                </div>
+                <span class="text-xs font-medium tracking-widest uppercase" id="menu-text">Menu</span>
+            </button>
+        </div>
+        <div class="pointer-events-auto absolute left-1/2 top-10 lg:top-12 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <a href="index.html" class="text-2xl lg:text-3xl font-serif italic tracking-widest text-white hover:opacity-80 transition-opacity drop-shadow-md mix-blend-difference">
+                King's Landing
+            </a>
+        </div>
+        <div class="pointer-events-auto flex items-center gap-6 text-white">
+            <button class="bg-white text-black px-8 py-4 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-all hover:scale-105 duration-300 hover-trigger shadow-lg shadow-white/10">
+                Enquire
+            </button>
+        </div>
+    </div>
+
+    <!-- Full Screen Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-[#FDFBF7] z-40 transform -translate-x-full flex flex-col lg:flex-row">
+        <div class="w-full lg:w-1/3 h-full flex flex-col justify-center px-8 lg:px-16 relative border-r border-black/5">
+            <div class="flex flex-col gap-1 lg:gap-2" id="menu-links-container">
+                <a href="index.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Home</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="amenities.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Amenities</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="interiors.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Interiors</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="gallery.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Gallery</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+                <a href="contact.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                    <span class="text-4xl lg:text-6xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Contact</span>
+                    <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                </a>
+            </div>
+        </div>
+        <div class="hidden lg:block w-full lg:w-2/3 h-full relative overflow-hidden bg-[#F5F5F0]">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="w-full h-full object-cover absolute inset-0 opacity-50">
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        
+        <!-- SECTION 1: Hero -->
+        <section class="relative w-full h-screen overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="https://images.unsplash.com/photo-1506108187403-8e6429cd3cf7?q=80&w=2070&auto=format&fit=crop" 
+                     class="w-full h-full object-cover scale-110" 
+                     id="hero-img"
+                     alt="Chail Landscape">
+                <div class="absolute inset-0 bg-black/30"></div>
+            </div>
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
+                <h1 class="text-6xl lg:text-9xl font-serif italic mb-8 opacity-0 translate-y-10" id="hero-title">EXPLORE CHAIL</h1>
+                <p class="max-w-2xl text-lg lg:text-xl font-light opacity-0 translate-y-10 tracking-wide" id="hero-desc">
+                    A Himalayan sanctuary of calm, culture, and quiet distinction
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Why Chail (Scrollytelling) -->
+        <section class="relative bg-[#FDFBF7] py-24 lg:py-32">
+            <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+                <div class="mb-20 text-center">
+                    <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 mb-4 block">The Location</span>
+                    <h2 class="text-4xl lg:text-6xl font-serif italic text-gray-900">Why Chail</h2>
+                </div>
+
+                <!-- Sticky Container -->
+                <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 relative">
+                    
+                    <!-- Left: Sticky Images -->
+                    <div class="w-full lg:w-1/2 h-[50vh] lg:h-[80vh] sticky top-24 lg:top-32 overflow-hidden rounded-2xl">
+                        <div class="relative w-full h-full">
+                            <!-- Image 1 -->
+                            <img src="https://images.unsplash.com/photo-1518002171953-a080ee321e2f?q=80&w=2070&auto=format&fit=crop" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-100" 
+                                 id="story-img-1">
+                            <!-- Image 2 -->
+                            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" 
+                                 id="story-img-2">
+                            <!-- Image 3 -->
+                            <img src="https://images.unsplash.com/photo-1543051932-6ef9fecfbc80?q=80&w=1924&auto=format&fit=crop" 
+                                 class="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 opacity-0" 
+                                 id="story-img-3">
+                        </div>
+                    </div>
+
+                    <!-- Right: Scrolling Text -->
+                    <div class="w-full lg:w-1/2 flex flex-col gap-[50vh] py-[10vh]">
+                        
+                        <!-- Block 1 -->
+                        <div class="story-block opacity-30 transition-opacity duration-500" data-img="1">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-6 text-gray-900">Shaped by Time</h3>
+                            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed">
+                                Chail has evolved slowly and with intention. Free from crowds and excess, it offers a rhythm of life that feels unhurried and deeply restorative—where days unfold at nature’s pace, not the clock’s.
+                            </p>
+                        </div>
+
+                        <!-- Block 2 -->
+                        <div class="story-block opacity-30 transition-opacity duration-500" data-img="2">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-6 text-gray-900">Surrounded by Nature</h3>
+                            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed">
+                                Dense pine and deodar forests, open ridgelines, and crisp mountain air form the backdrop of everyday living. Here, nature is not a weekend escape but a constant presence.
+                            </p>
+                        </div>
+
+                        <!-- Block 3 -->
+                        <div class="story-block opacity-30 transition-opacity duration-500" data-img="3">
+                            <h3 class="text-3xl lg:text-4xl font-serif italic mb-6 text-gray-900">A Place to Settle</h3>
+                            <p class="text-lg lg:text-xl text-gray-600 leading-relaxed">
+                                Once a retreat for royalty, Chail has retained its quiet dignity. Today, it remains a rare hill town where authenticity and long-term liveability come together.
+                                <br><br>
+                                <span class="italic text-gray-900">This is not a place you visit. It is a place you settle into.</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Experience Chail (Horizontal Scroll) -->
+        <section class="relative bg-[#111] text-white py-24 overflow-hidden" id="experience-section">
+            <div class="max-w-screen-2xl mx-auto px-6 lg:px-10 mb-16">
+                <span class="text-xs font-medium tracking-[0.2em] uppercase text-white/50 mb-4 block">Experience Chail</span>
+                <h2 class="text-4xl lg:text-6xl font-serif italic mb-6">Moments That Will Stay With You</h2>
+                <p class="max-w-2xl text-white/60 text-lg">
+                    Forest walks and quiet trails, sunrises and sunsets that slow the day, time spent in local cafés, and a climate that softens every season—life in Chail is shaped by simple, lasting pleasures.
+                </p>
+            </div>
+
+            <!-- Horizontal Container -->
+            <div class="w-full h-[600px] lg:h-[700px] flex items-center pl-6 lg:pl-10 overflow-x-hidden" id="horizontal-wrapper">
+                <div class="flex gap-8 lg:gap-12" id="horizontal-track">
+                    
+                    <!-- Card 1 -->
+                    <div class="w-[350px] lg:w-[450px] shrink-0 group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1566830646346-485997243e54?q=80&w=2070&auto=format&fit=crop')">
+                        <div class="w-full h-[400px] lg:h-[500px] overflow-hidden rounded-lg mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1566830646346-485997243e54?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            <div class="absolute bottom-6 right-6 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-2">Chail Palace</h3>
+                        <p class="text-sm text-white/60">A royal retreat steeped in history and quiet grandeur</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="w-[350px] lg:w-[450px] shrink-0 group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=2067&auto=format&fit=crop')">
+                        <div class="w-full h-[400px] lg:h-[500px] overflow-hidden rounded-lg mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?q=80&w=2067&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            <div class="absolute bottom-6 right-6 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-2">Highest Cricket Ground</h3>
+                        <p class="text-sm text-white/60">A historic field set against open skies and mountain air</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="w-[350px] lg:w-[450px] shrink-0 group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2070&auto=format&fit=crop')">
+                        <div class="w-full h-[400px] lg:h-[500px] overflow-hidden rounded-lg mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            <div class="absolute bottom-6 right-6 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-2">Kali Tibba Temple</h3>
+                        <p class="text-sm text-white/60">A sacred summit of strength, silence, and sweeping views</p>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="w-[350px] lg:w-[450px] shrink-0 group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1605649487215-476786814580?q=80&w=2070&auto=format&fit=crop')">
+                        <div class="w-full h-[400px] lg:h-[500px] overflow-hidden rounded-lg mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1605649487215-476786814580?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            <div class="absolute bottom-6 right-6 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-2">Siddha Baba Temple</h3>
+                        <p class="text-sm text-white/60">A place of faith and calm, rooted in local legend</p>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="w-[350px] lg:w-[450px] shrink-0 group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=2070&auto=format&fit=crop')">
+                        <div class="w-full h-[400px] lg:h-[500px] overflow-hidden rounded-lg mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1432405972618-c60b0225b8f9?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            <div class="absolute bottom-6 right-6 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-white"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-2">Giri River</h3>
+                        <p class="text-sm text-white/60">A gentle mountain river, perfect for unhurried moments by the water</p>
+                    </div>
+
+                    <!-- Spacer -->
+                    <div class="w-10 shrink-0"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: Connectivity -->
+        <section class="bg-[#FDFBF7] py-24 lg:py-32">
+            <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+                <div class="flex flex-col lg:flex-row gap-16 lg:gap-24">
+                    
+                    <!-- Left: Distances -->
+                    <div class="w-full lg:w-1/2 flex flex-col justify-center">
+                        <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 mb-6 block">Connectivity</span>
+                        <h2 class="text-4xl lg:text-5xl font-serif italic text-gray-900 mb-12">A location that balances accessibility with retreat</h2>
+                        
+                        <div class="space-y-10">
+                            <div class="flex items-baseline gap-6 border-b border-gray-200 pb-6">
+                                <span class="text-4xl lg:text-5xl font-light text-[#D4AF37]">50</span>
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-bold uppercase tracking-widest text-gray-900">km</span>
+                                    <span class="text-lg text-gray-600">To Shimla (~2h)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-6 border-b border-gray-200 pb-6">
+                                <span class="text-4xl lg:text-5xl font-light text-[#D4AF37]">85</span>
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-bold uppercase tracking-widest text-gray-900">km</span>
+                                    <span class="text-lg text-gray-600">To Kalka Railway Station (~2h 30m)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-6 border-b border-gray-200 pb-6">
+                                <span class="text-4xl lg:text-5xl font-light text-[#D4AF37]">110</span>
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-bold uppercase tracking-widest text-gray-900">km</span>
+                                    <span class="text-lg text-gray-600">To Chandigarh (~3h)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-baseline gap-6 border-b border-gray-200 pb-6">
+                                <span class="text-4xl lg:text-5xl font-light text-[#D4AF37]">125</span>
+                                <div class="flex flex-col">
+                                    <span class="text-sm font-bold uppercase tracking-widest text-gray-900">km</span>
+                                    <span class="text-lg text-gray-600">To Chandigarh Airport (~3h 30m)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Map -->
+                    <div class="w-full lg:w-1/2 h-[500px] lg:h-[600px] bg-gray-100 rounded-2xl overflow-hidden shadow-xl">
+                        <div style="width: 100%; overflow: hidden; height: 100%;">
+                            <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1KeDgjnBFX1U1RKZYbqONj-va_IPmqT0&ehbc=2E312F&noprof=1" width="100%" height="100%" frameborder="0" style="border:0; margin-top: -60px; height: calc(100% + 60px);">
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: From Place to Purpose -->
+        <section class="bg-white py-24 lg:py-32 border-t border-gray-100">
+            <div class="max-w-screen-2xl mx-auto px-6 lg:px-10">
+                <div class="text-center mb-20">
+                    <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-400 mb-4 block">Master Plan</span>
+                    <h2 class="text-4xl lg:text-6xl font-serif italic text-gray-900 mb-6">From Place to Purpose</h2>
+                    <p class="max-w-2xl mx-auto text-gray-600 text-lg">
+                        Set within this landscape is a thoughtfully planned enclave—King’s Landing at Nagali, Chail.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    
+                    <!-- Card 1: Master Plan -->
+                    <div class="group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=2069&auto=format&fit=crop')">
+                        <div class="aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                            <div class="absolute bottom-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-black"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-3 group-hover:text-[#D4AF37] transition-colors">The Master Plan</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Chail offers the setting. The master plan translates it into a way of living—weaving open spaces, green zones, and well-connected roads into a seamless whole.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: Apartment Plan -->
+                    <div class="group cursor-pointer" onclick="openModal('https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=2070&auto=format&fit=crop')">
+                        <div class="aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden mb-6 relative">
+                            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                            <div class="absolute bottom-4 right-4 w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-md opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                                <i data-lucide="maximize-2" class="w-4 h-4 text-black"></i>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-3 group-hover:text-[#D4AF37] transition-colors">The Apartment Plan</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Each apartment is designed as a private retreat, balancing openness, comfort, and quiet luxury.
+                        </p>
+                    </div>
+
+                    <!-- Card 3: Brochure -->
+                    <div class="group cursor-pointer">
+                        <div class="aspect-[4/3] bg-gray-900 rounded-xl overflow-hidden mb-6 relative flex items-center justify-center">
+                            <div class="text-center p-6">
+                                <i data-lucide="file-text" class="w-12 h-12 text-white/20 mx-auto mb-4 group-hover:text-[#D4AF37] transition-colors duration-300"></i>
+                                <span class="text-white/40 font-serif italic text-xl">PDF Preview</span>
+                            </div>
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                                <button class="bg-white text-black px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-colors">Download</button>
+                            </div>
+                        </div>
+                        <h3 class="text-2xl font-serif italic mb-3 group-hover:text-[#D4AF37] transition-colors">Project Brochure</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            Discover the complete story of the project—from its setting to the details that shape everyday living.
+                        </p>
+                        <a href="#" class="inline-block mt-4 text-[#D4AF37] text-xs font-bold uppercase tracking-widest border-b border-[#D4AF37] pb-1 hover:text-black hover:border-black transition-colors">Download Brochure (PDF)</a>
+                    </div>
+
+                </div>
+
+                <div class="mt-20 pt-10 border-t border-gray-100 text-center">
+                    <p class="text-xs text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                        Disclaimer: The floor plans and images presented are preliminary and intended for general information purposes only. They are not final and may be revised during the course of development. Actual layouts, sizes, and specifications may vary from those shown.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#050505] text-white pt-20 pb-10 px-6 lg:px-20 relative z-10">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
+                <div class="flex flex-col gap-6">
+                    <a href="index.html" class="text-3xl font-serif italic">King's Landing</a>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Explore</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">The Story</a></li>
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Residences</a></li>
+                        <li><a href="amenities.html" class="text-lg hover:text-[#D4AF37] transition-colors">Amenities</a></li>
+                        <li><a href="gallery.html" class="text-lg hover:text-[#D4AF37] transition-colors">Gallery</a></li>
+                        <li><a href="#" class="text-lg hover:text-[#D4AF37] transition-colors">Neighborhood</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Contact</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex gap-3 items-start"><i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-1"></i><span class="text-white/80">Canstart Technologies,<br>Bhavnagar Gujarat</span></li>
+                        <li class="flex gap-3 items-center"><i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i><a href="tel:+41441234567" class="text-white/80 hover:text-white transition-colors">+91 98 98 45 85 21</a></li>
+                        <li class="flex gap-3 items-center"><i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i><a href="mailto:info@kingslanding.ch" class="text-white/80 hover:text-white transition-colors">kings@canstart.co </a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Newsletter</h3>
+                    <p class="text-white/60 mb-4 text-sm">Subscribe for exclusive updates and private viewing invitations.</p>
+                    <form class="flex flex-col gap-3">
+                        <input type="email" placeholder="Your email address" class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors">
+                        <button type="submit" class="bg-[#D4AF37] text-black font-medium px-4 py-3 rounded-lg hover:bg-[#b5952f] transition-colors">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
+                <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
+                    <p>&copy; 2025 King's Landing. All rights reserved.</p>
+                    <span class="hidden md:block text-white/20">|</span>
+                    <p class="group">Crafted by <a href="#" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a></p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" class="hover:text-white transition-colors">Impressum</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Full Screen Modal -->
+    <div id="image-modal" class="modal fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 lg:p-10">
+        <button id="close-modal" class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-50">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <div class="relative w-full h-full max-w-7xl max-h-[90vh] flex items-center justify-center">
+            <img id="modal-img" src="" class="max-w-full max-h-full object-contain shadow-2xl">
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Initialize Lenis
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 1. Hero Animations ---
+            const heroTitle = document.getElementById('hero-title');
+            const heroDesc = document.getElementById('hero-desc');
+            const heroImg = document.getElementById('hero-img');
+
+            const tl = gsap.timeline({ delay: 0.2 });
+
+            tl.to(heroImg, { scale: 1, duration: 2, ease: "power3.out" })
+              .to([heroTitle, heroDesc], {
+                  opacity: 1,
+                  y: 0,
+                  duration: 1.2,
+                  stagger: 0.2,
+                  ease: "power3.out"
+              }, "-=1.5");
+
+            // --- 2. Scrollytelling Logic (Why Chail) ---
+            const storyBlocks = document.querySelectorAll('.story-block');
+            const storyImages = [
+                document.getElementById('story-img-1'),
+                document.getElementById('story-img-2'),
+                document.getElementById('story-img-3')
+            ];
+
+            storyBlocks.forEach((block, index) => {
+                ScrollTrigger.create({
+                    trigger: block,
+                    start: "top center",
+                    end: "bottom center",
+                    onEnter: () => {
+                        // Fade in text
+                        gsap.to(block, { opacity: 1, duration: 0.5 });
+                        // Switch image
+                        storyImages.forEach((img, i) => {
+                            gsap.to(img, { opacity: i === index ? 1 : 0, duration: 0.7 });
+                        });
+                    },
+                    onLeave: () => {
+                        gsap.to(block, { opacity: 0.3, duration: 0.5 });
+                    },
+                    onEnterBack: () => {
+                        gsap.to(block, { opacity: 1, duration: 0.5 });
+                        storyImages.forEach((img, i) => {
+                            gsap.to(img, { opacity: i === index ? 1 : 0, duration: 0.7 });
+                        });
+                    },
+                    onLeaveBack: () => {
+                        gsap.to(block, { opacity: 0.3, duration: 0.5 });
+                    }
+                });
+            });
+
+            // --- 3. Horizontal Scroll (Experience Chail) ---
+            const section = document.getElementById('experience-section');
+            const track = document.getElementById('horizontal-track');
+            
+            // Calculate scroll amount: track width - viewport width
+            // We need to wait for images to load or use a fixed calculation
+            // Using a function to recalculate on resize is best
+            
+            function initHorizontalScroll() {
+                let scrollAmount = track.offsetWidth - window.innerWidth + 100; // +100 for padding
+                
+                // Only enable if content is wider than screen
+                if (scrollAmount > 0) {
+                    gsap.to(track, {
+                        x: -scrollAmount,
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top top",
+                            end: "+=" + scrollAmount,
+                            pin: true,
+                            scrub: 1,
+                            invalidateOnRefresh: true
+                        }
+                    });
+                }
+            }
+
+            // Wait for layout
+            window.addEventListener('load', initHorizontalScroll);
+
+
+            // --- 4. Modal Logic ---
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-img');
+            const closeModal = document.getElementById('close-modal');
+
+            window.openModal = (src) => {
+                modalImg.src = src;
+                modal.classList.add('active');
+                lenis.stop(); // Stop scrolling
+            };
+
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('active');
+                lenis.start(); // Resume scrolling
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    lenis.start();
+                }
+            });
+
+            // --- 5. Menu Logic (Standard) ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const burgerTop = document.getElementById('burger-top');
+            const burgerBottom = document.getElementById('burger-bottom');
+            const menuText = document.getElementById('menu-text');
+            let isMenuOpen = false;
+
+            const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power4.inOut" } });
+            gsap.set(menuItems, { y: 50, opacity: 0 });
+
+            menuTl.to(menuOverlay, { x: '0%', duration: 0.8 })
+                  .to(menuItems, { y: 0, opacity: 1, stagger: 0.05, duration: 0.8 }, "<0.1");
+
+            menuToggle.addEventListener('click', () => {
+                if (!isMenuOpen) {
+                    menuTl.play();
+                    isMenuOpen = true;
+                    menuText.textContent = "Close";
+                    gsap.to(burgerTop, { rotation: 45, y: 4, width: '100%', backgroundColor: "#000" });
+                    gsap.to(burgerBottom, { rotation: -45, y: -3, width: '100%', backgroundColor: "#000" });
+                    gsap.to(menuToggle, { backgroundColor: "#fff", borderColor: "#fff", color: "#000" });
+                } else {
+                    menuTl.reverse();
+                    isMenuOpen = false;
+                    menuText.textContent = "Menu";
+                    gsap.to(burgerTop, { rotation: 0, y: 0, width: '100%', backgroundColor: "#fff" });
+                    gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#fff" });
+                    gsap.to(menuToggle, { backgroundColor: "rgba(0,0,0,0.2)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" });
+                }
+            });
+
+            // --- 6. Custom Cursor ---
+            const cursorDot = document.querySelector('.cursor-dot');
+            const cursorOutline = document.querySelector('.cursor-outline');
+            
+            window.addEventListener('mousemove', (e) => {
+                const posX = e.clientX;
+                const posY = e.clientY;
+                cursorDot.style.left = `${posX}px`;
+                cursorDot.style.top = `${posY}px`;
+                
+                cursorOutline.animate({
+                    left: `${posX}px`,
+                    top: `${posY}px`
+                }, { duration: 500, fill: "forwards" });
+            });
+
+        });
+    </script>
+</body>
+</html>
