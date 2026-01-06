@@ -178,25 +178,25 @@
                     <div class="w-full lg:w-1/2 flex flex-col gap-[50vh] py-[10vh]">
                         
                         <!-- Block 1 -->
-                        <div class="story-block opacity-30 transition-opacity duration-500" data-img="1">
+                        <div class="story-block transition-opacity duration-500" data-img="1">
                             <h3 class="text-3xl lg:text-4xl font-serif italic mb-6 text-black">Shaped by Time</h3>
-                            <p class="text-lg lg:text-xl text-neutral-700 leading-relaxed">
+                            <p class="text-lg lg:text-xl text-black leading-relaxed">
                                 Chail has evolved slowly and with intention. Free from crowds and excess, it offers a rhythm of life that feels unhurried and deeply restorative—where days unfold at nature’s pace, not the clock’s.
                             </p>
                         </div>
 
                         <!-- Block 2 -->
-                        <div class="story-block opacity-30 transition-opacity duration-500" data-img="2">
+                        <div class="story-block transition-opacity duration-500" data-img="2">
                             <h3 class="text-3xl lg:text-4xl font-serif italic mb-6 text-black">Surrounded by Nature</h3>
-                            <p class="text-lg lg:text-xl text-neutral-700 leading-relaxed">
+                            <p class="text-lg lg:text-xl text-black leading-relaxed">
                                 Dense pine and deodar forests, open ridgelines, and crisp mountain air form the backdrop of everyday living. Here, nature is not a weekend escape but a constant presence.
                             </p>
                         </div>
 
                         <!-- Block 3 -->
-                        <div class="story-block opacity-30 transition-opacity duration-500" data-img="3">
+                        <div class="story-block transition-opacity duration-500" data-img="3">
                             <h3 class="text-3xl lg:text-4xl font-serif italic mb-6 text-black">A Place to Settle</h3>
-                            <p class="text-lg lg:text-xl text-neutral-700 leading-relaxed">
+                            <p class="text-lg lg:text-xl text-black leading-relaxed">
                                 Once a retreat for royalty, Chail has retained its quiet dignity. Today, it remains a rare hill town where authenticity and long-term liveability come together.
                                 <br><br>
                                 <span class="italic text-black">This is not a place you visit. It is a place you settle into.</span>
@@ -540,24 +540,15 @@
                     start: "top center",
                     end: "bottom center",
                     onEnter: () => {
-                        // Fade in text
-                        gsap.to(block, { opacity: 1, duration: 0.5 });
                         // Switch image
                         storyImages.forEach((img, i) => {
                             gsap.to(img, { opacity: i === index ? 1 : 0, duration: 0.7 });
                         });
                     },
-                    onLeave: () => {
-                        gsap.to(block, { opacity: 0.3, duration: 0.5 });
-                    },
                     onEnterBack: () => {
-                        gsap.to(block, { opacity: 1, duration: 0.5 });
                         storyImages.forEach((img, i) => {
                             gsap.to(img, { opacity: i === index ? 1 : 0, duration: 0.7 });
                         });
-                    },
-                    onLeaveBack: () => {
-                        gsap.to(block, { opacity: 0.3, duration: 0.5 });
                     }
                 });
             });
