@@ -136,22 +136,38 @@
             <!-- Dark Overlay for Text Readability -->
             <div class="absolute inset-0 image-overlay pointer-events-none" id="hero-overlay"></div>
 
-            <!-- Hero Content -->
-            <div class="absolute inset-0 p-8 lg:p-20 flex flex-col justify-center items-center text-white z-10 pointer-events-none text-center">
-                <!-- Main Headline Area -->
-                <div class="flex flex-col gap-6 max-w-5xl">
-                    <h1 class="text-6xl lg:text-9xl font-latienne font-semibold leading-[0.9] tracking-tight" id="hero-title">
-                        King's <span class="font-latienne font-light italic opacity-90">Landing</span>
-                    </h1>
-                    
-                    <p class="text-lg lg:text-3xl font-medium opacity-0 leading-relaxed max-w-2xl mx-auto text-center" id="hero-desc">
-  Luxury Residences in the Himalayas
-  <span class="block mt-3 lg:mt-2">
-    Two Iconic Locations: Chail & Kumarhatti
-  </span>
-</p>
-
+            <!-- Hero Content: Text & Castles -->
+            <div class="absolute inset-0 z-20 pointer-events-none">
+                
+                <!-- 1. Description (Centered in Hero) -->
+                <div class="absolute inset-0 flex flex-col items-center justify-center mb-20 lg:mb-32">
+                     <p class="text-xl lg:text-3xl font-medium text-white opacity-0 translate-y-4 leading-relaxed max-w-2xl mx-auto text-center drop-shadow-md font-serif text-shadow" id="hero-desc">
+                      Luxury Residences in the Himalayas
+                      <span class="block mt-3 lg:mt-2 font-latienne italic opacity-80">
+                        Two Iconic Locations: Chail & Kumarhatti
+                      </span>
+                    </p>
                 </div>
+
+                <!-- 2. Castles & Title at Bottom -->
+                <div class="absolute bottom-0 left-0 w-full flex items-end justify-between overflow-hidden pb-2 lg:pb-0">
+                    
+                    <!-- Left Castle -->
+                    <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain translate-y-[15%] opacity-90 ml-[-2%] drop-shadow-2xl z-10">
+                    
+                    <!-- CENTER TITLE -->
+                    <div class="absolute bottom-2 lg:bottom-4 left-0 right-0 flex justify-center z-0">
+                        <h1 class="text-[11vw] lg:text-[6vw] font-black text-white leading-none tracking-tight uppercase font-serif text-center drop-shadow-2xl mix-blend-overlay opacity-90" 
+                             id="hero-title" 
+                             style="font-family: 'Playfair Display', serif;">
+                            KING'S LANDING
+                        </h1>
+                    </div>
+
+                    <!-- Right Castle (Mirrored) -->
+                    <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain translate-y-[15%] opacity-90 mr-[-2%] drop-shadow-2xl z-10">
+                </div>
+
             </div>
         </div>
 
@@ -381,37 +397,7 @@
             </div>
         </section>
 
-        <!-- NEW SECTION: KING'S Text Mask with Sliding Images -->
-        <section id="kings-mask-section" class="relative w-full h-[40vh] lg:h-[60vh] overflow-hidden bg-white">
-            <!-- 1. The Sliding Images (Bottom Layer) -->
-            <div class="absolute inset-0 flex items-center" id="kings-marquee-container">
-                <div class="flex gap-0 w-max" id="kings-marquee">
-                    <!-- Images repeated enough to fill width -->
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    
-                    <!-- Duplicate for seamless loop -->
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                </div>
-            </div>
 
-            <!-- 2. The Mask Layer (Top Layer) -->
-            <!-- mix-blend-screen: White BG + Black Text. 
-                 White + Image = White. 
-                 Black + Image = Image. -->
-            <div class="absolute inset-0 bg-white flex items-center justify-center mix-blend-screen z-10 pointer-events-none select-none">
-                <h2 class="text-[12vw] font-black text-black leading-none tracking-tighter uppercase font-serif" style="font-family: 'Playfair Display', serif;">
-                    KING'S LANDING
-                </h2>
-            </div>
-        </section>
 
         <!-- Footer Section -->
         <footer class="bg-[#050505] text-white pt-20 pb-10 px-6 lg:px-20 relative z-10">
