@@ -397,7 +397,36 @@
             </div>
         </section>
 
+<section id="kings-mask-section" class="relative w-full h-[40vh] lg:h-[60vh] overflow-hidden bg-white">
+            <!-- 1. The Sliding Images (Bottom Layer) -->
+            <div class="absolute inset-0 flex items-center" id="kings-marquee-container">
+                <div class="flex gap-0 w-max" id="kings-marquee">
+                    <!-- Images repeated enough to fill width -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    
+                    <!-- Duplicate for seamless loop -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+                </div>
+            </div>
 
+            <!-- 2. The Mask Layer (Top Layer) -->
+            <!-- mix-blend-screen: White BG + Black Text. 
+                 White + Image = White. 
+                 Black + Image = Image. -->
+            <div class="absolute inset-0 bg-white flex items-center justify-center mix-blend-screen z-10 pointer-events-none select-none">
+                <h2 class="text-[12vw] font-black text-black leading-none tracking-tighter uppercase font-serif" style="font-family: 'Playfair Display', serif;">
+                    KING'S LANDING
+                </h2>
+            </div>
+        </section>
 
         <!-- Footer Section -->
         <footer class="bg-[#050505] text-white pt-20 pb-10 px-6 lg:px-20 relative z-10">
