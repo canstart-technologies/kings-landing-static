@@ -257,79 +257,124 @@
 
     </main>
 
-    <!-- Footer Section (Consistent with Index) -->
-    <footer class="bg-[#050505] text-white pt-20 pb-10 px-6 lg:px-20 relative z-10">
-        <div class="max-w-screen-2xl mx-auto">
-            <!-- Top: CTA -->
-            <div class="border-b border-white/10 pb-16 mb-16 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
-                <div>
-                    <h2 class="text-5xl lg:text-8xl font-serif italic mb-6">Unlock your legacy.</h2>
-                    <p class="text-white/60 text-lg max-w-md">Experience the pinnacle of sustainable luxury living at King's Landing. Where nature meets architectural excellence.</p>
+    <footer class="bg-[#050505] text-white relative z-10 overflow-hidden">
+        
+        <!-- 1. The Marquee Text Section (Moved from Index Body) -->
+        <div class="relative w-full h-[40vh] lg:h-[60vh] overflow-hidden bg-[#050505]">
+            <!-- Bottom Layer: Scrolling Images -->
+            <div class="absolute inset-0 flex items-center footer-marquee-container">
+                <div class="flex gap-0 w-max footer-marquee-content">
+                    <!-- Images repeated -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <!-- Duplicate for Loop -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
                 </div>
-                <button class="group relative px-8 py-4 bg-white text-black rounded-full overflow-hidden hover-trigger">
-                    <span class="relative z-10 font-medium uppercase tracking-widest text-sm group-hover:text-white transition-colors duration-300">Schedule a Visit</span>
-                    <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                </button>
             </div>
-            <!-- Middle: Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
-                <!-- Brand -->
+
+            <!-- Top Layer: Mask (Black BG + White Text + Multiply) -->
+            <div class="absolute inset-0 bg-[#050505] flex items-center justify-center mix-blend-multiply z-10 select-none">
+                <h2 class="text-[13vw] lg:text-[15vw] font-black text-white leading-none tracking-tighter uppercase font-serif">
+                    KING'S LANDING
+                </h2>
+            </div>
+        </div>
+
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-20 pt-16 pb-8 relative">
+            
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20 relative z-10">
+                
+                <!-- 1. Logo (Crest) -->
                 <div class="flex flex-col gap-6">
-                    <a href="index.html" class="block w-48">
-                        <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing" class="w-full h-auto">
+                    <a href="index.html" class="block w-32 lg:w-48">
+                        <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing" class="w-full h-auto opacity-90">
                     </a>
-                    <div class="flex gap-4">
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="instagram" class="w-4 h-4"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="facebook" class="w-4 h-4"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
-                    </div>
                 </div>
-                <!-- Links -->
+
+                <!-- 2. Explore -->
                 <div>
-                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Explore</h3>
-                    <ul class="flex flex-col gap-4">
-                        <li><a href="index.html" class="text-lg hover:text-[#D4AF37] transition-colors">Concept</a></li>
-                        <li><a href="chail.html" class="text-lg hover:text-[#D4AF37] transition-colors">Explore Chail</a></li>
-                        <li><a href="kumarhatti.html" class="text-lg hover:text-[#D4AF37] transition-colors">Explore Kumarhatti</a></li>
-                        <li><a href="lifestyle.html" class="text-lg hover:text-[#D4AF37] transition-colors">Lifestyle</a></li>
-                        <li><a href="interiors.html" class="text-lg hover:text-[#D4AF37] transition-colors">Interiors</a></li>
-                        <li><a href="gallery.html" class="text-lg hover:text-[#D4AF37] transition-colors">Gallery</a></li>
-                        <li><a href="contact.html" class="text-lg hover:text-[#D4AF37] transition-colors">Contact</a></li>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Explore</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-white/60 hover:text-white transition-colors text-base">Concept</a></li>
+                        <li><a href="chail.html" class="text-white/60 hover:text-white transition-colors text-base">Explore Chail</a></li>
+                        <li><a href="kumarhatti.html" class="text-white/60 hover:text-white transition-colors text-base">Explore Kumarhatti</a></li>
+                        <li><a href="lifestyle.html" class="text-white/60 hover:text-white transition-colors text-base">Lifestyle</a></li>
+                        <li><a href="interiors.html" class="text-white/60 hover:text-white transition-colors text-base">Interiors</a></li>
+                        <li><a href="gallery.html" class="text-white/60 hover:text-white transition-colors text-base">Gallery</a></li>
+                        <li><a href="contact.html" class="text-white/60 hover:text-white transition-colors text-base">Contact</a></li>
                     </ul>
                 </div>
-                <!-- Contact -->
+
+                <!-- 3. Contact -->
                 <div>
-                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Contact</h3>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Contact</h3>
                     <ul class="flex flex-col gap-4">
-                        <li class="flex gap-3 items-start"><i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-1"></i><span class="text-white/80">Canstart Technologies,<br>Bhavnagar Gujarat</span></li>
-                        <li class="flex gap-3 items-center"><i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i><a href="tel:+41441234567" class="text-white/80 hover:text-white transition-colors">+91 98 98 45 85 21</a></li>
-                        <li class="flex gap-3 items-center"><i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i><a href="mailto:info@kingslanding.ch" class="text-white/80 hover:text-white transition-colors">kings@canstart.co </a></li>
+                        <li class="flex gap-3 items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5"></i>
+                            <span class="text-white/60 leading-relaxed">Canstart Technologies,<br>Bhavnagar Gujarat</span>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="tel:+919898458521" class="text-white/60 hover:text-white transition-colors">+91 98 98 45 85 21</a>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="mailto:kings@canstart.co" class="text-white/60 hover:text-white transition-colors">kings@canstart.co</a>
+                        </li>
                     </ul>
                 </div>
-                <!-- Newsletter -->
-                <div>
-                    <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Newsletter</h3>
-                    <p class="text-white/60 mb-4 text-sm">Subscribe for exclusive updates and private viewing invitations.</p>
-                    <form class="flex flex-col gap-3">
-                        <input type="email" placeholder="Your email address" class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors">
-                        <button type="submit" class="bg-[#D4AF37] text-black font-medium px-4 py-3 rounded-lg hover:bg-[#b5952f] transition-colors">Subscribe</button>
-                    </form>
+
+                <!-- 4. Follow Us -->
+                <div class="flex flex-col">
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Follow Us On</h3>
+                    <a href="#" class="flex items-center gap-3 group opacity-80 hover:opacity-100 transition-opacity">
+                        <img src="assets/img/insta_logo_white.png" class="w-8 h-8 object-contain">
+                        <span class="text-xl font-serif italic">Instagram</span>
+                    </a>
                 </div>
+
             </div>
-            <!-- Bottom -->
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40 relative z-10">
                 <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
-                    <p>&copy; 2025 King's Landing. All rights reserved.</p>
+                    <p>&copy; <span id="year">2025</span> King's Landing. All rights reserved.</p>
                     <span class="hidden md:block text-white/20">|</span>
-                    <p class="group">Crafted by <a href="#" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a></p>
+                    <p class="group">
+                        Crafted by <a href="https://canstart.in" target="_blank" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a>
+                    </p>
                 </div>
                 <div class="flex gap-8">
                     <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
                     <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                    <a href="#" class="hover:text-white transition-colors">Impressum</a>
                 </div>
             </div>
+
+            <!-- Castle Image -->
+            <img src="assets/img/footer_castle.png" class="absolute bottom-20 lg:bottom-32 right-0 w-[200px] lg:w-[400px] h-auto object-contain pointer-events-none opacity-50 lg:opacity-100 z-0 select-none">
         </div>
+
+        <script>
+            document.getElementById('year').textContent = new Date().getFullYear();
+            // Footer Marquee JS
+            window.addEventListener('DOMContentLoaded', () => {
+                const footerMarqueeContent = document.querySelector('.footer-marquee-content');
+                if(footerMarqueeContent && typeof gsap !== 'undefined') {
+                    gsap.to(footerMarqueeContent, {
+                        xPercent: -50,
+                        ease: "none",
+                        duration: 30,
+                        repeat: -1
+                    });
+                }
+            });
+        </script>
     </footer>
 
     <script>
