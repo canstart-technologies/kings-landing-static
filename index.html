@@ -146,7 +146,7 @@
                 <div class="absolute bottom-0 left-0 w-full flex items-end justify-between overflow-hidden pb-2 lg:pb-0">
                     
                     <!-- Left Castle -->
-                    <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain translate-y-[15%] opacity-90 ml-[-2%] drop-shadow-2xl z-10">
+                    <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-90 ml-[-2%] drop-shadow-2xl z-10">
                     
                     <!-- CENTER TITLE -->
                     <div class="absolute bottom-2 lg:bottom-4 left-0 right-0 flex justify-center z-0">
@@ -158,7 +158,7 @@
                     </div>
 
                     <!-- Right Castle (Mirrored) -->
-                    <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain translate-y-[15%] opacity-90 mr-[-2%] drop-shadow-2xl z-10">
+                    <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-90 mr-[-2%] drop-shadow-2xl z-10">
                 </div>
 
             </div>
@@ -216,35 +216,36 @@
             </div>
         </section>
 
-        <!-- Our Story Section (Replaces Numbers) -->
+        <!-- Our Story Section (Single BG with Scrolling Text) -->
         <section id="story-section" class="relative w-full bg-white text-black">
             
-            <!-- Sticky Image Container (Starts Full, Shrinks to Right) -->
+            <!-- Sticky Background Image Container -->
+            <!-- Using sticky positioning to keep image fixed while content scrolls over/past -->
             <div class="h-screen w-full sticky top-0 left-0 overflow-hidden z-0" id="story-image-wrapper">
-                <div class="absolute inset-0 w-full h-full bg-gray-100" id="story-image-inner">
-                     <!-- Image 1: Discovery -->
-                     <img src="assets\img\our-story\UC1-Chail-Property-Land.jpg" 
-                          class="story-img absolute inset-0 w-full h-full object-cover transition-transform duration-1000" 
-                          id="story-img-0" style="z-index: 1;">
-                     
-                     <!-- Image 2: Vision -->
-                     <img src="assets\img\our-story\UC2-Chail-Property-Wide-View.jpg" 
-                          class="story-img absolute inset-0 w-full h-full object-cover opacity-0 transition-transform duration-1000" 
-                          id="story-img-1" style="z-index: 2;">
-                     
-                     <!-- Image 3: Community -->
-                     <img src="assets\img\our-story\UC3-Chail-Property-Building.jpg" 
-                          class="story-img absolute inset-0 w-full h-full object-cover opacity-0 transition-transform duration-1000" 
-                          id="story-img-2" style="z-index: 3;">
-                </div>
+                 <!-- Single Fixed Background Image -->
+                 <img src="assets\img\our-story\UC2-Chail-Property-Wide-View.jpg" 
+                      class="absolute inset-0 w-full h-full object-cover" 
+                      alt="Vision Background"
+                      style="z-index: 1;">
+                 <!-- Overlay for readability -->
+                 <div class="absolute inset-0 bg-black/30 z-10"></div>
             </div>
         
-            <!-- Scrolling Content -->
+            <!-- Scrolling Content Wrapper -->
+            <!-- Negative margin pulls this up to overlay the sticky image initially if needed, 
+                 but here we want the text to flow naturally over the sticky background.
+                 Actually, to have "text scrolls over it from bottom to top", we need the text to be in a container 
+                 that comes AFTER the image in DOM but visuals are handled via Z-index and margins.
+                 
+                 Strategy:
+                 1. Image is sticky at top-0.
+                 2. Content is z-10 relative.
+            -->
             <div class="relative z-10 -mt-[100vh]"> 
                 
-                <!-- Intro Block (Overlay on full image) -->
-                <div class="h-screen flex items-center justify-center px-6" id="story-intro">
-                    <div class="text-center text-white drop-shadow-lg"> 
+                <!-- Intro Block (Center Screen) -->
+                <div class="min-h-screen flex items-center justify-center px-6" id="story-intro">
+                    <div class="text-center text-white drop-shadow-lg p-10"> 
                         <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block opacity-0 translate-y-10" id="story-intro-label">Our Vision</span>
                         <h2 class="text-5xl lg:text-8xl font-serif font-medium leading-tight opacity-0 translate-y-10" id="story-intro-title">
                             A Dream Reimagined<br>in the Mountains
@@ -252,32 +253,32 @@
                     </div>
                 </div>
         
-                <!-- Spacer for transition -->
-                <div class="h-[20vh]"></div>
-        
-                <!-- Split Content Blocks -->
-                <div class="flex flex-col lg:flex-row">
-                    <div class="w-full lg:w-1/2 bg-white/95 backdrop-blur-sm lg:bg-white pt-20"> 
+                <!-- Points Container (Scrolls over the image) -->
+                <div class="w-full flex justify-center pb-32">
+                    <div class="w-full max-w-4xl px-6 lg:px-12 flex flex-col gap-32"> 
+                         
                          <!-- Point 1 -->
-                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="0">
-                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="0">
+                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
                                 Two minds discovered a serene patch of land while wandering through a mountain village.
                             </p>
                         </div>
+
                         <!-- Point 2 -->
-                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="1">
-                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="1">
+                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
                                 What began as their dream retirement spot grew into a shared vision — a haven for those seeking simplicity, nature, and community.
                             </p>
                         </div>
+                        
                         <!-- Point 3 -->
-                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="2">
-                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="2">
+                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
                                 Today, that dream stands as an eco-hamlet where people live in harmony with the earth and each other.
                             </p>
                         </div>
+
                     </div>
-                    <div class="hidden lg:block w-1/2"></div> <!-- Spacer for right side -->
                 </div>
             </div>
         </section>
@@ -388,141 +389,135 @@
             </div>
         </section>
 
-<section id="kings-mask-section" class="relative w-full h-[40vh] lg:h-[60vh] overflow-hidden bg-white">
-            <!-- 1. The Sliding Images (Bottom Layer) -->
-            <div class="absolute inset-0 flex items-center" id="kings-marquee-container">
-                <div class="flex gap-0 w-max" id="kings-marquee">
-                    <!-- Images repeated enough to fill width -->
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    
-                    <!-- Duplicate for seamless loop -->
-                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
-                    <img src="https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+
+        <!-- CTA Section -->
+        <section class="py-32 flex flex-col items-center justify-center bg-white text-gray-900 text-center z-10 relative">
+             <h2 class="text-4xl lg:text-6xl font-serif italic mb-12">Ready to come home?</h2>
+             <div class="flex flex-col sm:flex-row gap-6">
+                 <a href="chail.html" class="px-10 py-4 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
+                 <a href="kumarhatti.html" class="px-10 py-4 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
+             </div>
+        </section>
+
+
+        <footer class="bg-[#050505] text-white relative z-10 overflow-hidden">
+        
+        <!-- 1. The Marquee Text Section (Moved from Index Body) -->
+        <div class="relative w-full h-[40vh] lg:h-[40vh] overflow-hidden bg-[#050505]">
+            <!-- Bottom Layer: Scrolling Images -->
+            <div class="absolute inset-0 flex items-center footer-marquee-container">
+                <div class="flex gap-0 w-max footer-marquee-content">
+                    <!-- Images repeated -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <!-- Duplicate for Loop -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
                 </div>
             </div>
 
-            <!-- 2. The Mask Layer (Top Layer) -->
-            <!-- mix-blend-screen: White BG + Black Text. 
-                 White + Image = White. 
-                 Black + Image = Image. -->
-            <div class="absolute inset-0 bg-white flex items-center justify-center mix-blend-screen z-10 pointer-events-none select-none">
-                <h2 class="text-[12vw] font-black text-black leading-none tracking-tighter uppercase font-serif" style="font-family: 'Playfair Display', serif;">
+            <!-- Top Layer: Mask (Black BG + White Text + Multiply) -->
+            <div class="absolute inset-0 bg-[#050505] flex items-center justify-center mix-blend-multiply z-10 select-none">
+                <h2 class="text-[13vw] lg:text-[10vw] font-black text-white leading-none tracking-tighter uppercase font-serif">
                     KING'S LANDING
                 </h2>
             </div>
-        </section>
+        </div>
 
-        <!-- Footer Section -->
-        <footer class="bg-[#050505] text-white pt-20 pb-10 px-6 lg:px-20 relative z-10">
-            <div class="max-w-screen-2xl mx-auto">
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-20 pt-16 pb-8 relative">
+            
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20 relative z-10">
                 
-                <!-- Top: CTA -->
-                <div class="border-b border-white/10 pb-16 mb-16 flex flex-col lg:flex-row justify-between items-start lg:items-end gap-10">
-                    <div>
-                        <h2 class="text-5xl lg:text-8xl font-serif italic mb-6">Unlock your legacy.</h2>
-                        <p class="text-white/60 text-lg max-w-md">
-                            Experience the pinnacle of sustainable luxury living at King's Landing. 
-                            Where nature meets architectural excellence.
-                        </p>
-                    </div>
-                    <button class="group relative px-8 py-4 bg-white text-black rounded-full overflow-hidden hover-trigger">
-                        <span class="relative z-10 font-medium uppercase tracking-widest text-sm group-hover:text-white transition-colors duration-300">Schedule a Visit</span>
-                        <div class="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    </button>
+                <!-- 1. Logo (Crest) -->
+                <div class="flex flex-col gap-6">
+                    <a href="index.html" class="block w-32 lg:w-48">
+                        <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing" class="w-full h-auto opacity-90">
+                    </a>
                 </div>
 
-                <!-- Middle: Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20">
-                    
-                    <!-- Brand -->
-                    <div class="flex flex-col gap-6">
-                        <a href="#" class="block w-48">
-                            <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing" class="w-full h-auto">
-                        </a>
-                        <div class="flex gap-4">
-                            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
-                                <i data-lucide="instagram" class="w-4 h-4"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
-                                <i data-lucide="facebook" class="w-4 h-4"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300">
-                                <i data-lucide="linkedin" class="w-4 h-4"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Links -->
-                    <div>
-                        <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Explore</h3>
-                        <ul class="flex flex-col gap-4">
-                            <li><a href="index.html" class="text-lg hover:text-[#D4AF37] transition-colors">Concept</a></li>
-                            <li><a href="chail.html" class="text-lg hover:text-[#D4AF37] transition-colors">Explore Chail</a></li>
-                            <li><a href="kumarhatti.html" class="text-lg hover:text-[#D4AF37] transition-colors">Explore Kumarhatti</a></li>
-                            <li><a href="lifestyle.html" class="text-lg hover:text-[#D4AF37] transition-colors">Lifestyle</a></li>
-                            <li><a href="interiors.html" class="text-lg hover:text-[#D4AF37] transition-colors">Interiors</a></li>
-                            <li><a href="gallery.html" class="text-lg hover:text-[#D4AF37] transition-colors">Gallery</a></li>
-                            <li><a href="contact.html" class="text-lg hover:text-[#D4AF37] transition-colors">Contact</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Contact -->
-                    <div>
-                        <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Contact</h3>
-                        <ul class="flex flex-col gap-4">
-                            <li class="flex gap-3 items-start">
-                                <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-1"></i>
-                                <span class="text-white/80">Canstart Technologies,<br>Bhavnagar Gujarat</span>
-                            </li>
-                            <li class="flex gap-3 items-center">
-                                <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
-                                <a href="tel:+41441234567" class="text-white/80 hover:text-white transition-colors">+91 98 98 45 85 21</a>
-                            </li>
-                            <li class="flex gap-3 items-center">
-                                <i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
-                                <a href="mailto:info@kingslanding.ch" class="text-white/80 hover:text-white transition-colors">kings@canstart.co </a>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Newsletter -->
-                    <div>
-                        <h3 class="text-sm font-medium uppercase tracking-widest text-white/40 mb-6">Newsletter</h3>
-                        <p class="text-white/60 mb-4 text-sm">Subscribe for exclusive updates and private viewing invitations.</p>
-                        <form class="flex flex-col gap-3">
-                            <input type="email" placeholder="Your email address" class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#D4AF37] transition-colors">
-                            <button type="submit" class="bg-[#D4AF37] text-black font-medium px-4 py-3 rounded-lg hover:bg-[#b5952f] transition-colors">
-                                Subscribe
-                            </button>
-                        </form>
-                    </div>
-
+                <!-- 2. Explore -->
+                <div>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Explore</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-white/60 hover:text-white transition-colors text-base">Concept</a></li>
+                        <li><a href="chail.html" class="text-white/60 hover:text-white transition-colors text-base">Explore Chail</a></li>
+                        <li><a href="kumarhatti.html" class="text-white/60 hover:text-white transition-colors text-base">Explore Kumarhatti</a></li>
+                        <li><a href="lifestyle.html" class="text-white/60 hover:text-white transition-colors text-base">Lifestyle</a></li>
+                        <li><a href="interiors.html" class="text-white/60 hover:text-white transition-colors text-base">Interiors</a></li>
+                        <li><a href="gallery.html" class="text-white/60 hover:text-white transition-colors text-base">Gallery</a></li>
+                        <li><a href="contact.html" class="text-white/60 hover:text-white transition-colors text-base">Contact</a></li>
+                    </ul>
                 </div>
 
-                <!-- Bottom -->
-                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40">
-                    <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
-                        <p>&copy; 2025 King's Landing. All rights reserved.</p>
-                        <span class="hidden md:block text-white/20">|</span>
-                        <p class="group">
-                            Crafted by <a href="#" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a>
-                        </p>
-                    </div>
-                    <div class="flex gap-8">
-                        <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                        <a href="#" class="hover:text-white transition-colors">Impressum</a>
-                    </div>
+                <!-- 3. Contact -->
+                <div>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Contact</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex gap-3 items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5"></i>
+                            <span class="text-white/60 leading-relaxed">Canstart Technologies,<br>Bhavnagar Gujarat</span>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="tel:+919898458521" class="text-white/60 hover:text-white transition-colors">+91 98 98 45 85 21</a>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="mailto:kings@canstart.co" class="text-white/60 hover:text-white transition-colors">kings@canstart.co</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4. Follow Us -->
+                <div class="flex flex-col">
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Follow Us On</h3>
+                    <a href="#" class="flex items-center gap-3 group opacity-80 hover:opacity-100 transition-opacity">
+                        <img src="assets/img/insta_logo_white.png" class="w-8 h-8 object-contain">
+                        <span class="text-xl font-serif italic">Instagram</span>
+                    </a>
                 </div>
 
             </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40 relative z-10">
+                <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
+                    <p>&copy; <span id="year">2025</span> King's Landing. All rights reserved.</p>
+                    <span class="hidden md:block text-white/20">|</span>
+                    <p class="group">
+                        Crafted by <a href="https://canstart.in" target="_blank" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a>
+                    </p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+
+            <!-- Castle Image -->
+            <img src="assets/img/footer_castle.png" class="absolute bottom-20 lg:bottom-32 right-0 w-[200px] lg:w-[400px] h-auto object-contain pointer-events-none opacity-50 lg:opacity-100 z-0 select-none">
+        </div>
+
+        <script>
+            document.getElementById('year').textContent = new Date().getFullYear();
+            // Footer Marquee JS
+            window.addEventListener('DOMContentLoaded', () => {
+                const footerMarqueeContent = document.querySelector('.footer-marquee-content');
+                if(footerMarqueeContent && typeof gsap !== 'undefined') {
+                    gsap.to(footerMarqueeContent, {
+                        xPercent: -50,
+                        ease: "none",
+                        duration: 30,
+                        repeat: -1
+                    });
+                }
+            });
+        </script>
         </footer>
 
         <!-- Top Navigation Bar -->
@@ -954,13 +949,11 @@
                 });
             }
 
-            // --- 7. Story Section Animations (Replaces Numbers) ---
             const storySection = document.getElementById('story-section');
-            const storyImageWrapper = document.getElementById('story-image-wrapper');
             const storyIntroLabel = document.getElementById('story-intro-label');
             const storyIntroTitle = document.getElementById('story-intro-title');
             
-            if (storySection && storyImageWrapper) {
+            if (storySection) {
                 // 1. Intro Text Reveal
                 gsap.to([storyIntroLabel, storyIntroTitle], {
                     opacity: 1,
@@ -974,53 +967,23 @@
                     }
                 });
 
-                // 2. The "Shrink to Right" Animation
-                // This timeline handles the transition from full-screen image to split-screen
-                const shrinkTl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: "#story-intro", // Use the intro container as trigger
-                        start: "top top",
-                        end: "bottom top", 
-                        scrub: true,
-                    }
-                });
 
-                shrinkTl.to(storyImageWrapper, {
-                    width: "50%", // Shrink to half width
-                    left: "50%",  // Move to right side
-                    ease: "none"
-                })
-                .to([storyIntroLabel, storyIntroTitle], {
-                    opacity: 0,
-                    y: -50,
-                    ease: "power1.in"
-                }, "<"); 
 
-                // 3. Image Switching on Scroll
+                // 3. Simple fade-up for text blocks
                 const storyBlocks = document.querySelectorAll('.story-text-block');
-                const storyImages = document.querySelectorAll('.story-img');
-
-                storyBlocks.forEach((block, i) => {
-                    ScrollTrigger.create({
-                        trigger: block,
-                        start: "top 60%", // Trigger when text is near center
-                        end: "bottom 60%",
-                        onEnter: () => updateStoryImage(i),
-                        onEnterBack: () => updateStoryImage(i)
-                    });
-                });
-
-                function updateStoryImage(index) {
-                    storyImages.forEach((img, i) => {
-                        if (i === index) {
-                            gsap.to(img, { opacity: 1, duration: 1, ease: "power2.out" });
-                            gsap.to(img, { scale: 1.05, duration: 10, ease: "none" }); // Slow zoom effect
-                        } else {
-                            gsap.to(img, { opacity: 0, duration: 1, ease: "power2.out" });
-                            gsap.to(img, { scale: 1, duration: 1 }); // Reset scale
+                storyBlocks.forEach((block) => {
+                    gsap.from(block, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: block,
+                            start: "top 80%",
+                            end: "top 40%",
+                            scrub: 1
                         }
                     });
-                }
+                });
             }
             // --- 8. Sustainability Section Animations ---
             const susOrbitRing = document.getElementById('sus-orbit-ring');
@@ -1073,7 +1036,7 @@
                         const tl = gsap.timeline();
                         
                         // Animate Out
-                        tl.to([susActiveTitle, susActiveDesc], { 
+                        tl.to([susActiveTitle, susActiveDesc], {  
                             y: -20, 
                             opacity: 0, 
                             stagger: 0.05, 
