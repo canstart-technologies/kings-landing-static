@@ -146,7 +146,7 @@
                 <div class="absolute bottom-0 left-0 w-full flex items-end justify-between overflow-hidden pb-2 lg:pb-0">
                     
                     <!-- Left Castle -->
-                    <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain translate-y-[15%] opacity-90 ml-[-2%] drop-shadow-2xl z-10">
+                    <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-90 ml-[-2%] drop-shadow-2xl z-10">
                     
                     <!-- CENTER TITLE -->
                     <div class="absolute bottom-2 lg:bottom-4 left-0 right-0 flex justify-center z-0">
@@ -158,7 +158,7 @@
                     </div>
 
                     <!-- Right Castle (Mirrored) -->
-                    <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain translate-y-[15%] opacity-90 mr-[-2%] drop-shadow-2xl z-10">
+                    <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-90 mr-[-2%] drop-shadow-2xl z-10">
                 </div>
 
             </div>
@@ -216,35 +216,36 @@
             </div>
         </section>
 
-        <!-- Our Story Section (Replaces Numbers) -->
+        <!-- Our Story Section (Single BG with Scrolling Text) -->
         <section id="story-section" class="relative w-full bg-white text-black">
             
-            <!-- Sticky Image Container (Starts Full, Shrinks to Right) -->
+            <!-- Sticky Background Image Container -->
+            <!-- Using sticky positioning to keep image fixed while content scrolls over/past -->
             <div class="h-screen w-full sticky top-0 left-0 overflow-hidden z-0" id="story-image-wrapper">
-                <div class="absolute inset-0 w-full h-full bg-gray-100" id="story-image-inner">
-                     <!-- Image 1: Discovery -->
-                     <img src="assets\img\our-story\UC1-Chail-Property-Land.jpg" 
-                          class="story-img absolute inset-0 w-full h-full object-cover transition-transform duration-1000" 
-                          id="story-img-0" style="z-index: 1;">
-                     
-                     <!-- Image 2: Vision -->
-                     <img src="assets\img\our-story\UC2-Chail-Property-Wide-View.jpg" 
-                          class="story-img absolute inset-0 w-full h-full object-cover opacity-0 transition-transform duration-1000" 
-                          id="story-img-1" style="z-index: 2;">
-                     
-                     <!-- Image 3: Community -->
-                     <img src="assets\img\our-story\UC3-Chail-Property-Building.jpg" 
-                          class="story-img absolute inset-0 w-full h-full object-cover opacity-0 transition-transform duration-1000" 
-                          id="story-img-2" style="z-index: 3;">
-                </div>
+                 <!-- Single Fixed Background Image -->
+                 <img src="assets\img\our-story\UC2-Chail-Property-Wide-View.jpg" 
+                      class="absolute inset-0 w-full h-full object-cover" 
+                      alt="Vision Background"
+                      style="z-index: 1;">
+                 <!-- Overlay for readability -->
+                 <div class="absolute inset-0 bg-black/30 z-10"></div>
             </div>
         
-            <!-- Scrolling Content -->
+            <!-- Scrolling Content Wrapper -->
+            <!-- Negative margin pulls this up to overlay the sticky image initially if needed, 
+                 but here we want the text to flow naturally over the sticky background.
+                 Actually, to have "text scrolls over it from bottom to top", we need the text to be in a container 
+                 that comes AFTER the image in DOM but visuals are handled via Z-index and margins.
+                 
+                 Strategy:
+                 1. Image is sticky at top-0.
+                 2. Content is z-10 relative.
+            -->
             <div class="relative z-10 -mt-[100vh]"> 
                 
-                <!-- Intro Block (Overlay on full image) -->
-                <div class="h-screen flex items-center justify-center px-6" id="story-intro">
-                    <div class="text-center text-white drop-shadow-lg"> 
+                <!-- Intro Block (Center Screen) -->
+                <div class="min-h-screen flex items-center justify-center px-6" id="story-intro">
+                    <div class="text-center text-white drop-shadow-lg p-10"> 
                         <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block opacity-0 translate-y-10" id="story-intro-label">Our Vision</span>
                         <h2 class="text-5xl lg:text-8xl font-serif font-medium leading-tight opacity-0 translate-y-10" id="story-intro-title">
                             A Dream Reimagined<br>in the Mountains
@@ -252,32 +253,32 @@
                     </div>
                 </div>
         
-                <!-- Spacer for transition -->
-                <div class="h-[20vh]"></div>
-        
-                <!-- Split Content Blocks -->
-                <div class="flex flex-col lg:flex-row">
-                    <div class="w-full lg:w-1/2 bg-white/95 backdrop-blur-sm lg:bg-white pt-20"> 
+                <!-- Points Container (Scrolls over the image) -->
+                <div class="w-full flex justify-center pb-32">
+                    <div class="w-full max-w-4xl px-6 lg:px-12 flex flex-col gap-32"> 
+                         
                          <!-- Point 1 -->
-                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="0">
-                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="0">
+                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
                                 Two minds discovered a serene patch of land while wandering through a mountain village.
                             </p>
                         </div>
+
                         <!-- Point 2 -->
-                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="1">
-                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="1">
+                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
                                 What began as their dream retirement spot grew into a shared vision — a haven for those seeking simplicity, nature, and community.
                             </p>
                         </div>
+                        
                         <!-- Point 3 -->
-                        <div class="min-h-screen flex items-center justify-center px-12 lg:px-24 story-text-block" data-index="2">
-                            <p class="text-3xl lg:text-4xl font-serif leading-relaxed text-gray-900">
+                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="2">
+                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
                                 Today, that dream stands as an eco-hamlet where people live in harmony with the earth and each other.
                             </p>
                         </div>
+
                     </div>
-                    <div class="hidden lg:block w-1/2"></div> <!-- Spacer for right side -->
                 </div>
             </div>
         </section>
@@ -389,7 +390,14 @@
         </section>
 
 
-        <!-- (Moved to Footer) -->
+        <!-- CTA Section -->
+        <section class="py-32 flex flex-col items-center justify-center bg-white text-gray-900 text-center z-10 relative">
+             <h2 class="text-4xl lg:text-6xl font-serif italic mb-12">Ready to come home?</h2>
+             <div class="flex flex-col sm:flex-row gap-6">
+                 <a href="chail.html" class="px-10 py-4 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
+                 <a href="kumarhatti.html" class="px-10 py-4 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
+             </div>
+        </section>
 
 
         <footer class="bg-[#050505] text-white relative z-10 overflow-hidden">
@@ -944,13 +952,11 @@
                 });
             }
 
-            // --- 7. Story Section Animations (Replaces Numbers) ---
             const storySection = document.getElementById('story-section');
-            const storyImageWrapper = document.getElementById('story-image-wrapper');
             const storyIntroLabel = document.getElementById('story-intro-label');
             const storyIntroTitle = document.getElementById('story-intro-title');
             
-            if (storySection && storyImageWrapper) {
+            if (storySection) {
                 // 1. Intro Text Reveal
                 gsap.to([storyIntroLabel, storyIntroTitle], {
                     opacity: 1,
@@ -964,53 +970,23 @@
                     }
                 });
 
-                // 2. The "Shrink to Right" Animation
-                // This timeline handles the transition from full-screen image to split-screen
-                const shrinkTl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: "#story-intro", // Use the intro container as trigger
-                        start: "top top",
-                        end: "bottom top", 
-                        scrub: true,
-                    }
-                });
 
-                shrinkTl.to(storyImageWrapper, {
-                    width: "50%", // Shrink to half width
-                    left: "50%",  // Move to right side
-                    ease: "none"
-                })
-                .to([storyIntroLabel, storyIntroTitle], {
-                    opacity: 0,
-                    y: -50,
-                    ease: "power1.in"
-                }, "<"); 
 
-                // 3. Image Switching on Scroll
+                // 3. Simple fade-up for text blocks
                 const storyBlocks = document.querySelectorAll('.story-text-block');
-                const storyImages = document.querySelectorAll('.story-img');
-
-                storyBlocks.forEach((block, i) => {
-                    ScrollTrigger.create({
-                        trigger: block,
-                        start: "top 60%", // Trigger when text is near center
-                        end: "bottom 60%",
-                        onEnter: () => updateStoryImage(i),
-                        onEnterBack: () => updateStoryImage(i)
-                    });
-                });
-
-                function updateStoryImage(index) {
-                    storyImages.forEach((img, i) => {
-                        if (i === index) {
-                            gsap.to(img, { opacity: 1, duration: 1, ease: "power2.out" });
-                            gsap.to(img, { scale: 1.05, duration: 10, ease: "none" }); // Slow zoom effect
-                        } else {
-                            gsap.to(img, { opacity: 0, duration: 1, ease: "power2.out" });
-                            gsap.to(img, { scale: 1, duration: 1 }); // Reset scale
+                storyBlocks.forEach((block) => {
+                    gsap.from(block, {
+                        opacity: 0,
+                        y: 50,
+                        duration: 1,
+                        scrollTrigger: {
+                            trigger: block,
+                            start: "top 80%",
+                            end: "top 40%",
+                            scrub: 1
                         }
                     });
-                }
+                });
             }
             // --- 8. Sustainability Section Animations ---
             const susOrbitRing = document.getElementById('sus-orbit-ring');
@@ -1063,7 +1039,7 @@
                         const tl = gsap.timeline();
                         
                         // Animate Out
-                        tl.to([susActiveTitle, susActiveDesc], { 
+                        tl.to([susActiveTitle, susActiveDesc], {  
                             y: -20, 
                             opacity: 0, 
                             stagger: 0.05, 
