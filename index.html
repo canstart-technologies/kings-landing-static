@@ -11,11 +11,114 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
     <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'UVN Dinh Hon';
+            src: url('assets/fonts/UVN Dinh Hon.woff') format('woff');
+        }
+
+        /* Cormorant Garamond Webfont */
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Cormorant Garamond Regular'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 400;
+            src: local('Cormorant Garamond Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Italic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-MediumItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBoldItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Bold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-BoldItalic.woff') format('woff');
+        }
+
+        /* Libre Baskerville Webfont */
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: italic;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
+        }
+
         /* Imported Cormorant Garamond (Latienne Pro alternative) and Manrope (Euclid Square alternative) */
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
 
-        :root {
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        /* Tangerine Webfont */
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 700;
+            src: url('assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
         }
 
         body {
@@ -136,7 +239,7 @@
                 <div class="absolute inset-0 flex flex-col items-center justify-center mb-20 lg:mb-32">
                      <p class="text-xl lg:text-3xl font-medium text-white opacity-0 translate-y-4 leading-relaxed max-w-2xl mx-auto text-center drop-shadow-md font-serif text-shadow" id="hero-desc">
                       Luxury Residences in the Himalayas
-                      <span class="block mt-3 lg:mt-2 font-latienne italic opacity-80">
+                      <span class="block mt-3 lg:mt-2 font-latienne italic opacity-100">
                         Two Iconic Locations: Chail & Kumarhatti
                       </span>
                     </p>
@@ -169,8 +272,8 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-10">
                 <!-- Header -->
                 <div class="flex flex-col items-center text-center mb-20 opacity-0" id="essence-header">
-                    <h2 class="text-4xl lg:text-6xl font-serif font-medium mb-8 leading-tight">What makes this place different</h2>
-                    <p class="max-w-3xl text-lg lg:text-xl font-light text-gray-600 leading-relaxed">
+                    <h2 class="text-4xl lg:text-6xl font-serif mb-8 leading-tight" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">What makes this place different</h2>
+                    <p class="max-w-3xl text-xl lg:text-3xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">
                        Perched above the world in two serene hill towns, these residences offer what few places can. Silence, space, and the kind of beauty that stays with you.
                     </p>
                 </div>
@@ -185,8 +288,8 @@
                                  class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
                         </div>
-                        <h3 class="text-2xl font-serif mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">Boutique community</h3>
-                        <p class="text-gray-500 font-light leading-relaxed">An intimate enclave, where fewer homes foster a deeper sense of belonging.</p>
+                        <h3 class="text-3xl lg:text-3xl mb-1 font-serif text-black" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">Boutique community</h3>
+                        <p class="text-xl lg:text-2xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">An intimate enclave, where fewer homes foster a deeper sense of belonging.</p>
                     </div>
 
                     <!-- Card 2 -->
@@ -197,8 +300,8 @@
                                  class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
                              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
                         </div>
-                        <h3 class="text-2xl font-serif mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">Luxury apartments</h3>
-                        <p class="text-gray-500 font-light leading-relaxed">Built with materials and finishes that will outlast trends.</p>
+                        <h3 class="text-3xl lg:text-3xl mb-1 font-serif text-black" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">Luxury apartments</h3>
+                        <p class="text-xl lg:text-2xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">Built with materials and finishes that will outlast trends.</p>
                     </div>
 
                     <!-- Card 3 -->
@@ -209,8 +312,8 @@
                                  class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110">
                              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
                         </div>
-                        <h3 class="text-2xl font-serif mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">Himalayan serenity</h3>
-                        <p class="text-gray-500 font-light leading-relaxed">The mountains hold their silence close, and you live within it.</p>
+                        <h3 class="text-3xl lg:text-3xl mb-1 font-serif text-black" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">Himalayan serenity</h3>
+                        <p class="text-xl lg:text-2xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">The mountains hold their silence close, and you live within it.</p>
                     </div>
                 </div>
             </div>
@@ -391,11 +494,11 @@
 
 
         <!-- CTA Section -->
-        <section class="py-32 flex flex-col items-center justify-center bg-white text-gray-900 text-center z-10 relative">
-             <h2 class="text-4xl lg:text-6xl font-serif italic mb-12">Ready to come home?</h2>
+        <section class="py-32 flex flex-col items-center justify-center bg-cover bg-center text-gray-900 text-center z-10 relative" style="background-image: url('assets/img/index/come_home.jpg');">
+             <h2 class="text-4xl lg:text-6xl text-white font-serif italic mb-12">Ready to come home?</h2>
              <div class="flex flex-col sm:flex-row gap-6">
-                 <a href="chail.html" class="px-10 py-4 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
-                 <a href="kumarhatti.html" class="px-10 py-4 rounded-full border border-gray-300 hover:border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
+                 <a href="chail.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
+                 <a href="kumarhatti.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
              </div>
         </section>
 

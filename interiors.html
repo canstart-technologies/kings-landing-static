@@ -14,7 +14,114 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
     
     <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'UVN Dinh Hon';
+            src: url('assets/fonts/UVN Dinh Hon.woff') format('woff');
+        }
+
+        /* Cormorant Garamond Webfont */
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Cormorant Garamond Regular'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 400;
+            src: local('Cormorant Garamond Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Italic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-MediumItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBoldItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Bold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-BoldItalic.woff') format('woff');
+        }
+
+        /* Libre Baskerville Webfont */
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: italic;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
+        }
+
         @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+        /* Tangerine Webfont */
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 700;
+            src: url('assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
+        }
 
         :root {
             --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
@@ -153,8 +260,8 @@
             </div>
             <div class="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-6">
                 <span class="text-xs font-medium tracking-[0.3em] uppercase mb-6 opacity-0 translate-y-10" id="hero-label"></span>
-                <h1 class="text-6xl lg:text-8xl font-serif mb-6 opacity-0 translate-y-10" id="hero-title">INTERIORS</h1>
-                <p class="max-w-xl text-lg lg:text-xl font-light opacity-0 translate-y-10" id="hero-desc">
+                <h1 class="text-6xl lg:text-9xl mb-8 opacity-0 translate-y-10" id="hero-title" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">INTERIORS</h1>
+                <p class="max-w-3xl text-2xl lg:text-xl font-light opacity-0 translate-y-10" id="hero-desc" style="font-family: 'Libre Baskerville', serif; font-weight: 400;">
                     A blend of classic opulence and modern minimalism creates interiors that feel immersive and warm. Soft lighting, rich materials, and clean lines shape every space.
                 </p>
             </div>
@@ -245,16 +352,6 @@
 
         </section>
 
-        <!-- Next Section Teaser -->
-        <section class="py-32 bg-[#050505] text-white text-center">
-            <p class="text-sm tracking-widest uppercase mb-6 text-white/50">Next Chapter</p>
-            <h2 class="text-5xl lg:text-7xl font-serif italic mb-10">Explore Chail and Kumarhatti</h2>
-            <div class="flex flex-col md:flex-row gap-6 justify-center">
-                <a href="chail.html" class="inline-block border border-white/30 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-300">Explore Chail</a>
-                <a href="kumarhatti.html" class="inline-block border border-white/30 px-8 py-4 rounded-full hover:bg-white hover:text-black transition-all duration-300">Explore Kumarhatti</a>
-            </div>
-        </section>
-
     </main>
 
     <footer class="bg-[#050505] text-white relative z-10 overflow-hidden">
@@ -279,7 +376,7 @@
 
             <!-- Top Layer: Mask (Black BG + White Text + Multiply) -->
             <div class="absolute inset-0 bg-[#050505] flex items-center justify-center mix-blend-multiply z-10 select-none">
-                <h2 class="text-[13vw] lg:text-[15vw] font-black text-white leading-none tracking-tighter uppercase font-serif">
+                <h2 class="text-[13vw] lg:text-[10vw] font-black text-white leading-none tracking-tighter uppercase font-serif">
                     KING'S LANDING
                 </h2>
             </div>
