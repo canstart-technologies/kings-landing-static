@@ -207,6 +207,36 @@
     <!-- Main Container -->
     <div class="relative w-full overflow-x-hidden">
 
+        <!-- Grand Hero Section -->
+        <section id="grand-hero" class="relative w-full h-screen overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="assets/img/index/grand_hero.jpg" class="w-full h-full object-cover" alt="Grand Hero">
+                <div class="absolute inset-0 bg-black/20"></div>
+            </div>
+
+            <!-- Center Logo -->
+            <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing Logo" class="w-72 lg:w-[28rem] h-auto object-contain opacity-100 drop-shadow-lg -translate-y-14">
+            </div>
+
+            <!-- Castles & Title at Bottom -->
+            <div class="absolute bottom-0 left-0 w-full flex items-end justify-between overflow-hidden pb-2 lg:pb-0 z-30 pointer-events-none">
+                
+                <!-- Left Castle -->
+                <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-100 ml-[-1%] drop-shadow-2xl z-10">
+                
+                <!-- Center Title -->
+                <div class="absolute bottom-4 lg:bottom-5 left-0 right-0 flex justify-center z-0">
+                    <h1 class="text-[7vw] lg:text-[3.5vw] font-black text-white leading-none tracking-tight font-serif text-center drop-shadow-2xl mix-blend-overlay opacity-90" style="font-family: 'Playfair Display', serif;">
+                        Where Kings Return to the Realm
+                    </h1>
+                </div>
+
+                <!-- Right Castle (Mirrored) -->
+                <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-100 mr-[-1%] drop-shadow-2xl z-10">
+            </div>
+        </section>
+
         <!-- Split Screen Hero Images -->
         <section class="relative w-full h-screen overflow-hidden">
             <div class="absolute inset-0 w-full h-full flex z-0" id="hero-split-container">
@@ -236,10 +266,10 @@
             <div class="absolute inset-0 z-20 pointer-events-none">
                 
                 <!-- 1. Description (Centered in Hero) -->
-                <div class="absolute inset-0 flex flex-col items-center justify-center mb-20 lg:mb-32">
-                     <p class="text-xl lg:text-3xl font-medium text-white opacity-0 translate-y-4 leading-relaxed max-w-2xl mx-auto text-center drop-shadow-md font-serif text-shadow" id="hero-desc">
+                <div class="absolute inset-0 flex flex-col items-center justify-center mb-10 lg:mb-22">
+                     <p class="text-2xl lg:text-5xl font-medium text-white opacity-100 leading-relaxed max-w-4xl mx-auto text-center drop-shadow-md font-serif text-shadow" id="hero-desc">
                       Luxury Residences in the Himalayas
-                      <span class="block mt-3 lg:mt-2 font-latienne italic opacity-100">
+                      <span class="block mt-4 lg:mt-3 font-latienne italic opacity-100">
                         Two Iconic Locations: Chail & Kumarhatti
                       </span>
                     </p>
@@ -249,10 +279,10 @@
                 <div class="absolute bottom-0 left-0 w-full flex items-end justify-between overflow-hidden pb-2 lg:pb-0">
                     
                     <!-- Left Castle -->
-                    <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-90 ml-[-2%] drop-shadow-2xl z-10">
+                    <img src="assets/img/Castle_final_bold_line.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-100 ml-[-1%] drop-shadow-2xl z-10">
                     
                     <!-- CENTER TITLE -->
-                    <div class="absolute bottom-2 lg:bottom-4 left-0 right-0 flex justify-center z-0">
+                    <div class="absolute bottom-1 lg:bottom-2 left-0 right-0 flex justify-center z-0">
                         <h1 class="text-[11vw] lg:text-[6vw] font-black text-white leading-none tracking-tight uppercase font-serif text-center drop-shadow-2xl mix-blend-overlay opacity-90" 
                              id="hero-title" 
                              style="font-family: 'Playfair Display', serif;">
@@ -261,7 +291,7 @@
                     </div>
 
                     <!-- Right Castle (Mirrored) -->
-                    <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-90 mr-[-2%] drop-shadow-2xl z-10">
+                    <img src="assets/img/Castle_final_bold_line_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-100 mr-[-1%] drop-shadow-2xl z-10">
                 </div>
 
             </div>
@@ -624,7 +654,7 @@
         </footer>
 
         <!-- Top Navigation Bar -->
-        <div class="fixed top-0 left-0 w-full p-4 lg:p-6 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black to-transparent">
+        <div class="fixed top-0 left-0 w-full p-6 lg:p-8 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black/90 to-transparent">
             
             <!-- Left: Menu Button -->
             <div class="pointer-events-auto">
@@ -638,9 +668,9 @@
             </div>
 
             <!-- Center: Logo -->
-            <div class="pointer-events-auto absolute left-1/2 top-10 lg:top-10 transform -translate-x-1/2 -translate-y-1/2 z-50 h-12 flex items-center justify-center">
+            <div id="navbar-logo" class="pointer-events-auto absolute left-1/2 top-6 lg:top-7 transform -translate-x-1/2 -translate-y-1/2 z-50 h-12 flex items-center justify-center opacity-0">
                 <a href="#" class="block h-full hover:opacity-80 transition-opacity drop-shadow-md">
-                    <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing" class="h-16 lg:h-[72px] w-auto max-w-none">
+                    <img src="assets/img/logo/Logo_original.png" alt="King's Landing" class="h-20 lg:h-24 w-auto max-w-none">
                 </a>
             </div>
 
@@ -783,9 +813,19 @@
                     }
                 }, "-=0.2");
 
+            // --- 0.5 Navbar Logo Visibility ---
+            gsap.to("#navbar-logo", {
+                opacity: 1,
+                duration: 0.5,
+                scrollTrigger: {
+                    trigger: "#grand-hero",
+                    start: "bottom top+=300",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
             // --- 1. Hero Text Animations (Premium Reveal) ---
             const heroTitle = new SplitType('#hero-title', { types: 'lines, chars' });
-            const heroDesc = new SplitType('#hero-desc', { types: 'lines' });
 
             // Main Timeline (Paused initially)
             const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
@@ -811,12 +851,7 @@
                 stagger: 0.02,
                 duration: 1,
                 ease: "power4.out"
-            }, "-=1.8")
-            .to('#hero-desc', {
-                opacity: 0.8,
-                y: 0,
-                duration: 1
-            }, "-=1.2");
+            }, "-=1.8");
 
 
             // --- 2. Menu Logic & Animations ---
@@ -1116,10 +1151,19 @@
                 // Animation Loop
                 const orbitTween = gsap.to(orbitState, {
                     rotation: 360,
-                    duration: 25, // Slower for elegance
+                    duration: 35, // Slower for elegance
                     repeat: -1,
                     ease: "none",
+                    paused: true,
                     onUpdate: updateIcons
+                });
+
+                ScrollTrigger.create({
+                    trigger: "#sustainability-section",
+                    start: "top 60%",
+                    onEnter: () => {
+                        gsap.delayedCall(1.5, () => orbitTween.play());
+                    }
                 });
 
                 function updateContent(index) {
@@ -1254,6 +1298,9 @@
                         updateContent(activeIconIndex);
                     }
                 }
+
+                // Set initial state
+                updateIcons();
 
                 // Hover Interaction
                 susIcons.forEach((icon, index) => {
