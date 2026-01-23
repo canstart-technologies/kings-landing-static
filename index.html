@@ -1119,7 +1119,16 @@
                     duration: 25, // Slower for elegance
                     repeat: -1,
                     ease: "none",
+                    paused: true,
                     onUpdate: updateIcons
+                });
+
+                ScrollTrigger.create({
+                    trigger: "#sustainability-section",
+                    start: "top 60%",
+                    onEnter: () => {
+                        gsap.delayedCall(1.5, () => orbitTween.play());
+                    }
                 });
 
                 function updateContent(index) {
@@ -1254,6 +1263,9 @@
                         updateContent(activeIconIndex);
                     }
                 }
+
+                // Set initial state
+                updateIcons();
 
                 // Hover Interaction
                 susIcons.forEach((icon, index) => {
