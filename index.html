@@ -208,7 +208,7 @@
     <div class="relative w-full overflow-x-hidden">
 
         <!-- Grand Hero Section -->
-        <section class="relative w-full h-screen overflow-hidden">
+        <section id="grand-hero" class="relative w-full h-screen overflow-hidden">
             <div class="absolute inset-0">
                 <img src="assets/img/index/grand_hero.jpg" class="w-full h-full object-cover" alt="Grand Hero">
                 <div class="absolute inset-0 bg-black/20"></div>
@@ -667,7 +667,7 @@
             </div>
 
             <!-- Center: Logo -->
-            <div class="pointer-events-auto absolute left-1/2 top-6 lg:top-7 transform -translate-x-1/2 -translate-y-1/2 z-50 h-12 flex items-center justify-center">
+            <div id="navbar-logo" class="pointer-events-auto absolute left-1/2 top-6 lg:top-7 transform -translate-x-1/2 -translate-y-1/2 z-50 h-12 flex items-center justify-center opacity-0">
                 <a href="#" class="block h-full hover:opacity-80 transition-opacity drop-shadow-md">
                     <img src="assets/img/logo/Logo_original.png" alt="King's Landing" class="h-20 lg:h-24 w-auto max-w-none">
                 </a>
@@ -811,6 +811,17 @@
                         tl.play(); // Start Hero Animation
                     }
                 }, "-=0.2");
+
+            // --- 0.5 Navbar Logo Visibility ---
+            gsap.to("#navbar-logo", {
+                opacity: 1,
+                duration: 0.5,
+                scrollTrigger: {
+                    trigger: "#grand-hero",
+                    start: "bottom top+=300",
+                    toggleActions: "play none none reverse"
+                }
+            });
 
             // --- 1. Hero Text Animations (Premium Reveal) ---
             const heroTitle = new SplitType('#hero-title', { types: 'lines, chars' });
