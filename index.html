@@ -203,6 +203,9 @@
     <!-- Custom Cursor Elements -->
     <div class="cursor-dot hidden lg:block"></div>
     <div class="cursor-outline hidden lg:block"></div>
+    
+    <!-- Hero Overlay (For Menu) -->
+    <div id="hero-overlay" class="fixed inset-0 z-[35] pointer-events-none bg-transparent"></div>
 
     <!-- Main Container -->
     <div class="relative w-full overflow-x-hidden">
@@ -922,8 +925,8 @@
                 { scale: 1, duration: 0.8, ease: "power2.out" }, 
             0.1);
 
-            // Text Animations (Hero Description & Title & Castles)
-            scrollTl.to(['#hero-desc', '#hero-title', '#reveal-castle-left', '#reveal-castle-right'], {
+            // Text Animations (Hero Description & Title)
+            scrollTl.to(['#hero-desc', '#hero-title'], {
                 y: 0,
                 opacity: 0.95,
                 duration: 0.6,
