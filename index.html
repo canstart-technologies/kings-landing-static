@@ -157,31 +157,6 @@
         .char-mask {
             overflow: hidden;
         }
-        
-        /* Custom Cursor (Optional but premium) */
-        .cursor-dot,
-        .cursor-outline {
-            position: fixed;
-            top: 0;
-            left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background-color: white;
-            mix-blend-mode: difference;
-        }
-        .cursor-outline {
-            width: 40px;
-            height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            mix-blend-mode: difference;
-            transition: width 0.2s, height 0.2s;
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
@@ -199,10 +174,6 @@
         </div>
         <div id="preloader-counter" class="mt-4 text-xs font-medium tracking-widest opacity-50 font-mono text-white">0%</div>
     </div>
-
-    <!-- Custom Cursor Elements -->
-    <div class="cursor-dot hidden lg:block"></div>
-    <div class="cursor-outline hidden lg:block"></div>
 
     <!-- Main Container -->
     <div class="relative w-full overflow-x-hidden">
@@ -985,48 +956,6 @@
             });
 
 
-            // --- 4. Custom Cursor Logic ---
-            const cursorDot = document.querySelector('.cursor-dot');
-            const cursorOutline = document.querySelector('.cursor-outline');
-
-            // Optimize: Use quickTo for cursor
-            const cursorXTo = gsap.quickTo(cursorOutline, "x", { duration: 0.15, ease: "power2.out" });
-            const cursorYTo = gsap.quickTo(cursorOutline, "y", { duration: 0.15, ease: "power2.out" });
-
-            window.addEventListener('mousemove', (e) => {
-                const posX = e.clientX;
-                const posY = e.clientY;
-
-                // Dot follows instantly
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-
-                // Outline follows with optimized tween
-                cursorXTo(posX);
-                cursorYTo(posY);
-            });
-
-            // Cursor Hover Effects
-            const hoverTriggers = document.querySelectorAll('a, button, .hover-trigger, .menu-item');
-            
-            hoverTriggers.forEach(trigger => {
-                trigger.addEventListener('mouseenter', () => {
-                    gsap.to(cursorOutline, {
-                        scale: 1.5,
-                        backgroundColor: "rgba(255, 255, 255, 0.2)",
-                        duration: 0.2,
-                        overwrite: true
-                    });
-                });
-                trigger.addEventListener('mouseleave', () => {
-                    gsap.to(cursorOutline, {
-                        scale: 1,
-                        backgroundColor: "transparent",
-                        duration: 0.2,
-                        overwrite: true
-                    });
-                });
-            });
 
             // --- 5. Split Screen Interaction (Accordion Effect) ---
             const splitLeft = document.getElementById('split-left');

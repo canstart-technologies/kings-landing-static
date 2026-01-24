@@ -144,20 +144,6 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
 
-        /* Custom Cursor */
-        .cursor-dot, .cursor-outline {
-            position: fixed; top: 0; left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%; z-index: 9999; pointer-events: none;
-        }
-        .cursor-dot { width: 8px; height: 8px; background-color: #fff; mix-blend-mode: difference; }
-        .cursor-outline {
-            width: 40px; height: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            mix-blend-mode: difference;
-            transition: width 0.2s, height 0.2s;
-        }
-
         /* Form Styles */
         .form-input {
             width: 100%;
@@ -192,10 +178,6 @@
         </div>
         <div id="preloader-counter" class="mt-4 text-xs font-medium tracking-widest opacity-50 font-mono text-white">0%</div>
     </div>
-
-    <!-- Custom Cursor -->
-    <div class="cursor-dot hidden lg:block"></div>
-    <div class="cursor-outline hidden lg:block"></div>
 
     <!-- Top Navigation Bar -->
     <div class="fixed top-0 left-0 w-full p-4 lg:p-6 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black to-transparent">
@@ -730,22 +712,6 @@
                     gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#fff" });
                     gsap.to(menuToggle, { backgroundColor: "rgba(0,0,0,0.2)", borderColor: "rgba(255,255,255,0.3)", color: "#fff" });
                 }
-            });
-
-            // --- 3. Custom Cursor ---
-            const cursorDot = document.querySelector('.cursor-dot');
-            const cursorOutline = document.querySelector('.cursor-outline');
-            
-            window.addEventListener('mousemove', (e) => {
-                const posX = e.clientX;
-                const posY = e.clientY;
-                cursorDot.style.left = `${posX}px`;
-                cursorDot.style.top = `${posY}px`;
-                
-                cursorOutline.animate({
-                    left: `${posX}px`,
-                    top: `${posY}px`
-                }, { duration: 500, fill: "forwards" });
             });
 
         });
