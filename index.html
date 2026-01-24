@@ -210,7 +210,7 @@
         <!-- Grand Hero Section -->
         <section id="grand-hero" class="relative w-full h-screen overflow-hidden">
             <div class="absolute inset-0">
-                <img src="assets\img\index\Himalayan_River,_hills_with_dense_jungle_in_Kaski_District-2985.jpg" class="w-full h-full object-cover" alt="Grand Hero">
+                <img src="assets\img\index\grand_hero.jpg" class="w-full h-full object-cover" alt="Grand Hero">
                 <div class="absolute inset-0 bg-black/25"></div>
             </div>
 
@@ -242,7 +242,7 @@
             <div class="absolute inset-0 w-full h-full flex z-0" id="hero-split-container">
             <!-- Left: Chail -->
             <div class="w-1/2 h-full relative overflow-hidden group transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)]" id="split-left">
-                <img src="assets/img/chail-hero-image.jpg" 
+                <img src="assets/img/index/chail_hero.jpg" 
                      alt="Chail - Pine Forests" 
                      class="absolute inset-0 w-full h-full object-cover scale-110 transition-transform duration-[2s] ease-out group-hover:scale-100"
                      id="hero-image-left">
@@ -251,7 +251,7 @@
             
             <!-- Right: Kumar Hatti -->
             <div class="w-1/2 h-full relative overflow-hidden group transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)]" id="split-right">
-                <img src="assets/img/kumarhatti-hero-image.jpg" 
+                <img src="assets/img/index/kumarhatti_hero.jpg"
                      alt="Kumar Hatti - Misty Hills" 
                      class="absolute inset-0 w-full h-full object-cover scale-110 transition-transform duration-[2s] ease-out group-hover:scale-100"
                      id="hero-image-right">
@@ -350,68 +350,61 @@
         </section>
 
         <!-- Our Story Section (Single BG with Scrolling Text) -->
-        <section id="story-section" class="relative w-full bg-white text-black">
+        <section id="story-section" class="relative w-full bg-black text-white h-[400vh]">
             
             <!-- Sticky Background Image Container -->
-            <!-- Using sticky positioning to keep image fixed while content scrolls over/past -->
             <div class="h-screen w-full sticky top-0 left-0 overflow-hidden z-0" id="story-image-wrapper">
                  <!-- Single Fixed Background Image -->
-                 <img src="assets\img\our-story\UC2-Chail-Property-Wide-View.jpg" 
+                 <img src="assets\img\index\our_vision.jpg" 
                       class="absolute inset-0 w-full h-full object-cover" 
                       alt="Vision Background"
                       style="z-index: 1;">
                  <!-- Overlay for readability -->
                  <div class="absolute inset-0 bg-black/30 z-10"></div>
-            </div>
-        
-            <!-- Scrolling Content Wrapper -->
-            <!-- Negative margin pulls this up to overlay the sticky image initially if needed, 
-                 but here we want the text to flow naturally over the sticky background.
-                 Actually, to have "text scrolls over it from bottom to top", we need the text to be in a container 
-                 that comes AFTER the image in DOM but visuals are handled via Z-index and margins.
                  
-                 Strategy:
-                 1. Image is sticky at top-0.
-                 2. Content is z-10 relative.
-            -->
-            <div class="relative z-10 -mt-[100vh]"> 
-                
-                <!-- Intro Block (Center Screen) -->
-                <div class="min-h-screen flex items-center justify-center px-6" id="story-intro">
+                 <!-- Intro Block (Moved inside sticky container to remain static) -->
+                 <div class="absolute top-0 left-0 w-full h-[60vh] flex items-center justify-center px-6 z-20" id="story-intro">
                     <div class="text-center text-white drop-shadow-lg p-10"> 
-                        <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block opacity-0 translate-y-10" id="story-intro-label">Our Vision</span>
+                        <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block opacity-0 translate-y-10" id="story-intro-label"></span>
                         <h2 class="text-5xl lg:text-8xl font-serif font-medium leading-tight opacity-0 translate-y-10" id="story-intro-title">
-                            A Dream Reimagined<br>in the Mountains
+                            Our Vision
                         </h2>
                     </div>
                 </div>
-        
-                <!-- Points Container (Scrolls over the image) -->
-                <div class="w-full flex justify-center pb-32">
-                    <div class="w-full max-w-4xl px-6 lg:px-12 flex flex-col gap-32"> 
-                         
-                         <!-- Point 1 -->
-                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="0">
-                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
-                                Two minds discovered a serene patch of land while wandering through a mountain village.
+
+                 <!-- Points Container (Bottom Half - Absolute & Pinned) -->
+                 <div class="absolute bottom-0 left-0 w-full h-[85vh] flex items-center justify-center px-6 z-20">
+                    <div class="relative w-full max-w-4xl h-full flex items-center justify-center">
+                        
+                        <!-- Point 1 -->
+                        <div class="story-point absolute inset-0 flex items-center justify-center text-center p-6 opacity-0 translate-y-10">
+                            <p class="text-4xl lg:text-6xl font-serif leading-relaxed text-white drop-shadow-md">
+                                A Dream Reimagined in the Mountains
                             </p>
                         </div>
 
                         <!-- Point 2 -->
-                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="1">
-                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
-                                What began as their dream retirement spot grew into a shared vision — a haven for those seeking simplicity, nature, and community.
+                        <div class="story-point absolute inset-0 flex items-center justify-center text-center p-6 opacity-0 translate-y-10">
+                            <p class="text-2xl lg:text-3xl font-serif leading-relaxed text-white drop-shadow-md">
+                                King’s Landing is inspired by the idea of infinity — open skies, flowing landscapes, and nature without boundaries. It reflects a philosophy of continuity, growth, and harmony with the land. Here, greenery and luxury are not additions, but intrinsic.
                             </p>
                         </div>
-                        
+
                         <!-- Point 3 -->
-                        <div class="min-h-[50vh] flex items-center justify-center text-center story-text-block p-10" data-index="2">
-                            <p class="text-3xl lg:text-5xl font-serif leading-relaxed text-white drop-shadow-md">
-                                Today, that dream stands as an eco-hamlet where people live in harmony with the earth and each other.
+                        <div class="story-point absolute inset-0 flex items-center justify-center text-center p-6 opacity-0 translate-y-10">
+                            <p class="text-2xl lg:text-3xl font-serif leading-relaxed text-white drop-shadow-md">
+                                King’s Landing intends to offer not just homes, but a way of life that is curated, cultural, and kingly. From festivals to wellness routines, every day is designed to feel grand yet grounded. It’s a lifestyle that reflects who you are — regal, rooted, and refined.
                             </p>
                         </div>
 
                     </div>
+                 </div>
+
+                 <!-- Vertical Dots Slider -->
+                <div id="story-dots" class="fixed right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-4 opacity-0 transition-opacity duration-500 pointer-events-none">
+                    <div class="w-3 h-3 rounded-full border border-white/50 bg-transparent transition-all duration-300 story-dot"></div>
+                    <div class="w-3 h-3 rounded-full border border-white/50 bg-transparent transition-all duration-300 story-dot"></div>
+                    <div class="w-3 h-3 rounded-full border border-white/50 bg-transparent transition-all duration-300 story-dot"></div>
                 </div>
             </div>
         </section>
@@ -525,7 +518,7 @@
 
         <!-- CTA Section -->
         <section class="py-32 flex flex-col items-center justify-center bg-cover bg-center text-gray-900 text-center z-10 relative" style="background-image: url('assets/img/index/come_home.jpg');">
-             <h2 class="text-4xl lg:text-6xl text-white font-serif italic mb-12">Ready to come home?</h2>
+             <h2 class="text-4xl lg:text-6xl text-white font-serif italic mb-12" id="cta-title">Ready to come home?</h2>
              <div class="flex flex-col sm:flex-row gap-6">
                  <a href="chail.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
                  <a href="kumarhatti.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
@@ -1107,21 +1100,56 @@
 
 
 
-                // 3. Simple fade-up for text blocks
-                const storyBlocks = document.querySelectorAll('.story-text-block');
-                storyBlocks.forEach((block) => {
-                    gsap.from(block, {
-                        opacity: 0,
-                        y: 50,
-                        duration: 1,
-                        scrollTrigger: {
-                            trigger: block,
-                            start: "top 80%",
-                            end: "top 40%",
-                            scrub: 1
-                        }
-                    });
+                // 2. Points Animation (Crossfade)
+                const points = document.querySelectorAll('.story-point');
+                const dots = document.querySelectorAll('.story-dot');
+                const storyDots = document.getElementById('story-dots');
+                
+                // Show dots when in section
+                ScrollTrigger.create({
+                    trigger: '#story-section',
+                    start: "top top",
+                    end: "bottom bottom",
+                    onEnter: () => storyDots.classList.remove('opacity-0'),
+                    onLeave: () => storyDots.classList.add('opacity-0'),
+                    onEnterBack: () => storyDots.classList.remove('opacity-0'),
+                    onLeaveBack: () => storyDots.classList.add('opacity-0')
                 });
+
+                // Main Timeline
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#story-section",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 1
+                    }
+                });
+
+                // Initial setup
+                gsap.set(points, { opacity: 0, y: 50 });
+
+                // P1 Active
+                tl.to(dots[0], { backgroundColor: "#ffffff", scale: 1.25, duration: 0.2 }, 0)
+                  .to(points[0], { opacity: 1, y: 0, duration: 1 }, 0)
+                  
+                  // Transition P1 -> P2
+                  .to(dots[0], { backgroundColor: "transparent", scale: 1, duration: 0.2 }, 2)
+                  .to(points[0], { opacity: 0, y: -50, duration: 1 }, 2)
+                  
+                  .to(dots[1], { backgroundColor: "#ffffff", scale: 1.25, duration: 0.2 }, 2)
+                  .to(points[1], { opacity: 1, y: 0, duration: 1 }, 2)
+                  
+                  // Transition P2 -> P3
+                  .to(dots[1], { backgroundColor: "transparent", scale: 1, duration: 0.2 }, 4)
+                  .to(points[1], { opacity: 0, y: -50, duration: 1 }, 4)
+                  
+                  .to(dots[2], { backgroundColor: "#ffffff", scale: 1.25, duration: 0.2 }, 4)
+                  .to(points[2], { opacity: 1, y: 0, duration: 1 }, 4)
+                  
+                  // Exit P3
+                  .to(dots[2], { backgroundColor: "transparent", scale: 1, duration: 0.2 }, 6)
+                  .to(points[2], { opacity: 0, y: -50, duration: 1 }, 6);
             }
             // --- 8. Sustainability Section Animations ---
             const susOrbitRing = document.getElementById('sus-orbit-ring');
@@ -1328,6 +1356,22 @@
                     repeat: -1
                 });
             }
+
+            // --- 9. CTA Animation ---
+            const ctaTitle = new SplitType('#cta-title', { types: 'lines, chars' });
+            
+            gsap.from(ctaTitle.chars, {
+                y: 100,
+                opacity: 0,
+                stagger: 0.02,
+                duration: 1,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: "#cta-title",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
         });
 
         // Modal Logic (Preserved but simplified)
