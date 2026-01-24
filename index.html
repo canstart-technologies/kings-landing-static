@@ -360,7 +360,7 @@
                       alt="Vision Background"
                       style="z-index: 1;">
                  <!-- Overlay for readability -->
-                 <div class="absolute inset-0 bg-black/30 z-10"></div>
+                 <div class="absolute inset-0 bg-black/25 z-10"></div>
                  
                  <!-- Intro Block (Moved inside sticky container to remain static) -->
                  <div class="absolute top-0 left-0 w-full h-[60vh] flex items-center justify-center px-6 z-20" id="story-intro">
@@ -517,12 +517,18 @@
 
 
         <!-- CTA Section -->
-        <section class="py-32 flex flex-col items-center justify-center bg-cover bg-center text-gray-900 text-center z-10 relative" style="background-image: url('assets/img/index/come_home.jpg');">
-             <h2 class="text-4xl lg:text-6xl text-white font-serif italic mb-12" id="cta-title">Ready to come home?</h2>
-             <div class="flex flex-col sm:flex-row gap-6">
-                 <a href="chail.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
-                 <a href="kumarhatti.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
-             </div>
+        <section class="relative py-32 flex flex-col items-center justify-center text-center z-10 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="assets/img/index/come_home.jpg" class="w-full h-full object-cover brightness-110 contrast-110" alt="Come Home">
+                <div class="absolute inset-0 bg-black/0"></div>
+            </div>
+            <div class="relative z-10 flex flex-col items-center">
+                <h2 class="text-4xl lg:text-6xl text-white font-serif italic mb-12" id="cta-title">Ready to come home?</h2>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="chail.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
+                    <a href="kumarhatti.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
+                </div>
+            </div>
         </section>
 
 
