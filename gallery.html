@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - King's Landing</title>
+    <link rel="icon" type="image/png" href="assets/img/logo/Logo_favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'UVN Dinh Hon';
+            src: url('assets/fonts/UVN Dinh Hon.woff') format('woff');
+        }
+
+        /* Cormorant Garamond Webfont */
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Cormorant Garamond Regular'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 400;
+            src: local('Cormorant Garamond Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Italic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-MediumItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBoldItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Bold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-BoldItalic.woff') format('woff');
+        }
+
+        /* Libre Baskerville Webfont */
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: italic;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
+        }
+
+        /* Imported Cormorant Garamond (Latienne Pro alternative) and Manrope (Euclid Square alternative) */
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+        /* Tangerine Webfont */
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 700;
+            src: url('assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
+        }
+
+        /* New Fonts */
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('assets/fonts/montserrat.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Radiant Charisma';
+            src: url('assets/fonts/radiant-charisma.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'ARB 08 Extreme Roman';
+            src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas.ttf') format('truetype');
+        }
+
+        :root {
+            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+
+        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        .menu-link {
+            display: inline-flex;
+            align-items: center;
+            opacity: 0.5;
+            position: relative;
+            cursor: pointer;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a; 
+            border-radius: 3px;
+        }
+
+        /* Gallery Specific Styles */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-overlay {
+            background: rgba(0,0,0,0.2);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* Lenis Recommended CSS */
+        html.lenis, html.lenis body {
+            height: auto;
+        }
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-[#FDFBF7] text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center text-white">
+        <div class="overflow-hidden mb-8">
+            <img src="assets/img/logo/Logo_all_white.png" 
+                 id="preloader-logo" 
+                 class="w-64 lg:w-96 h-auto object-contain opacity-0 translate-y-10" 
+                 alt="King's Landing">
+        </div>
+        <div class="w-64 h-[1px] bg-white/10 relative overflow-hidden mt-4">
+            <div id="preloader-bar" class="absolute inset-0 bg-white w-0"></div>
+        </div>
+        <div id="preloader-counter" class="mt-4 text-xs font-medium tracking-widest opacity-50 font-mono text-white">0%</div>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <div class="fixed top-0 left-0 w-full p-4 lg:p-6 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black to-transparent">
+        
+        <!-- Left: Menu Button -->
+        <div class="pointer-events-auto">
+            <button id="menu-toggle" class="group flex items-center gap-3 px-5 py-2.5 rounded-full border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-black transition-all duration-300 hover-trigger focus:outline-none text-white">
+                <div class="flex flex-col gap-1.5 items-start w-5">
+                    <span class="w-full h-[1.5px] bg-current transition-all duration-300 group-hover:w-3" id="burger-top"></span>
+                    <span class="w-3 h-[1.5px] bg-current transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
+                </div>
+                <span class="text-xs font-medium tracking-widest uppercase" id="menu-text">Menu</span>
+            </button>
+        </div>
+
+        <!-- Center: Logo -->
+        <div class="pointer-events-auto absolute left-1/2 top-10 lg:top-10 transform -translate-x-1/2 -translate-y-1/2 z-50 h-12 flex items-center justify-center">
+            <a href="index.html" class="block h-full hover:opacity-80 transition-opacity drop-shadow-md">
+                <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing" class="h-20 lg:h-[72px] w-auto max-w-none">
+            </a>
+        </div>
+
+        <!-- Right: CTA -->
+        <div class="pointer-events-auto flex items-center gap-6 text-white">
+            
+            <a href="contact.html#contact-details" class="bg-white text-black px-6 py-3 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-all hover:scale-105 duration-300 hover-trigger shadow-lg shadow-white/10">
+                ENQUIRE NOW
+            </a>
+        </div>
+    </div>
+
+    <!-- Full Screen Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-[#FDFBF7] z-40 transform -translate-x-full flex flex-col lg:flex-row">
+        <div class="w-full lg:w-1/3 h-full flex flex-col justify-center px-8 lg:px-16 relative border-r border-black/5">
+            <div class="flex flex-col gap-1 lg:gap-2" id="menu-links-container">
+                    <a href="index.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Concept</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="chail.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Explore Chail</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="kumarhatti.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Explore Kumarhatti</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="lifestyle.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Lifestyle</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="interiors.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Interiors</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="gallery.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Gallery</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="contact.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Contact</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+            </div>
+        </div>
+        <div class="hidden lg:block w-full lg:w-2/3 h-full relative overflow-hidden bg-[#F5F5F0]">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="w-full h-full object-cover absolute inset-0 opacity-50">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="relative w-full pt-32 lg:pt-48 pb-20 px-6 lg:px-10">
+        
+        <!-- Header -->
+        <div class="max-w-7xl mx-auto mb-24 lg:mb-32 text-center">
+            <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-500 mb-6 block opacity-0" id="gallery-label"></span>
+            <h1 class="text-6xl lg:text-8xl mb-8 opacity-0" id="gallery-title" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">PHOTO GALLERY</h1>
+            <p class="max-w-3xl mx-auto text-2xl lg:text-xl font-light text-gray-600 leading-relaxed opacity-0" id="gallery-desc" style="font-family: 'Libre Baskerville', serif; font-weight: 400;">
+                Immerse yourself in curated visuals showcasing interiors, exteriors, and the breathtaking beauty of Chail and Kumarhatti.
+            </p>
+        </div>
+
+        <!-- Gallery Grid (Masonry Style) -->
+        <div class="max-w-[1800px] mx-auto px-4 lg:px-8">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                
+                <!-- Column 1 (Slow) -->
+                <div class="flex flex-col gap-6 lg:gap-8" data-speed="0.95">
+                    <!-- Item 1 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\gallery_interiors\r1c1.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-square overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\gallery_interiors\r2c1.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r3c1.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Moments by the Water</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r4c1.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Landscape</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r5c1.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Rashtriya Military School, Chail</span>
+                            </div>
+                        </div>
+                    </div>
+                     <!-- Item 6 -->
+                     <div class="gallery-item group w-full">
+                        <div class="aspect-square overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r6c1.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Landscape</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 7 -->
+                    <!-- 
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Facade</span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <!-- Item 8 -->
+                    <!-- 
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Lounge</span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
+                <!-- Column 2 (Fast - The "Shearing" Effect) -->
+                <div class="flex flex-col gap-6 lg:gap-8 pt-0 lg:pt-20" data-speed="1.15">
+                    <!-- Item 1 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[4/3] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\gallery_interiors\r1c2.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Bedroom</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\gallery_interiors\r2c2.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Kitchen</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r3c2.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Spring Blossom</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-square overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r4c2.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Site Location, Chail</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[4/5] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r5c2.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Golden Skies</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r6c2.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Palace</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 7 -->
+                    <!-- 
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Morning Rays</span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <!-- Item 8 -->
+                    <!-- 
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-square overflow-hidden bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Materiality</span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
+                <!-- Column 3 (Slow) -->
+                <div class="flex flex-col gap-6 lg:gap-8" data-speed="0.95">
+                    <!-- Item 1 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\gallery_interiors\r1c3.jpg" class="w-full h-full object-cover hover:grayscale-0 transition-all duration-700">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-square overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\gallery_interiors\r2c3.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Bathroom</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r3c3.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Sun Shining Through</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r4c3.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Site Location, Chail</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r5c3.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Deodar-lined Roads</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 6 -->
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-square overflow-hidden bg-gray-200 relative">
+                            <img src="assets\img\gallery\r6c3.jpg" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Coming Home</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Item 7 -->
+                    <!-- 
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Morning Light</span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                    <!-- Item 8 -->
+                    <!-- 
+                    <div class="gallery-item group w-full">
+                        <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
+                            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
+                            <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
+                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Poolside</span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[100] bg-black/95 hidden opacity-0 transition-opacity duration-500 flex items-center justify-center p-4 lg:p-10">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white/50 hover:text-white transition-colors z-50">
+            <i data-lucide="x" class="w-10 h-10"></i>
+        </button>
+        <div class="relative w-full h-full flex items-center justify-center">
+            <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain shadow-2xl scale-95 transition-transform duration-500">
+            <div id="lightbox-caption" class="absolute bottom-4 left-0 w-full text-center text-white/80 font-serif italic text-2xl tracking-wide opacity-0 translate-y-4 transition-all duration-500 delay-200"></div>
+        </div>
+    </div>
+
+    <footer class="bg-[#050505] text-white relative z-10 overflow-hidden">
+        
+        <!-- 1. The Marquee Text Section (Moved from Index Body) -->
+        <div class="relative w-full h-[40vh] lg:h-[40vh] overflow-hidden bg-[#050505]">
+            <!-- Bottom Layer: Scrolling Images -->
+            <div class="absolute inset-0 flex items-center footer-marquee-container">
+                <div class="flex gap-0 w-max footer-marquee-content">
+                    <!-- Images repeated -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <!-- Duplicate for Loop -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover grayscale brightness-125" />
+                </div>
+            </div>
+
+            <!-- Top Layer: Mask (Black BG + White Text + Multiply) -->
+            <div class="absolute inset-0 bg-[#050505] flex items-center justify-center mix-blend-multiply z-10 select-none">
+                <h2 class="text-[13vw] lg:text-[10vw] font-black text-white leading-none tracking-tighter uppercase font-serif">
+                    KING'S LANDING
+                </h2>
+            </div>
+        </div>
+
+        <div class="max-w-screen-2xl mx-auto px-6 lg:px-20 pt-16 pb-8 relative">
+            
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20 relative z-10">
+                
+                <!-- 1. Logo (Crest) -->
+                <div class="flex flex-col gap-6">
+                    <a href="index.html" class="block w-32 lg:w-48">
+                        <img src="assets/img/logo/Logo_all_white.png" alt="King's Landing" class="w-full h-auto opacity-90">
+                    </a>
+                </div>
+
+                <!-- 2. Explore -->
+                <div>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Explore</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-white/60 hover:text-white transition-colors text-base">Concept</a></li>
+                        <li><a href="chail.html" class="text-white/60 hover:text-white transition-colors text-base">Explore Chail</a></li>
+                        <li><a href="kumarhatti.html" class="text-white/60 hover:text-white transition-colors text-base">Explore Kumarhatti</a></li>
+                        <li><a href="lifestyle.html" class="text-white/60 hover:text-white transition-colors text-base">Lifestyle</a></li>
+                        <li><a href="interiors.html" class="text-white/60 hover:text-white transition-colors text-base">Interiors</a></li>
+                        <li><a href="gallery.html" class="text-white/60 hover:text-white transition-colors text-base">Gallery</a></li>
+                        <li><a href="contact.html" class="text-white/60 hover:text-white transition-colors text-base">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- 3. Contact -->
+                <div>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Contact</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex gap-3 items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5"></i>
+                            <span class="text-white/60 leading-relaxed">Canstart Technologies,<br>Bhavnagar Gujarat</span>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="tel:+919898458521" class="text-white/60 hover:text-white transition-colors">+91 98 98 45 85 21</a>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="mailto:kings@canstart.co" class="text-white/60 hover:text-white transition-colors">kings@canstart.co</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4. Follow Us -->
+                <div class="flex flex-col">
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Follow Us On</h3>
+                    <a href="#" class="flex items-center gap-3 group opacity-80 hover:opacity-100 transition-opacity">
+                        <img src="assets/img/insta_logo_white.png" class="w-8 h-8 object-contain">
+                        <span class="text-xl font-serif italic">Instagram</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40 relative z-10">
+                <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
+                    <p>&copy; <span id="year">2025</span> King's Landing. All rights reserved.</p>
+                    <span class="hidden md:block text-white/20">|</span>
+                    <p class="group">
+                        Crafted by <a href="https://canstart.in" target="_blank" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a>
+                    </p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+
+            <!-- Castle Image (Absolute Bottom Right) -->
+            <img src="assets/img/footer_castle.png" class="absolute bottom-20 lg:bottom-32 right-0 w-[200px] lg:w-[400px] h-auto object-contain pointer-events-none opacity-50 lg:opacity-100 z-0 select-none">
+        </div>
+
+        <script>
+            document.getElementById('year').textContent = new Date().getFullYear();
+            // Footer Marquee JS
+            window.addEventListener('DOMContentLoaded', () => {
+                const footerMarqueeContent = document.querySelector('.footer-marquee-content');
+                if(footerMarqueeContent && typeof gsap !== 'undefined') {
+                    gsap.to(footerMarqueeContent, {
+                        xPercent: -50,
+                        ease: "none",
+                        duration: 30,
+                        repeat: -1
+                    });
+                }
+            });
+        </script>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Initialize Lenis Smooth Scroll ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        });
+
+        // Integrate Lenis with GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
+
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+
+        gsap.ticker.lagSmoothing(0);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 0. Preloader Animation (Global) ---
+            const preloaderTl = gsap.timeline();
+            
+            // Initial States for Preloader
+            gsap.set('#preloader-logo', { opacity: 0, scale: 0.8 }); 
+            
+            preloaderTl
+                .to('#preloader-logo', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.5,
+                    ease: "power4.out"
+                })
+                .to('#preloader-bar', {
+                    width: '100%',
+                    duration: 1.5,
+                    ease: "power2.inOut"
+                }, "<") 
+                .to('#preloader-counter', {
+                    innerText: 100,
+                    duration: 1.5,
+                    snap: { innerText: 1 },
+                    onUpdate: function() {
+                        this.targets()[0].innerText = Math.ceil(this.targets()[0].innerText) + "%";
+                    },
+                    ease: "power2.inOut"
+                }, "<")
+                .to('#preloader-logo', {
+                    y: -50,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.in"
+                })
+                .to('#preloader', {
+                    yPercent: -100,
+                    duration: 1.2,
+                    ease: "power4.inOut"
+                }, "-=0.2");
+
+            // --- 1. Header Animations ---
+            const galleryLabel = document.getElementById('gallery-label');
+            const galleryTitle = document.getElementById('gallery-title');
+            const galleryDesc = document.getElementById('gallery-desc');
+
+            gsap.to([galleryLabel, galleryTitle, galleryDesc], {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                stagger: 0.2,
+                ease: "power3.out",
+                delay: 0.2
+            });
+
+            // --- 2. Gallery Parallax & Reveal ---
+            const items = document.querySelectorAll('.gallery-item');
+            
+            // A. Reveal Animation (Items)
+            items.forEach((item, i) => {
+                gsap.fromTo(item, 
+                    { opacity: 0, y: 100 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 1.2, 
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: item,
+                            start: "top 95%",
+                        },
+                        delay: Math.random() * 0.2 // Organic stagger
+                    }
+                );
+            });
+
+            // B. Column Shearing (Parallax)
+            // Only apply on desktop where columns are side-by-side
+            const mm = gsap.matchMedia();
+            
+            mm.add("(min-width: 1024px)", () => {
+                const columns = document.querySelectorAll('.grid > div');
+                
+                columns.forEach((col, i) => {
+                    const speed = parseFloat(col.getAttribute('data-speed')) || 1;
+                    
+                    // If speed is 1, no extra movement needed
+                    if (speed === 1) return;
+
+                    // Calculate movement
+                    // Speed > 1: Moves faster (upwards) -> Negative Y
+                    // Speed < 1: Moves slower (lags behind) -> Positive Y relative to scroll
+                    const movement = -(speed - 1) * 25; // Reduced multiplier to minimize footer gap
+
+                    gsap.to(col, {
+                        yPercent: movement, 
+                        ease: "none",
+                        scrollTrigger: {
+                            trigger: ".grid", // Use the grid container as reference
+                            start: "top bottom",
+                            end: "bottom top",
+                            scrub: 0
+                        }
+                    });
+                });
+            });
+
+            // --- 3. Lightbox Logic ---
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxClose = document.getElementById('lightbox-close');
+
+            function openLightbox(src, caption) {
+                lightboxImg.src = src;
+                lightboxCaption.innerText = caption;
+                
+                lightbox.classList.remove('hidden');
+                // Force reflow
+                void lightbox.offsetWidth;
+                
+                gsap.to(lightbox, { opacity: 1, duration: 0.4 });
+                gsap.to(lightboxImg, { scale: 1, duration: 0.5, ease: "back.out(1.2)" });
+                gsap.to(lightboxCaption, { opacity: 1, y: 0, duration: 0.5, delay: 0.2 });
+            }
+
+            function closeLightbox() {
+                gsap.to(lightbox, { 
+                    opacity: 0, 
+                    duration: 0.3, 
+                    onComplete: () => {
+                        lightbox.classList.add('hidden');
+                        lightboxImg.src = ''; // Clear src
+                        gsap.set(lightboxImg, { scale: 0.95 }); // Reset scale
+                        gsap.set(lightboxCaption, { opacity: 0, y: 20 }); // Reset caption
+                    } 
+                });
+            }
+
+            // Event Listeners for Items
+            items.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    const caption = item.querySelector('.gallery-overlay span').innerText;
+                    openLightbox(img.src, caption);
+                });
+            });
+
+            // Close Events
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => {
+                if(e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if(e.key === 'Escape') closeLightbox();
+            });
+
+
+            // --- 4. Menu Logic (Copied from Index) ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const burgerTop = document.getElementById('burger-top');
+            const burgerBottom = document.getElementById('burger-bottom');
+            const menuText = document.getElementById('menu-text');
+            let isMenuOpen = false;
+
+            const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power4.inOut" } });
+            gsap.set(menuItems, { y: 50, opacity: 0 });
+
+            menuTl
+                .to(menuOverlay, { x: '0%', duration: 0.8 })
+                .to(menuItems, { y: 0, opacity: 1, stagger: 0.05, duration: 0.8, ease: "power3.out" }, "<0.1");
+
+            menuToggle.addEventListener('click', () => {
+                if (!isMenuOpen) {
+                    menuTl.play();
+                    isMenuOpen = true;
+                    menuText.textContent = "Close";
+                    gsap.to(burgerTop, { rotation: 45, y: 4, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                    gsap.to(burgerBottom, { rotation: -45, y: -3, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                    gsap.to(menuToggle, { color: "#000000", backgroundColor: "rgba(0,0,0,0.05)", borderColor: "rgba(0,0,0,0.1)", duration: 0.3 });
+                } else {
+                    menuTl.reverse();
+                    isMenuOpen = false;
+                    menuText.textContent = "Menu";
+                    gsap.to(burgerTop, { rotation: 0, y: 0, width: '100%', backgroundColor: "#ffffff", duration: 0.3 });
+                    gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#ffffff", duration: 0.3 });
+                    gsap.to(menuToggle, { color: "#ffffff", backgroundColor: "rgba(255,255,255,0.1)", borderColor: "rgba(255,255,255,0.3)", duration: 0.3 });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

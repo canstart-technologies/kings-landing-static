@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>King's Landing - Luxury Living</title>
+    <link rel="icon" type="image/png" href="assets/img/logo/Logo_favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- GSAP & SplitType -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <style>
+        /* Font Face Declarations */
+        @font-face {
+            font-family: 'UVN Dinh Hon';
+            src: url('assets/fonts/UVN Dinh Hon.woff') format('woff');
+        }
+
+        /* Cormorant Garamond Webfont */
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Light.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 300;
+            src: local('Cormorant Garamond Light Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-LightItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 400;
+            src: local('Cormorant Garamond Regular'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Regular.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 400;
+            src: local('Cormorant Garamond Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Italic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Medium.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 500;
+            src: local('Cormorant Garamond Medium Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-MediumItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 600;
+            src: local('Cormorant Garamond SemiBold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBoldItalic.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: normal;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Bold.woff') format('woff');
+        }
+
+        @font-face {
+            font-family: 'Cormorant Garamond';
+            font-style: italic;
+            font-weight: 700;
+            src: local('Cormorant Garamond Bold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-BoldItalic.woff') format('woff');
+        }
+
+        /* Libre Baskerville Webfont */
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Libre Baskerville';
+            font-style: italic;
+            font-weight: 400;
+            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
+        }
+
+        /* Imported Cormorant Garamond (Latienne Pro alternative) and Manrope (Euclid Square alternative) */
+        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
+
+        /* Tangerine Webfont */
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 400;
+            src: url('assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Tangerine';
+            font-style: normal;
+            font-weight: 700;
+            src: url('assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
+        }
+
+        /* New Fonts */
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('assets/fonts/montserrat.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Radiant Charisma';
+            src: url('assets/fonts/radiant-charisma.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'ARB 08 Extreme Roman';
+            src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas.ttf') format('truetype');
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif; /* Euclid Square alternative */
+            overflow-x: hidden;
+            background-color: #f9fafb;
+        }
+
+        /* Latienne Pro Alternative Class (Applied to all headings and serif elements) */
+        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Menu Link Hover Effects */
+        .menu-link {
+            display: inline-flex;
+            align-items: center;
+            opacity: 0.5;
+            position: relative;
+            cursor: pointer;
+        }
+
+        /* Custom Scrollbar for aesthetic */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1a1a1a; 
+            border-radius: 3px;
+        }
+
+        /* Text Reveal Mask */
+        .char-mask {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center text-white">
+        <div class="overflow-hidden mb-8">
+            <img src="assets/img/logo/Logo_all_white.png" 
+                 id="preloader-logo" 
+                 class="w-64 lg:w-96 h-auto object-contain opacity-0 translate-y-10" 
+                 alt="King's Landing">
+        </div>
+        <div class="w-64 h-[1px] bg-white/10 relative overflow-hidden mt-4">
+            <div id="preloader-bar" class="absolute inset-0 bg-white w-0"></div>
+        </div>
+        <div id="preloader-counter" class="mt-4 text-xs font-medium tracking-widest opacity-50 font-mono text-white">0%</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="relative w-full overflow-x-hidden">
+
+        <!-- Grand Hero Section -->
+        <section id="grand-hero" class="relative w-full h-screen overflow-hidden">
+            <div class="absolute inset-0">
+                <img src="assets\img\index\grand_hero.jpg" class="w-full h-full object-cover" alt="Grand Hero">
+                <div class="absolute inset-0 bg-black/25"></div>
+            </div>
+
+            <!-- Center Logo -->
+            <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+                <img id="grand-hero-logo" src="assets/img/logo/Logo_all_white.png" alt="King's Landing Logo" class="w-64 lg:w-[25rem] h-auto object-contain opacity-100 drop-shadow-lg -translate-y-14">
+            </div>
+
+            <!-- Castles & Title at Bottom -->
+            <div class="absolute bottom-0 left-0 w-full flex items-end justify-between overflow-hidden pb-2 lg:pb-0 z-30 pointer-events-none">
+                
+                <!-- Left Castle -->
+                <img src="assets/img/castle/castle_bold.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-100 ml-[-1%] drop-shadow-2xl z-10">
+                
+                <!-- Center Title -->
+                <div class="absolute bottom-4 lg:bottom-5 left-0 right-0 flex justify-center z-0">
+                    <h1 id="grand-hero-title" class="text-[7vw] lg:text-[3.5vw] font-black text-white leading-none tracking-tight font-serif text-center drop-shadow-2xl mix-blend-overlay opacity-90" style="font-family: 'Playfair Display', serif;">
+                        Where Kings Return to the Realm
+                    </h1>
+                </div>
+
+                <!-- Right Castle (Mirrored) -->
+                <img src="assets/img/castle/castle_bold_mirrored.png" class="w-[30%] lg:w-[25%] h-auto object-contain opacity-100 mr-[-1%] drop-shadow-2xl z-10">
+            </div>
+        </section>
+
+        <!-- Split Screen Hero Images -->
+        <section class="relative w-full h-screen overflow-hidden">
+            
+            <div class="absolute inset-0 w-full h-full flex z-0" id="hero-split-container">
+            <!-- Left: Chail -->
+            <div class="w-1/2 h-full relative overflow-hidden group transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)]" id="split-left">
+                <img src="assets/img/index/chail_hero.jpg" 
+                     alt="Chail - Pine Forests" 
+                     class="absolute inset-0 w-full h-full object-cover scale-110 transition-transform duration-[2s] ease-out group-hover:scale-100"
+                     id="hero-image-left">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                <!-- Chail Text -->
+                <div class="absolute bottom-6 right-8 lg:bottom-8 lg:right-16 z-30 pointer-events-none">
+                     <h2 id="chail-text" class="text-[7vw] lg:text-[3.5vw] font-serif text-white opacity-0 leading-none tracking-tight origin-bottom-right drop-shadow-2xl">Chail</h2>
+                </div>
+            </div>
+            
+            <!-- Right: Kumar Hatti -->
+            <div class="w-1/2 h-full relative overflow-hidden group transition-all duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)]" id="split-right">
+                <img src="assets/img/index/kumarhatti_hero.jpg"
+                     alt="Kumar Hatti - Misty Hills" 
+                     class="absolute inset-0 w-full h-full object-cover scale-110 transition-transform duration-[2s] ease-out group-hover:scale-100"
+                     id="hero-image-right">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-500"></div>
+                <!-- Kumarhatti Text -->
+                <div class="absolute bottom-6 left-8 lg:bottom-8 lg:left-16 z-30 pointer-events-none">
+                     <h2 id="kumarhatti-text" class="text-[7vw] lg:text-[3.5vw] font-serif text-white opacity-0 leading-none tracking-tight origin-bottom-left drop-shadow-2xl">Kumarhatti</h2>
+                </div>
+            </div>
+            </div>
+            
+            <!-- Dark Overlay for Text Readability -->
+            <div class="absolute inset-0 image-overlay pointer-events-none" id="hero-overlay"></div>
+
+            <!-- Hero Content -->
+            <div class="absolute inset-0 z-20 pointer-events-none">
+                <div class="absolute inset-0 flex flex-col items-center justify-center mb-10 lg:mb-22">
+                     <p class="text-2xl lg:text-5xl font-medium text-white opacity-100 leading-relaxed max-w-5xl mx-auto text-center drop-shadow-md font-serif text-shadow" id="hero-desc">
+                      Luxury Residences in the Himalayas
+                      <span class="block mt-5 lg:mt-4 font-latienne italic opacity-100">
+                        At Two Iconic Locations:
+                      </span>
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Essence Section -->
+        <section class="relative w-full py-24 lg:py-32 bg-white text-black z-10" id="essence-section">
+            <div class="max-w-7xl mx-auto px-6 lg:px-10">
+                <!-- Header -->
+                <div class="flex flex-col items-center text-center mb-20 opacity-0" id="essence-header">
+                    <h2 class="text-4xl lg:text-6xl font-serif mb-8 leading-tight" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">The Distinction That Sets Us Apart</h2>
+                    <p class="max-w-3xl text-xl lg:text-3xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">
+                       Perched above the world in two serene hill towns, these residences offer what few places can. Silence, space, and the kind of beauty that stays with you.
+                    </p>
+                </div>
+
+                <!-- Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+                    <!-- Card 1 -->
+                    <div class="essence-card group opacity-0 translate-y-10">
+                        <div class="w-full aspect-[4/3] overflow-hidden mb-8 bg-gray-100 relative">
+                            <img src="assets\img\index\what_makes_different\boutique_community.jpg" 
+                                 alt="Boutique Community" 
+                                 class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                        </div>
+                        <h3 class="text-3xl lg:text-3xl mb-1 font-serif text-black" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">Boutique community</h3>
+                        <p class="text-xl lg:text-2xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">An intimate enclave, where fewer homes foster a deeper sense of belonging.</p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="essence-card group opacity-0 translate-y-10">
+                        <div class="w-full aspect-[4/3] overflow-hidden mb-8 bg-gray-100 relative">
+                            <img src="assets\img\index\what_makes_different\luxury_apartments.jpg" 
+                                 alt="Ultra Luxury" 
+                                 class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105">
+                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                        </div>
+                        <h3 class="text-3xl lg:text-3xl mb-1 font-serif text-black" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">Luxury apartments</h3>
+                        <p class="text-xl lg:text-2xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">Built with materials and finishes that will outlast trends.</p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="essence-card group opacity-0 translate-y-10">
+                        <div class="w-full aspect-[4/3] overflow-hidden mb-8 bg-gray-100 relative">
+                            <img src="assets\img\index\what_makes_different\himalayan_serenity.jpg" 
+                                 alt="Himalayan Serenity" 
+                                 class="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105">
+                             <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500"></div>
+                        </div>
+                        <h3 class="text-3xl lg:text-3xl mb-1 font-serif text-black" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">Himalayan serenity</h3>
+                        <p class="text-xl lg:text-2xl text-black leading-relaxed" style="font-family: 'UVN Dinh Hon', serif; font-weight: 600">The mountains hold their silence close, and you live within it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Story Section (Single BG with Scrolling Text) -->
+        <section id="story-section" class="relative w-full bg-black text-white h-[400vh]">
+            
+            <!-- Sticky Background Image Container -->
+            <div class="h-screen w-full sticky top-0 left-0 overflow-hidden z-0" id="story-image-wrapper">
+                 <!-- Single Fixed Background Image -->
+                 <img src="assets\img\index\our_vision.jpg" 
+                      class="absolute inset-0 w-full h-full object-cover" 
+                      alt="Vision Background"
+                      style="z-index: 1;">
+                 <!-- Overlay for readability -->
+                 <div class="absolute inset-0 bg-black/25 z-10"></div>
+                 
+                 <!-- Intro Block (Moved inside sticky container to remain static) -->
+                 <div class="absolute top-0 left-0 w-full h-[60vh] flex items-center justify-center px-6 z-20" id="story-intro">
+                    <div class="text-center text-white drop-shadow-lg p-10"> 
+                        <span class="text-sm font-bold tracking-[0.3em] uppercase mb-6 block opacity-0 translate-y-10" id="story-intro-label"></span>
+                        <h2 class="text-5xl lg:text-8xl font-serif font-medium leading-tight opacity-0 translate-y-10" id="story-intro-title">
+                            Our Vision
+                        </h2>
+                    </div>
+                </div>
+
+                 <!-- Points Container (Bottom Half - Absolute & Pinned) -->
+                 <div class="absolute bottom-0 left-0 w-full h-[85vh] flex items-center justify-center px-6 z-20">
+                    <div class="relative w-full max-w-4xl h-full flex items-center justify-center">
+                        
+                        <!-- Point 1 -->
+                        <div class="story-point absolute inset-0 flex items-center justify-center text-center p-6 opacity-0 translate-y-10">
+                            <p class="text-4xl lg:text-6xl font-serif leading-relaxed text-white drop-shadow-md">
+                                A Dream Reimagined in the Mountains
+                            </p>
+                        </div>
+
+                        <!-- Point 2 -->
+                        <div class="story-point absolute inset-0 flex items-center justify-center text-center p-6 opacity-0 translate-y-10">
+                            <p class="text-2xl lg:text-3xl font-serif leading-relaxed text-white drop-shadow-md">
+                                King’s Landing is inspired by the idea of infinity — open skies, flowing landscapes, and nature without boundaries. It reflects a philosophy of continuity, growth, and harmony with the land. Here, greenery and luxury are not additions, but intrinsic.
+                            </p>
+                        </div>
+
+                        <!-- Point 3 -->
+                        <div class="story-point absolute inset-0 flex items-center justify-center text-center p-6 opacity-0 translate-y-10">
+                            <p class="text-2xl lg:text-3xl font-serif leading-relaxed text-white drop-shadow-md">
+                                King’s Landing intends to offer not just homes, but a way of life that is curated, cultural, and kingly. From festivals to wellness routines, every day is designed to feel grand yet grounded. It’s a lifestyle that reflects who you are — regal, rooted, and refined.
+                            </p>
+                        </div>
+
+                    </div>
+                 </div>
+
+                 <!-- Vertical Dots Slider -->
+                <div id="story-dots" class="fixed right-6 lg:right-12 top-1/2 -translate-y-1/2 z-40 flex flex-col gap-4 opacity-0 transition-opacity duration-500 pointer-events-none">
+                    <div class="w-3 h-3 rounded-full border border-white/50 bg-transparent transition-all duration-300 story-dot"></div>
+                    <div class="w-3 h-3 rounded-full border border-white/50 bg-transparent transition-all duration-300 story-dot"></div>
+                    <div class="w-3 h-3 rounded-full border border-white/50 bg-transparent transition-all duration-300 story-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sustainability Section -->
+        <section class="relative w-full pt-24 lg:pt-32 pb-24 bg-[#F5F5F0] text-black overflow-hidden" id="sustainability-section">
+            
+            <!-- Background Marquee (Fills empty space) -->
+            <div class="absolute top-1/2 left-0 w-full -translate-y-1/2 pointer-events-none opacity-[0.04] z-0 select-none overflow-hidden">
+                <div class="whitespace-nowrap text-[15vw] font-black uppercase leading-none font-serif" id="sus-bg-marquee">
+                    Conscious Living &mdash; Nature &mdash; Harmony &mdash; Legacy &mdash;
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+                <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+                    
+                    <!-- Left Content (Dynamic) -->
+                     <div class="w-full lg:w-1/2 flex flex-col justify-center" id="sus-text">
+                        <h2 class="text-6xl lg:text-7xl font-serif font-medium leading-[0.9] mb-12">
+                            Principles<br>
+                            <span class="text-gray-500">That Define Us</span>
+                        </h2>
+                        
+                        <!-- Dynamic Active Value Indicator -->
+                        <div class="border-l-2 border-black/10 pl-8 py-2 transition-all duration-500" id="sus-dynamic-content">
+                            <h3 class="text-4xl lg:text-5xl font-latienne font-serif italic mb-4" id="sus-active-title">1. Sustainability</h3>
+                            <p class="text-gray-500 leading-relaxed max-w-md text-lg font-light" id="sus-active-desc">
+                                Eco-homes, renewable energy, and permaculture gardens
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Circular Interaction -->
+                    <div class="w-full lg:w-1/2 relative flex justify-center items-center" id="sus-circle-container">
+                        <!-- Main Image Circle -->
+                        <div class="relative w-[500px] h-[500px] lg:w-[700px] lg:h-[700px] shrink-0 rounded-full z-10 shadow-2xl flex items-center justify-center bg-white border-[10px] border-white">
+                            <div class="absolute inset-0 rounded-full overflow-hidden">
+                                <!-- Back Buffer Image for Smooth Crossfade -->
+                                <img src="" id="sus-bg-img" class="absolute inset-0 w-full h-full object-cover" style="z-index: 1;">
+                                
+                                <!-- Front Main Image -->
+                                <img src="assets\img\index\orbit_ring\orbit_ring_1.jpg" 
+                                     alt="Sustainable Living" 
+                                     class="absolute inset-0 w-full h-full object-cover" 
+                                     id="sus-main-img"
+                                     style="z-index: 2;">
+                            </div>
+                            
+                            <!-- Orbit Ring -->
+                            <div class="absolute inset-0 pointer-events-none" id="sus-orbit-ring" style="z-index: 20;">
+                                <!-- 1. Sustainability -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" 
+                                     data-angle="0" 
+                                     data-bg="assets\img\index\orbit_ring\orbit_ring_1.jpg.jpg"
+                                     data-title="Sustainability"
+                                     data-desc="Eco-homes, renewable energy, and permaculture gardens">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300 group">
+                                        <i data-lucide="leaf" class="w-6 h-6 lg:w-10 lg:h-10 group-hover:text-[#D4AF37] transition-colors"></i>
+                                    </div>
+                                </div>
+                                <!-- 2. Community -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" 
+                                     data-angle="288" 
+                                     data-bg="assets\img\index\orbit_ring\orbit_ring_2.jpg"
+                                     data-title="Community"
+                                     data-desc="Shared spaces, events, and collective living">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300 group">
+                                        <i data-lucide="users" class="w-6 h-6 lg:w-10 lg:h-10 group-hover:text-[#D4AF37] transition-colors"></i>
+                                    </div>
+                                </div>
+                                <!-- 3. Wellness -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" 
+                                     data-angle="216" 
+                                     data-bg="assets\img\index\orbit_ring\orbit_ring_3.jpg"
+                                     data-title="Wellness"
+                                     data-desc="Yoga decks, forest trails, and clean mountain air">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300 group">
+                                        <i data-lucide="heart" class="w-6 h-6 lg:w-10 lg:h-10 group-hover:text-[#D4AF37] transition-colors"></i>
+                                    </div>
+                                </div>
+                                <!-- 4. Creativity -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" 
+                                     data-angle="144" 
+                                     data-bg="assets\img\index\orbit_ring\orbit_ring_4.jpg"
+                                     data-title="Creativity"
+                                     data-desc="Studios, workshops, and art spaces for expression">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300 group">
+                                        <i data-lucide="palette" class="w-6 h-6 lg:w-10 lg:h-10 group-hover:text-[#D4AF37] transition-colors"></i>
+                                    </div>
+                                </div>
+                                <!-- 5. Belonging -->
+                                <div class="sus-icon-item absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 pointer-events-auto" 
+                                     data-angle="72" 
+                                     data-bg="assets\img\index\orbit_ring\orbit_ring_5.jpg"
+                                     data-title="Belonging"
+                                     data-desc="A home for those who value connection">
+                                    <div class="w-16 h-16 lg:w-24 lg:h-24 bg-black text-white border border-white/20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer hover:scale-110 transition-transform duration-300 group">
+                                        <i data-lucide="home" class="w-6 h-6 lg:w-10 lg:h-10 group-hover:text-[#D4AF37] transition-colors"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- CTA Section -->
+        <section class="relative py-32 flex flex-col items-center justify-center text-center z-10 overflow-hidden">
+            <div class="absolute inset-0 z-0">
+                <img src="assets/img/index/come_home.jpg" class="w-full h-full object-cover brightness-110 contrast-110" alt="Come Home">
+                <div class="absolute inset-0 bg-black/0"></div>
+            </div>
+            <div class="relative z-10 flex flex-col items-center">
+                <h2 class="text-4xl lg:text-6xl text-white font-serif italic mb-12" id="cta-title">Ready to come home?</h2>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <a href="chail.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Chail</a>
+                    <a href="kumarhatti.html" class="px-10 py-4 text-white rounded-full border border-gray-300 hover:border-[#D4AF37] hover:bg-[#D4AF37] hover:text-black transition-all duration-300 text-sm tracking-widest font-medium">Explore Kumarhatti</a>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="bg-[#050505] text-white relative z-10 overflow-hidden">
+        
+        <!-- 1. The Marquee Text Section (Moved from Index Body) -->
+        <div class="relative w-full h-[40vh] lg:h-[40vh] overflow-hidden bg-[#050505]">
+            <!-- Bottom Layer: Scrolling Images -->
+            <div class="absolute inset-0 flex items-center footer-marquee-container">
+                <div class="flex gap-0 w-max footer-marquee-content">
+                    <!-- Images repeated -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                    <!-- Duplicate for Loop -->
+                    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?q=80&w=2070&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="h-full w-[60vw] lg:w-[40vw] object-cover brightness-125"/>
+                </div>
+            </div>
+
+            <!-- Top Layer: Mask (Black BG + White Text + Multiply) -->
+            <div class="absolute inset-0 bg-[#050505] flex items-center justify-center mix-blend-multiply z-10 select-none">
+                <h2 class="text-[13vw] lg:text-[10vw] font-black text-white leading-none tracking-tighter uppercase font-serif">
+                    KING'S LANDING
+                </h2>
+            </div>
+        </div>
+
+        <div class="border-t border-white/10 max-w-screen-2xl mx-auto px-6 lg:px-20 pt-16 pb-8 relative">
+            
+            <!-- Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-20 relative z-10">
+                
+                <!-- 1. Logo (Crest) -->
+                <div class="flex flex-col gap-6">
+                    <a href="index.html" class="block w-29 lg:w-44">
+                        <img src="assets/img/logo/Logo_gold_white.png" alt="King's Landing" class="w-full h-auto opacity-90">
+                    </a>
+                </div>
+
+                <!-- 2. Explore -->
+                <div>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Explore</h3>
+                    <ul class="flex flex-col gap-3">
+                        <li><a href="index.html" class="text-white/60 hover:text-white transition-colors text-base">Homepage</a></li>
+                        <li><a href="chail.html" class="text-white/60 hover:text-white transition-colors text-base">Chail</a></li>
+                        <li><a href="kumarhatti.html" class="text-white/60 hover:text-white transition-colors text-base">Kumarhatti</a></li>
+                        <li><a href="lifestyle.html" class="text-white/60 hover:text-white transition-colors text-base">Lifestyle</a></li>
+                        <li><a href="interiors.html" class="text-white/60 hover:text-white transition-colors text-base">Interiors</a></li>
+                        <li><a href="gallery.html" class="text-white/60 hover:text-white transition-colors text-base">Gallery</a></li>
+                        <li><a href="contact.html" class="text-white/60 hover:text-white transition-colors text-base">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- 3. Contact -->
+                <div>
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Contact</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex gap-3 items-start">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-[#D4AF37] shrink-0 mt-0.5"></i>
+                            <span class="text-white/60 leading-relaxed">Canstart Technologies,<br>Bhavnagar Gujarat</span>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="phone" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="tel:+919898458521" class="text-white/60 hover:text-white transition-colors">+91 98 98 45 85 21</a>
+                        </li>
+                        <li class="flex gap-3 items-center">
+                            <i data-lucide="mail" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="mailto:kings@canstart.co" class="text-white/60 hover:text-white transition-colors">kings@canstart.co</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4. Follow Us -->
+                <div class="flex flex-col">
+                    <h3 class="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37] mb-6 font-sans">Follow Us On</h3>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex gap-3 items-start">
+                            <i data-lucide="instagram" class="w-5 h-5 text-[#D4AF37] shrink-0"></i>
+                            <a href="https://www.instagram.com/" class="text-white/60 hover:text-white transition-colors">Instagram</a>
+                        </li>                        
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/40 relative z-10">
+                <div class="flex flex-col md:flex-row gap-2 md:gap-6 items-center">
+                    <p>&copy; <span id="year">2025</span> King's Landing. All rights reserved.</p>
+                    <span class="hidden md:block text-white/20">|</span>
+                    <p class="group">
+                        Crafted by <a href="https://www.canstart.in/" target="_blank" class="text-white/60 group-hover:text-white transition-colors duration-300 font-serif italic">CanStart Technologies</a>
+                    </p>
+                </div>
+                <div class="flex gap-8">
+                    <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                </div>
+            </div>
+
+            <!-- Castle Image -->
+            <img src="assets/img/castle/castle_extended_mirrored.png" class="absolute bottom-20 lg:bottom-24 right-10 w-[250px] lg:w-[500px] h-auto object-contain pointer-events-none opacity-70 lg:opacity-70 z-0 select-none">
+
+        </div>
+
+        <script>
+            document.getElementById('year').textContent = new Date().getFullYear();
+            // Footer Marquee JS
+            window.addEventListener('DOMContentLoaded', () => {
+                const footerMarqueeContent = document.querySelector('.footer-marquee-content');
+                if(footerMarqueeContent && typeof gsap !== 'undefined') {
+                    gsap.to(footerMarqueeContent, {
+                        xPercent: -50,
+                        ease: "none",
+                        duration: 30,
+                        repeat: -1
+                    });
+                }
+            });
+        </script>
+        </footer>
+
+        <!-- Top Navigation Bar -->
+        <div class="fixed top-0 left-0 w-full p-6 lg:p-8 z-50 flex justify-between items-center pointer-events-none bg-gradient-to-b from-black/90 to-transparent">
+            
+            <!-- Left: Menu Button -->
+            <div class="pointer-events-auto">
+                <button id="menu-toggle" class="group flex items-center gap-3 px-5 py-2.5 rounded-full border border-transparent bg-white backdrop-blur-md hover:bg-gray-100 transition-all hover:scale-105 duration-300 hover-trigger focus:outline-none text-black shadow-lg shadow-white/10">
+                    <div class="flex flex-col gap-1.5 items-start w-5">
+                        <span class="w-full h-[1.5px] bg-current transition-all duration-300 group-hover:w-3" id="burger-top"></span>
+                        <span class="w-3 h-[1.5px] bg-current transition-all duration-300 group-hover:w-full" id="burger-bottom"></span>
+                    </div>
+                    <span class="text-xs font-medium tracking-widest uppercase" id="menu-text">Menu</span>
+                </button>
+            </div>
+
+            <!-- Center: Logo -->
+            <div id="navbar-logo" class="pointer-events-auto absolute left-1/2 top-6 lg:top-7 transform -translate-x-1/2 -translate-y-1/2 z-50 h-12 flex items-center justify-center opacity-0">
+                <a href="index.html" class="block h-full hover:opacity-80 transition-opacity drop-shadow-md">
+                    <img src="assets/img/logo/Logo_original.png" alt="King's Landing" class="h-20 lg:h-24 w-auto max-w-none">
+                </a>
+            </div>
+
+            <!-- Right: CTA -->
+            <div class="pointer-events-auto flex items-center gap-6 text-white">
+                
+                <a href="contact.html#contact-details" class="bg-white text-black px-6 py-3 rounded-full font-medium text-xs uppercase tracking-widest hover:bg-gray-100 transition-all hover:scale-105 duration-300 hover-trigger shadow-lg shadow-white/10">
+                    ENQUIRE NOW
+                </a>
+            </div>
+        </div>
+
+        <!-- Full Screen Menu Overlay -->
+        <div id="menu-overlay" class="fixed inset-0 bg-[#FDFBF7] z-40 transform -translate-x-full flex flex-col lg:flex-row">
+            
+            <!-- Menu Left: Links (Swapped for Left Opening) -->
+            <div class="w-full lg:w-1/3 h-full flex flex-col justify-center px-8 lg:px-16 relative border-r border-black/5">
+                <div class="flex flex-col gap-1 lg:gap-2" id="menu-links-container">
+                    <a href="index.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="home">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Homepage</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="chail.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="amenities">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Chail</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="kumarhatti.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="story">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Kumarhatti</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="lifestyle.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="lifestyle">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Lifestyle</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="interiors.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="gallery">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Interiors</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="gallery.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="news">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Gallery</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                    <a href="contact.html" class="menu-item group flex items-center justify-between w-full py-3 border-b border-black/5 hover:border-black/20 transition-all duration-500" data-target="contact">
+                        <span class="text-3xl lg:text-5xl font-serif italic tracking-wide text-gray-900 group-hover:text-[#D4AF37] transition-all duration-500 group-hover:translate-x-6">Contact</span>
+                        <span class="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[#D4AF37]"><i data-lucide="arrow-right" class="w-8 h-8"></i></span>
+                    </a>
+                </div>
+
+                <div class="absolute bottom-12 left-8 lg:left-16 flex gap-4">
+                    <span class="text-s font-medium tracking-[0.2em] text-black font-sans">Follow us on</span>
+                    <a href="https://www.instagram.com/">
+                        <img src="assets/img/insta_logo/insta_logo_black.png" class="h-10 object-contain hover:scale-105 duration-300" alt="Instagram">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Menu Right: Image Preview -->
+            <div class="hidden lg:block w-full lg:w-2/3 h-full relative overflow-hidden bg-[#F5F5F0]">
+                <div class="absolute inset-0">
+                    <img src="assets\img\interiors\1_living.jpg" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="story">
+                    <img src="assets\img\interiors\2_room.jpg" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="gallery">
+                    <img src="assets\img\interiors\3_kitchen.jpg" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="news">
+                    <img src="assets\img\interiors\4_balcony.jpg" class="w-full h-full object-cover menu-preview-img absolute inset-0 opacity-0 transition-opacity duration-500" data-target="contact">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Optional Detail Modal (Hidden by default, for interaction demo) -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4">
+        <div class="bg-white p-8 max-w-lg w-full shadow-2xl transform scale-95 transition-transform duration-300" id="modal-content">
+            <div class="flex justify-between items-start mb-6">
+                <h2 class="text-2xl font-bold">The Gallery</h2>
+                <button onclick="closeModal()" class="p-2 hover:bg-gray-100 rounded-full transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <p class="text-gray-600 mb-6 leading-relaxed">
+                Experience the architectural masterpiece located at Oetlisberg 22. 
+                Our gallery showcases the seamless blend of interior luxury and exterior nature.
+            </p>
+            <button class="w-full bg-black text-white py-3 font-medium hover:bg-gray-800 transition-colors">
+                View Full Collection
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Register GSAP Plugins
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- 0. Preloader Animation ---
+            const preloaderTl = gsap.timeline();
+            
+            // Initial States for Preloader
+            gsap.set('#preloader-logo', { opacity: 0, scale: 0.8 }); 
+            
+            preloaderTl
+                .to('#preloader-logo', {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 1.5,
+                    ease: "power4.out"
+                })
+                .to('#preloader-bar', {
+                    width: '100%',
+                    duration: 1.5,
+                    ease: "power2.inOut"
+                }, "<") // Start at same time as logo fade in
+                .to('#preloader-counter', {
+                    innerText: 100,
+                    duration: 1.5,
+                    snap: { innerText: 1 },
+                    onUpdate: function() {
+                        this.targets()[0].innerText = Math.ceil(this.targets()[0].innerText) + "%";
+                    },
+                    ease: "power2.inOut"
+                }, "<")
+                .to('#preloader-logo', {
+                    y: -50,
+                    opacity: 0,
+                    duration: 0.8,
+                    ease: "power2.in"
+                })
+                .to('#preloader', {
+                    yPercent: -100,
+                    duration: 1.2,
+                    ease: "power4.inOut",
+                    onComplete: () => {
+                        tl.play(); // Start Hero Animation
+                    }
+                }, "-=0.2");
+
+            // --- 0.5 Navbar Logo Visibility ---
+            gsap.to("#navbar-logo", {
+                opacity: 1,
+                duration: 0.5,
+                scrollTrigger: {
+                    trigger: "#grand-hero",
+                    start: "bottom top+=300",
+                    toggleActions: "play none none reverse"
+                }
+            });
+
+            // --- 1. Hero Text Animations (Premium Reveal) ---
+            const grandHeroTitle = new SplitType('#grand-hero-title', { types: 'lines, chars' });
+
+            // Main Timeline (Paused initially)
+            const tl = gsap.timeline({ paused: true, defaults: { ease: "power4.out" } });
+
+            // Initial State Setters
+            gsap.set(['#hero-image-left', '#hero-image-right'], { scale: 1.2 });
+            gsap.set('#brand-id', { y: -20, opacity: 0 });
+            
+            // Animation Sequence
+            tl.from(grandHeroTitle.chars, {
+                y: 100,
+                opacity: 0,
+                stagger: 0.02,
+                duration: 1,
+                ease: "power4.out"
+            })
+            .to(['#hero-image-left', '#hero-image-right'], {
+                scale: 1,
+                duration: 2.5,
+                ease: "expo.out"
+            }, "-=1.5")
+            .to('#brand-id', {
+                y: 0,
+                opacity: 0.7,
+                duration: 1
+            }, "-=2")
+            .to(['#chail-text', '#kumarhatti-text'], {
+                opacity: 0.8,
+                y: 0,
+                duration: 1.5,
+                ease: "power4.out"
+            }, "-=1.5");
+
+
+            // --- 2. Menu Logic & Animations ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuOverlay = document.getElementById('menu-overlay');
+            const menuItems = document.querySelectorAll('.menu-item');
+            const burgerTop = document.getElementById('burger-top');
+            const burgerBottom = document.getElementById('burger-bottom');
+            const menuText = document.getElementById('menu-text');
+            const heroOverlay = document.getElementById('hero-overlay');
+
+            let isMenuOpen = false;
+
+            // Menu Timeline (Paused initially)
+            const menuTl = gsap.timeline({ paused: true, defaults: { ease: "power4.inOut" } });
+
+            // Ensure items are hidden initially
+            gsap.set(menuItems, { y: 50, opacity: 0 });
+
+            menuTl
+                .to(menuOverlay, {
+                    x: '0%',
+                    duration: 0.8, 
+                    ease: "power4.inOut"
+                })
+                .to(heroOverlay, {
+                    backgroundColor: "rgba(0,0,0,0.4)", 
+                    duration: 0.8
+                }, "<")
+                .to(menuItems, {
+                    y: 0, 
+                    opacity: 1,
+                    stagger: 0.05, 
+                    duration: 0.8,
+                    ease: "power3.out"
+                }, "<0.1");
+
+            menuToggle.addEventListener('click', () => {
+                if (!isMenuOpen) {
+                    // Open Menu
+                    menuTl.play();
+                    isMenuOpen = true;
+                    menuText.textContent = "Close";
+                    
+                    // Animate Burger to X
+                    gsap.to(burgerTop, { rotation: 45, y: 4, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                    gsap.to(burgerBottom, { rotation: -45, y: -3, width: '100%', backgroundColor: "#000000", duration: 0.3 });
+                    
+                    // Change Button Style to Dark
+                    gsap.to(menuToggle, { 
+                        color: "#000000", 
+                        backgroundColor: "#ffffff", 
+                        borderColor: "transparent",
+                        duration: 0.3 
+                    });
+
+                } else {
+                    // Close Menu
+                    menuTl.reverse();
+                    isMenuOpen = false;
+                    menuText.textContent = "Menu";
+
+                    // Animate X back to Burger
+                    gsap.to(burgerTop, { rotation: 0, y: 0, width: '100%', backgroundColor: "#000000", duration: 0.3, clearProps: "width" }); 
+                    gsap.to(burgerBottom, { rotation: 0, y: 0, width: '12px', backgroundColor: "#000000", duration: 0.3, clearProps: "width" });
+
+                    // Change Button Style back to Light
+                    gsap.to(menuToggle, { 
+                        color: "#000000", 
+                        backgroundColor: "#ffffff", 
+                        borderColor: "transparent",
+                        duration: 0.3 
+                    });
+                }
+            });
+
+            // --- 3. Menu Image Slideshow & Parallax ---
+            const previewImages = document.querySelectorAll('.menu-preview-img');
+            let activeImageIndex = 0;
+            
+            // Initialize first image
+            if(previewImages.length > 0) {
+                // Reset all
+                gsap.set(previewImages, { opacity: 0, zIndex: 1, scale: 1.1 });
+                // Show first
+                gsap.set(previewImages[0], { opacity: 1, zIndex: 2 });
+            }
+
+            // Automatic Slideshow Function
+            function nextImage() {
+                if(previewImages.length === 0) return;
+
+                const currentImg = previewImages[activeImageIndex];
+                activeImageIndex = (activeImageIndex + 1) % previewImages.length;
+                const nextImg = previewImages[activeImageIndex];
+
+                // Fade out current
+                gsap.to(currentImg, { 
+                    opacity: 0, 
+                    zIndex: 1, 
+                    duration: 1.5, 
+                    ease: "power2.inOut" 
+                });
+
+                // Fade in next
+                gsap.set(nextImg, { zIndex: 2 });
+                gsap.to(nextImg, { 
+                    opacity: 1, 
+                    duration: 1.5, 
+                    ease: "power2.inOut" 
+                });
+            }
+
+            // Start Slideshow (Change every 5 seconds)
+            // We store the interval ID so we could clear it if needed (e.g. on close), 
+            // but keeping it running is fine for this effect.
+            setInterval(nextImage, 5000);
+
+            // Menu Parallax Effect (Independent of slideshow)
+            const menuOverlayContainer = document.getElementById('menu-overlay');
+            
+            // Optimize: Use quickTo for performance
+            const menuXTo = gsap.quickTo(previewImages, "x", { duration: 1.5, ease: "power2.out" });
+            const menuYTo = gsap.quickTo(previewImages, "y", { duration: 1.5, ease: "power2.out" });
+
+            menuOverlayContainer.addEventListener('mousemove', (e) => {
+                // Apply parallax to ALL images so they move together
+                const { width, height } = menuOverlayContainer.getBoundingClientRect();
+                const x = (e.clientX / width - 0.5) * 30; 
+                const y = (e.clientY / height - 0.5) * 30;
+
+                menuXTo(x);
+                menuYTo(y);
+            });
+
+
+
+            // --- 5. Split Screen Interaction (Accordion Effect) ---
+            const splitLeft = document.getElementById('split-left');
+            const splitRight = document.getElementById('split-right');
+            const splitContainer = document.getElementById('hero-split-container');
+            const chailText = document.getElementById('chail-text');
+            const kumarhattiText = document.getElementById('kumarhatti-text');
+
+            if (splitLeft && splitRight && splitContainer) {
+                // Hover Left: Expand Left, Shrink Right
+                splitLeft.addEventListener('mouseenter', () => {
+                    gsap.to(splitLeft, { width: '55%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+                    gsap.to(splitRight, { width: '45%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+                    
+                    if(chailText) gsap.to(chailText, { scale: 1.1, opacity: 1, duration: 0.8, ease: "power4.out" });
+                    if(kumarhattiText) gsap.to(kumarhattiText, { scale: 0.9, opacity: 0.4, duration: 0.8, ease: "power4.out" });
+                });
+
+                // Hover Right: Expand Right, Shrink Left
+                splitRight.addEventListener('mouseenter', () => {
+                    gsap.to(splitRight, { width: '55%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+                    gsap.to(splitLeft, { width: '45%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+
+                    if(kumarhattiText) gsap.to(kumarhattiText, { scale: 1.1, opacity: 1, duration: 0.8, ease: "power4.out" });
+                    if(chailText) gsap.to(chailText, { scale: 0.9, opacity: 0.4, duration: 0.8, ease: "power4.out" });
+                });
+
+                // Mouse Leave: Reset to 50/50
+                splitContainer.addEventListener('mouseleave', () => {
+                    gsap.to([splitLeft, splitRight], { width: '50%', duration: 1, ease: "power4.out", overwrite: 'auto' });
+                    
+                    if(chailText) gsap.to(chailText, { scale: 1, opacity: 0.8, duration: 0.8, ease: "power4.out" });
+                    if(kumarhattiText) gsap.to(kumarhattiText, { scale: 1, opacity: 0.8, duration: 0.8, ease: "power4.out" });
+                });
+            }
+            // --- 6. Essence Section Animations ---
+            const essenceHeader = document.getElementById('essence-header');
+            const essenceCards = document.querySelectorAll('.essence-card');
+
+            if(essenceHeader) {
+                gsap.to(essenceHeader, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: essenceHeader,
+                        start: "top 80%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
+
+            if(essenceCards.length > 0) {
+                gsap.to(essenceCards, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: ".essence-card", // Trigger on the first card
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            }
+
+            const storySection = document.getElementById('story-section');
+            const storyIntroLabel = document.getElementById('story-intro-label');
+            const storyIntroTitle = document.getElementById('story-intro-title');
+            
+            if (storySection) {
+                // 1. Intro Text Reveal
+                gsap.to([storyIntroLabel, storyIntroTitle], {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1.5,
+                    stagger: 0.2,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: storySection,
+                        start: "top 60%",
+                    }
+                });
+
+
+
+                // 2. Points Animation (Crossfade)
+                const points = document.querySelectorAll('.story-point');
+                const dots = document.querySelectorAll('.story-dot');
+                const storyDots = document.getElementById('story-dots');
+                
+                // Show dots when in section
+                ScrollTrigger.create({
+                    trigger: '#story-section',
+                    start: "top top",
+                    end: "bottom bottom",
+                    onEnter: () => storyDots.classList.remove('opacity-0'),
+                    onLeave: () => storyDots.classList.add('opacity-0'),
+                    onEnterBack: () => storyDots.classList.remove('opacity-0'),
+                    onLeaveBack: () => storyDots.classList.add('opacity-0')
+                });
+
+                // Main Timeline
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: "#story-section",
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: 1
+                    }
+                });
+
+                // Initial setup
+                gsap.set(points, { opacity: 0, y: 50 });
+
+                // P1 Active
+                tl.to(dots[0], { backgroundColor: "#ffffff", scale: 1.25, duration: 0.2 }, 0)
+                  .to(points[0], { opacity: 1, y: 0, duration: 0.5 }, 0)
+                  
+                  // Transition P1 -> P2
+                  .to(dots[0], { backgroundColor: "transparent", scale: 1, duration: 0.2 }, 2)
+                  .to(points[0], { opacity: 0, y: -50, duration: 0.5 }, 2)
+                  
+                  .to(dots[1], { backgroundColor: "#ffffff", scale: 1.25, duration: 0.2 }, 2)
+                  .to(points[1], { opacity: 1, y: 0, duration: 0.5 }, 2)
+                  
+                  // Transition P2 -> P3
+                  .to(dots[1], { backgroundColor: "transparent", scale: 1, duration: 0.2 }, 4)
+                  .to(points[1], { opacity: 0, y: -50, duration: 0.5 }, 4)
+                  
+                  .to(dots[2], { backgroundColor: "#ffffff", scale: 1.25, duration: 0.2 }, 4)
+                  .to(points[2], { opacity: 1, y: 0, duration: 0.5 }, 4)
+                  
+                  // Exit P3
+                  .to(dots[2], { backgroundColor: "transparent", scale: 1, duration: 0.2 }, 6)
+                  .to(points[2], { opacity: 0, y: -50, duration: 0.5 }, 6);
+            }
+            // --- 8. Sustainability Section Animations ---
+            const susOrbitRing = document.getElementById('sus-orbit-ring');
+            const susIcons = document.querySelectorAll('.sus-icon-item');
+            const susMainImg = document.getElementById('sus-main-img');
+            const susBgImg = document.getElementById('sus-bg-img'); // Back buffer
+            const susActiveTitle = document.getElementById('sus-active-title');
+            const susActiveDesc = document.getElementById('sus-active-desc');
+            const susBgMarquee = document.getElementById('sus-bg-marquee');
+
+            // Background Marquee Animation
+            if(susBgMarquee) {
+                gsap.to(susBgMarquee, {
+                    xPercent: -20,
+                    ease: "none",
+                    duration: 20,
+                    repeat: -1,
+                    yoyo: true
+                });
+            }
+
+            if(susOrbitRing && susIcons.length > 0) {
+                // Initial setup
+                const orbitState = { rotation: 0 };
+                let activeIconIndex = 0; 
+
+                // Animation Loop
+                const orbitTween = gsap.to(orbitState, {
+                    rotation: 360,
+                    duration: 35, // Slower for elegance
+                    repeat: -1,
+                    ease: "none",
+                    paused: true,
+                    onUpdate: updateIcons
+                });
+
+                ScrollTrigger.create({
+                    trigger: "#sustainability-section",
+                    start: "top 60%",
+                    onEnter: () => {
+                        gsap.delayedCall(1.5, () => orbitTween.play());
+                    }
+                });
+
+                function updateContent(index) {
+                    const icon = susIcons[index];
+                    if(!icon) return;
+
+                    const title = icon.getAttribute('data-title');
+                    const desc = icon.getAttribute('data-desc');
+                    const bg = icon.getAttribute('data-bg');
+                    
+                    // Text Update (Premium Staggered Reveal)
+                    // Check if title needs update (ignoring the number prefix for comparison if needed, but simple check works)
+                    // We construct the full string to compare
+                    const newTitleString = `${index + 1}. ${title}`;
+
+                    if(susActiveTitle && susActiveTitle.innerText !== newTitleString) {
+                        const tl = gsap.timeline();
+                        
+                        // Animate Out
+                        tl.to([susActiveTitle, susActiveDesc], {  
+                            y: -20, 
+                            opacity: 0, 
+                            stagger: 0.05, 
+                            duration: 0.4, 
+                            ease: "power3.in" 
+                        })
+                        .call(() => {
+                            // Update Text Content
+                            if(susActiveTitle) susActiveTitle.innerText = newTitleString;
+                            if(susActiveDesc) susActiveDesc.innerText = desc;
+                        })
+                        // Animate In
+                        .to([susActiveTitle, susActiveDesc], { 
+                            y: 0, 
+                            opacity: 1, 
+                            stagger: 0.1, 
+                            duration: 0.6, 
+                            ease: "power3.out" 
+                        });
+                    }
+
+                    // Image Update (Premium Cross-Scale Transition)
+                    if(susMainImg && bg) {
+                        // 1. Preload the new image to ensure instant availability
+                        const imgLoader = new Image();
+                        imgLoader.src = bg;
+                        
+                        imgLoader.onload = () => {
+                            // 2. Prepare Back Buffer (Current State)
+                            // The back buffer takes the current image so it stays visible while the new one fades in
+                            if(susBgImg) {
+                                susBgImg.src = susMainImg.src;
+                                gsap.set(susBgImg, { opacity: 1, scale: 1, zIndex: 1 });
+                            }
+
+                            // 3. Prepare Front Image (New State)
+                            susMainImg.src = bg;
+                            // Start slightly zoomed in (1.2) and transparent
+                            gsap.set(susMainImg, { opacity: 0, scale: 1.2, zIndex: 2 });
+
+                            // 4. Execute Transition
+                            // Front: Settle in (Scale 1.2 -> 1) and Fade In
+                            gsap.to(susMainImg, { 
+                                opacity: 1, 
+                                scale: 1, 
+                                duration: 1.4, 
+                                ease: "expo.out" 
+                            });
+
+                            // Back: Recede (Scale 1 -> 0.95) and Fade Out
+                            if(susBgImg) {
+                                gsap.to(susBgImg, {
+                                    scale: 0.95,
+                                    opacity: 0,
+                                    duration: 1.4,
+                                    ease: "expo.out"
+                                });
+                            }
+                        };
+                    }
+                }
+
+                function updateIcons() {
+                    const currentRotation = orbitState.rotation;
+                    let closestIconIndex = -1;
+                    let minAngleDiff = Infinity;
+
+                    susIcons.forEach((icon, index) => {
+                        const offsetAngle = +icon.getAttribute('data-angle');
+                        const totalAngle = (currentRotation + offsetAngle) % 360;
+                        
+                        // Normalize angle (-180 to 180)
+                        let normalizedAngle = totalAngle;
+                        if (normalizedAngle > 180) normalizedAngle -= 360;
+                        
+                        // Check for closest to 0 (Right side)
+                        if (Math.abs(normalizedAngle) < minAngleDiff) {
+                            minAngleDiff = Math.abs(normalizedAngle);
+                            closestIconIndex = index;
+                        }
+
+                        // Calculate Position
+                        const rad = (totalAngle * Math.PI) / 180;
+                        const r = (susOrbitRing.offsetWidth / 2) * 0.82; // 82% radius
+                        
+                        const x = Math.cos(rad) * r;
+                        const y = Math.sin(rad) * r;
+
+                        // Visibility Logic
+                        let opacity = 0;
+                        let scale = 0.6;
+                        
+                        // Visible range: -80 to 80 degrees
+                        if (Math.abs(normalizedAngle) < 80) {
+                            opacity = 1 - (Math.abs(normalizedAngle) / 80);
+                            scale = 0.6 + (0.4 * opacity);
+                        }
+
+                        gsap.set(icon, {
+                            x: x,
+                            y: y,
+                            opacity: opacity,
+                            scale: scale,
+                            zIndex: opacity > 0.5 ? 10 : 1,
+                            pointerEvents: opacity > 0.5 ? 'auto' : 'none'
+                        });
+                    });
+
+                    // Update content if active icon changes
+                    if (closestIconIndex !== -1 && closestIconIndex !== activeIconIndex) {
+                        activeIconIndex = closestIconIndex;
+                        updateContent(activeIconIndex);
+                    }
+                }
+
+                // Set initial state
+                updateIcons();
+
+                // Hover Interaction
+                susIcons.forEach((icon, index) => {
+                    icon.addEventListener('mouseenter', () => {
+                        orbitTween.pause();
+                        updateContent(index);
+                        gsap.to(icon, { scale: 1.2, duration: 0.3 });
+                    });
+
+                    icon.addEventListener('mouseleave', () => {
+                        orbitTween.play();
+                        gsap.to(icon, { scale: 1, duration: 0.3 });
+                    });
+                });
+            }
+
+            // --- 8. King's Marquee Animation ---
+            const kingsMarquee = document.getElementById('kings-marquee');
+            if(kingsMarquee) {
+                // Simple infinite scroll
+                gsap.to(kingsMarquee, {
+                    xPercent: -50, // Move half the width (since we duplicated images)
+                    ease: "none",
+                    duration: 20, // Adjust speed
+                    repeat: -1
+                });
+            }
+
+            // --- 9. CTA Animation ---
+            const ctaTitle = new SplitType('#cta-title', { types: 'lines, chars' });
+            
+            gsap.from(ctaTitle.chars, {
+                y: 100,
+                opacity: 0,
+                stagger: 0.02,
+                duration: 1,
+                ease: "power4.out",
+                scrollTrigger: {
+                    trigger: "#cta-title",
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                }
+            });
+        });
+
+        // Modal Logic (Preserved but simplified)
+        const modal = document.getElementById('detail-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        function openModal() {
+            if(!modal) return;
+            modal.classList.remove('hidden');
+            gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+            gsap.fromTo(modalContent, { scale: 0.9, y: 20 }, { scale: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" });
+        }
+
+        function closeModal() {
+            if(!modal) return;
+            gsap.to(modal, { opacity: 0, duration: 0.3, onComplete: () => modal.classList.add('hidden') });
+            gsap.to(modalContent, { scale: 0.9, y: 20, duration: 0.3 });
+        }
+
+        if(modal) {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+        }
+    </script>
+</body>
+</html>
