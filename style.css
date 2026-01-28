@@ -14,6 +14,11 @@
     src: url('assets/fonts/cerebri-sans-pro/CerebriSansPro-Regular.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'Cerebri Sans Pro Italic';
+    src: url('assets/fonts/cerebri-sans-pro/CerebriSansPro-Italic.otf') format('opentype');
+}
+
 :root {
     --gold: #D4AF37;
 }
@@ -38,7 +43,10 @@ body {
 
 .font-section-content {
     font-family: 'Cerebri Sans Pro Regular', sans-serif;
-    font-weight: normal;
+}
+
+.font-section-content-italic {
+    font-family: 'Cerebri Sans Pro Italic', sans-serif;
 }
 
 /* Custom Scrollbar */
