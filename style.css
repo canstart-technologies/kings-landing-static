@@ -1,21 +1,16 @@
+/* Declare font files here */
 @font-face {
-    font-family: 'Radiant Charisma';
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'Font File 001';
     src: url('assets/fonts/radiant-charisma/RadiantCharismaDEMO-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'Font File 002';
     src: url('assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'ARB 08 Extreme Roman';
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'Font File 003';
     src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas/ARB 08_an_CAS.ttf') format('truetype');
 }
 
@@ -30,9 +25,21 @@ body {
     color: #111827;
 }
 
-/* Use these utility classes to control fonts centrally */
-.font-heading {
-    font-family: 'Radiant Charisma', serif;
+/* Define font classes here */
+.font-section-heading {
+    font-family: 'Font File 001', serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.font-section-subheading {
+    font-family: 'Font File 001', serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.font-section-content {
+    font-family: 'Font File 002', sans-serif;
     font-style: normal;
     font-weight: normal;
 }
