@@ -1,17 +1,17 @@
 /* Declare font files here */
 @font-face {
-    font-family: 'Font File 001';
+    font-family: 'Radiant Charisma Regular';
     src: url('assets/fonts/radiant-charisma/RadiantCharismaDEMO-Regular.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Font File 002';
-    src: url('assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+    font-family: 'Cormorant Garamond Italic';
+    src: url('assets/fonts/cormorant-garamond/CormorantGaramond-Italic.ttf') format('truetype');
 }
 
 @font-face {
-    font-family: 'Font File 003';
-    src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas/ARB 08_an_CAS.ttf') format('truetype');
+    font-family: 'Cerebri Sans Pro Regular';
+    src: url('assets/fonts/cerebri-sans-pro/CerebriSansPro-Regular.otf') format('opentype');
 }
 
 :root {
@@ -27,20 +27,17 @@ body {
 
 /* Define font classes here */
 .font-section-heading {
-    font-family: 'Font File 001', serif;
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'Radiant Charisma Regular', serif;
+    font-weight: 500;
 }
 
 .font-section-subheading {
-    font-family: 'Font File 001', serif;
-    font-style: normal;
-    font-weight: normal;
+    font-family: 'Cormorant Garamond Italic', serif;
+    font-weight: 600;
 }
 
 .font-section-content {
-    font-family: 'Font File 002', sans-serif;
-    font-style: normal;
+    font-family: 'Cerebri Sans Pro Regular', sans-serif;
     font-weight: normal;
 }
 
