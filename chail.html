@@ -546,20 +546,6 @@
             });
         </script>
     </footer>
-            // Footer Marquee JS
-            window.addEventListener('DOMContentLoaded', () => {
-                const footerMarqueeContent = document.querySelector('.footer-marquee-content');
-                if(footerMarqueeContent && typeof gsap !== 'undefined') {
-                    gsap.to(footerMarqueeContent, {
-                        xPercent: -50,
-                        ease: "none",
-                        duration: 30,
-                        repeat: -1
-                    });
-                }
-            });
-        </script>
-    </footer>
 
     <!-- Full Screen Modal (Multi-Image Support) -->
     <div id="image-modal" class="modal fixed inset-0 z-[100] bg-black/95 flex items-center justify-center p-4 lg:p-10">

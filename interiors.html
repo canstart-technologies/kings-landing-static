@@ -5,165 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interiors - King's Landing</title>
     <link rel="icon" type="image/png" href="assets/img/logo/Logo_favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- GSAP & SplitType -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
-    <!-- Lenis for Smooth Scroll (Consistent with Gallery) -->
+    <!-- Lenis for Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
-    
-    <style>
-        /* Font Face Declarations */
-        @font-face {
-            font-family: 'UVN Dinh Hon';
-            src: url('assets/fonts/UVN Dinh Hon.woff') format('woff');
-        }
-
-        /* Cormorant Garamond Webfont */
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 300;
-            src: local('Cormorant Garamond Light'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Light.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 300;
-            src: local('Cormorant Garamond Light Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-LightItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Cormorant Garamond Regular'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Regular.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 400;
-            src: local('Cormorant Garamond Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Italic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 500;
-            src: local('Cormorant Garamond Medium'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Medium.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 500;
-            src: local('Cormorant Garamond Medium Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-MediumItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 600;
-            src: local('Cormorant Garamond SemiBold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBold.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 600;
-            src: local('Cormorant Garamond SemiBold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBoldItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 700;
-            src: local('Cormorant Garamond Bold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Bold.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 700;
-            src: local('Cormorant Garamond Bold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-BoldItalic.woff') format('woff');
-        }
-
-        /* Libre Baskerville Webfont */
-        @font-face {
-            font-family: 'Libre Baskerville';
-            font-style: normal;
-            font-weight: 400;
-            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Libre Baskerville';
-            font-style: italic;
-            font-weight: 400;
-            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
-
-        /* Tangerine Webfont */
-        @font-face {
-            font-family: 'Tangerine';
-            font-style: normal;
-            font-weight: 400;
-            src: url('assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Tangerine';
-            font-style: normal;
-            font-weight: 700;
-            src: url('assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
-        }
-
-        /* New Fonts */
-        @font-face {
-            font-family: 'Montserrat';
-            src: url('assets/fonts/montserrat.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Radiant Charisma';
-            src: url('assets/fonts/radiant-charisma.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'ARB 08 Extreme Roman';
-            src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas.ttf') format('truetype');
-        }
-
-        :root {
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-            background-color: #FDFBF7;
-            color: #111827;
-        }
-
-        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
-        
-    </style>
 </head>
 <body class="bg-[#FDFBF7] text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
-    
+
     <!-- Preloader -->
     <div id="preloader" class="fixed inset-0 z-[100] bg-[#050505] flex flex-col items-center justify-center text-white">
         <div class="overflow-hidden mb-8">
@@ -272,12 +125,12 @@
         <section id="vertical-stack-container" class="relative w-full">
             
             <!-- Slide 1: Living Area -->
-            <div class="sticky top-0 w-full h-screen flex flex-col lg:flex-row overflow-hidden bg-white z-10">
+            <div class="sticky top-0 w-full h-screen flex flex-col lg:flex-row overflow-hidden bg-[#FDFBF7] z-10">
                 <!-- Text -->
-                <div class="w-full lg:w-[35%] h-full bg-white flex flex-col justify-center px-10 lg:px-20 border-r border-black/5 relative z-10">
-                    <span class="text-xs font-bold tracking-widest uppercase text-[#D4AF37] mb-6">01 / 04</span>
-                    <h2 class="text-5xl lg:text-5xl font-serif mb-5 text-black">LIVING AREA</h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                <div class="w-full lg:w-[35%] h-full bg-[#FDFBF7] flex flex-col justify-center px-10 lg:px-20 border-r border-black/5 relative z-10">
+                    <span class="font-numbers-or-buttons text-sm text-[#D4AF37] font-bold tracking-widest mb-6">01 / 04</span>
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Living Area</h2>
+                    <p class="font-section-content text-base lg:text-lg leading-normal text-gray-900 mb-10">
                         Step into a thoughtfully designed living area where functionality meets finesse. High ceilings, expansive layouts, abundant natural light, and refined finishes come together to create a space equally suited to everyday living and elegant entertaining.
                     </p>
                     <div class="w-24 h-[1px] bg-[#D4AF37]"></div>
@@ -295,10 +148,10 @@
             <div class="sticky top-0 w-full h-screen flex flex-col lg:flex-row overflow-hidden bg-white z-20 shadow-2xl shadow-black/20">
                 <!-- Text -->
                 <div class="w-full lg:w-[35%] h-full bg-white flex flex-col justify-center px-10 lg:px-20 border-r border-black/5 relative z-10">
-                    <span class="text-xs font-bold tracking-widest uppercase text-[#D4AF37] mb-6">02 / 04</span>
-                    <h2 class="text-5xl lg:text-5xl font-serif mb-5 text-black">BEDROOM & BATHROOM</h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
-                        Your private world—peaceful, plush, and personal. Bedrooms cocoon you in calm, while bathrooms offer a spa-like sense of serenity. It's a space to pause, refresh, and renew.
+                    <span class="font-numbers-or-buttons text-sm text-[#D4AF37] font-bold tracking-widest mb-6">02 / 04</span>
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Bedroom & Bathroom</h2>
+                    <p class="font-section-content text-base lg:text-lg leading-normal text-gray-900 mb-10">
+                        Your private world - peaceful, plush, and personal. Bedrooms cocoon you in calm, while bathrooms offer a spa-like sense of serenity. It's a space to pause, refresh, and renew.
                     </p>
                     <div class="w-24 h-[1px] bg-[#D4AF37]"></div>
                 </div>
@@ -312,12 +165,12 @@
             </div>
 
             <!-- Slide 3: Kitchen & Utility -->
-            <div class="sticky top-0 w-full h-screen flex flex-col lg:flex-row overflow-hidden bg-white z-30 shadow-2xl shadow-black/20">
+            <div class="sticky top-0 w-full h-screen flex flex-col lg:flex-row overflow-hidden bg-[#FDFBF7] z-30 shadow-2xl shadow-black/20">
                 <!-- Text -->
-                <div class="w-full lg:w-[35%] h-full bg-white flex flex-col justify-center px-10 lg:px-20 border-r border-black/5 relative z-10">
-                    <span class="text-xs font-bold tracking-widest uppercase text-[#D4AF37] mb-6">03 / 04</span>
-                    <h2 class="text-5xl lg:text-5xl font-serif mb-5 text-black">KITCHEN & UTILITY</h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                <div class="w-full lg:w-[35%] h-full bg-[#FDFBF7] flex flex-col justify-center px-10 lg:px-20 border-r border-black/5 relative z-10">
+                    <span class="font-numbers-or-buttons text-sm text-[#D4AF37] font-bold tracking-widest mb-6">03 / 04</span>
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Kitchen & Utility</h2>
+                    <p class="font-section-content text-base lg:text-lg leading-normal text-gray-900 mb-10">
                         The kitchens at King's Landing balance flair with functionality. Integrated storage, natural lighting, and modern appliances make every day cooking a joy. Utilities are tucked away, yet effortlessly accessible.
                     </p>
                     <div class="w-24 h-[1px] bg-[#D4AF37]"></div>
@@ -335,9 +188,9 @@
             <div class="sticky top-0 w-full h-screen flex flex-col lg:flex-row overflow-hidden bg-white z-40 shadow-2xl shadow-black/20">
                 <!-- Text -->
                 <div class="w-full lg:w-[35%] h-full bg-white flex flex-col justify-center px-10 lg:px-20 border-r border-black/5 relative z-10">
-                    <span class="text-xs font-bold tracking-widest uppercase text-[#D4AF37] mb-6">04 / 04</span>
-                    <h2 class="text-5xl lg:text-5xl font-serif mb-5 text-black">BALCONY VIEW</h2>
-                    <p class="text-gray-600 text-lg leading-relaxed mb-10">
+                    <span class="font-numbers-or-buttons text-sm text-[#D4AF37] font-bold tracking-widest mb-6">04 / 04</span>
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Balcony View</h2>
+                    <p class="font-section-content text-base lg:text-lg leading-normal text-gray-900 mb-10">
                         Step onto your balcony and into a moment of calm, where gentle breezes, open views, and garden whispers surround you. Whether it’s sunrise solitude or sunset tea, this is your personal window to the world.
                     </p>
                     <div class="w-24 h-[1px] bg-[#D4AF37]"></div>

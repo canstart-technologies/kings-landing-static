@@ -5,236 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lifestyle - King's Landing</title>
     <link rel="icon" type="image/png" href="assets/img/logo/Logo_favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- GSAP & SplitType -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/split-type"></script>
-    <style>
-        /* Font Face Declarations */
-        @font-face {
-            font-family: 'UVN Dinh Hon';
-            src: url('assets/fonts/UVN Dinh Hon.woff') format('woff');
-        }
-
-        /* Cormorant Garamond Webfont */
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 300;
-            src: local('Cormorant Garamond Light'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Light.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 300;
-            src: local('Cormorant Garamond Light Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-LightItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Cormorant Garamond Regular'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Regular.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 400;
-            src: local('Cormorant Garamond Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Italic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 500;
-            src: local('Cormorant Garamond Medium'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Medium.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 500;
-            src: local('Cormorant Garamond Medium Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-MediumItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 600;
-            src: local('Cormorant Garamond SemiBold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBold.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 600;
-            src: local('Cormorant Garamond SemiBold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBoldItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 700;
-            src: local('Cormorant Garamond Bold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Bold.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 700;
-            src: local('Cormorant Garamond Bold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-BoldItalic.woff') format('woff');
-        }
-
-        /* Libre Baskerville Webfont */
-        @font-face {
-            font-family: 'Libre Baskerville';
-            font-style: normal;
-            font-weight: 400;
-            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Libre Baskerville';
-            font-style: italic;
-            font-weight: 400;
-            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
-
-        /* Tangerine Webfont */
-        @font-face {
-            font-family: 'Tangerine';
-            font-style: normal;
-            font-weight: 400;
-            src: url('assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Tangerine';
-            font-style: normal;
-            font-weight: 700;
-            src: url('assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
-        }
-
-        /* New Fonts */
-        @font-face {
-            font-family: 'Montserrat';
-            src: url('assets/fonts/montserrat.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Radiant Charisma';
-            src: url('assets/fonts/radiant-charisma.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'ARB 08 Extreme Roman';
-            src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas.ttf') format('truetype');
-        }
-
-        :root {
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-            --gold: #D4AF37;
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-            background-color: #FDFBF7; /* Warm white/beige background */
-            color: #111827;
-        }
-
-        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
-
-        /* Inner Carousel Styles */
-        .carousel-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        .carousel-item {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: opacity 1.5s ease-in-out;
-            z-index: 1;
-            overflow: hidden; /* Mask for parallax */
-        }
-        .carousel-item.active {
-            opacity: 1;
-            z-index: 2;
-        }
-        
-        /* Image Wrapper for Parallax */
-        .parallax-wrapper {
-            position: absolute;
-            top: -15%;
-            left: 0;
-            width: 100%;
-            height: 130%; /* Taller than container for parallax movement */
-        }
-
-        .parallax-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transform: scale(1.1);
-            transition: transform 6s ease-out;
-        }
-        .carousel-item.active .parallax-wrapper img {
-            transform: scale(1);
-        }
-        
-        /* Carousel Navigation Dots */
-        .carousel-dots {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            gap: 8px;
-            z-index: 20;
-        }
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.8);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: transparent;
-        }
-        .dot.active {
-            background: #fff;
-            border-color: #fff;
-            transform: scale(1.2);
-        }
-
-        /* Text Overlay on Slide - Modified for Rectangular Layout */
-        .slide-text-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            z-index: 10;
-            max-width: 80%;
-            pointer-events: none;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-    </style>
 </head>
 <body class="antialiased selection:bg-gray-900 selection:text-white">
 
@@ -338,36 +115,36 @@
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\1_1.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Forest trails with meditation nooks</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Forest trails with meditation nooks</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\1_2.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Community herbal gardens</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Community herbal gardens</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\1_3.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Open-air yoga & wellness pavilion</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Open-air yoga & wellness pavilion</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\1_4.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Hammock groves & mountain-view benches</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Hammock groves & mountain-view benches</h3>
                             </div>
                         </div>
                         <div class="carousel-dots"></div>
@@ -376,11 +153,11 @@
                 
                 <!-- Text Column -->
                 <div class="flex flex-col justify-center lg:col-span-2">
-                    <h2 class="text-3xl lg:text-4xl font-serif mb-5 leading-none text-gray-900">Landscape as lifestyle</h2>
-                    <p class="text-gray-600 leading-relaxed font-light text-lg lg:text-xl max-w-md">
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Landscape as lifestyle</h2>
+                    <p class="font-section-content text-base lg:text-xl leading-normal text-gray-600 mb-7 max-w-md">
                         Every outdoor space is designed to restore balance, invite pause, and deepen your connection with nature.
                     </p>
-                    <div class="flex gap-4 mt-7">
+                    <div class="flex gap-4">
                         <button class="prev-slide p-3 rounded-full border border-gray-300 hover:bg-black hover:text-white hover:border-black transition-all duration-300 group">
                             <i data-lucide="arrow-left" class="w-5 h-5"></i>
                         </button>
@@ -397,11 +174,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-20 items-center">
                 <!-- Text Column (Order 2 on mobile, Order 1 on desktop) -->
                 <div class="flex flex-col justify-center order-2 lg:order-1 lg:text-right items-end lg:col-span-2">
-                    <h2 class="text-3xl lg:text-4xl font-serif mb-5 leading-none text-gray-900">Sustainable by design</h2>
-                    <p class="text-gray-600 leading-relaxed font-light text-lg lg:text-xl max-w-md">
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Sustainable by design</h2>
+                    <p class="font-section-content text-base lg:text-xl leading-normal text-gray-600 mb-7 max-w-md">
                         A way of life in harmony with the mountains.
                     </p>
-                    <div class="flex gap-4 mt-7">
+                    <div class="flex gap-4">
                         <button class="prev-slide p-3 rounded-full border border-gray-300 hover:bg-black hover:text-white hover:border-black transition-all duration-300 group">
                             <i data-lucide="arrow-left" class="w-5 h-5"></i>
                         </button>
@@ -418,45 +195,45 @@
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\2_1.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Natural ventilation & daylighting</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Natural ventilation & daylighting</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\2_2.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Naturally sourced materials</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Naturally sourced materials</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\2_3.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">EV charging stations</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">EV charging stations</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\2_4.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Composting & zero-waste systems</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Composting & zero-waste systems</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\2_5.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Rainwater harvesting & greywater recycling</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Rainwater harvesting & greywater recycling</h3>
                             </div>
                         </div>
                         <div class="carousel-dots"></div>
@@ -475,27 +252,27 @@
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\3_1.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Common house with kitchen, dining & library</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Common house with kitchen, dining & library</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\3_2.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Art & craft studio</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Art & craft studio</h3>
                             </div>
                         </div>
                                                 <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\3_3.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Children’s natural play area</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Children’s natural play area</h3>
                             </div>
                         </div>
                         <div class="carousel-dots"></div>
@@ -504,11 +281,11 @@
                 
                 <!-- Text Column -->
                 <div class="flex flex-col justify-center lg:col-span-2">
-                    <h2 class="text-3xl lg:text-4xl font-serif mb-5 leading-none text-gray-900">Spaces that connect</h2>
-                    <p class="text-gray-600 leading-relaxed font-light text-lg lg:text-xl max-w-md">
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Spaces that connect</h2>
+                    <p class="font-section-content text-base lg:text-xl leading-normal text-gray-600 mb-7 max-w-md">
                         A place where shared experiences create belonging and community forms naturally.
                     </p>
-                    <div class="flex gap-4 mt-7">
+                    <div class="flex gap-4">
                         <button class="prev-slide p-3 rounded-full border border-gray-300 hover:bg-black hover:text-white hover:border-black transition-all duration-300 group">
                             <i data-lucide="arrow-left" class="w-5 h-5"></i>
                         </button>
@@ -525,11 +302,11 @@
             <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-20 items-center">
                 <!-- Text Column -->
                 <div class="flex flex-col justify-center order-2 lg:order-1 lg:text-right items-end lg:col-span-2">
-                    <h2 class="text-3xl lg:text-4xl font-serif mb-5 leading-none text-gray-900">Designed for today</h2>
-                    <p class="text-gray-600 leading-relaxed font-light text-lg lg:text-xl max-w-md">
+                    <h2 class="font-section-subheading text-2xl lg:text-4xl text-gray-900 mb-5">Designed for today</h2>
+                    <p class="font-section-content text-base lg:text-xl leading-normal text-gray-600 mb-7 max-w-md">
                         Modern comforts, seamlessly integrated for effortless living.
                     </p>
-                    <div class="flex gap-4 mt-7">
+                    <div class="flex gap-4">
                         <button class="prev-slide p-3 rounded-full border border-gray-300 hover:bg-black hover:text-white hover:border-black transition-all duration-300 group">
                             <i data-lucide="arrow-left" class="w-5 h-5"></i>
                         </button>
@@ -546,36 +323,36 @@
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\4_1.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Smart home systems for comfort & security</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Smart home systems for comfort & security</h3>
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\4_2.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Modular kitchens with eco appliances</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Modular kitchens with eco appliances</h3>
                             </div>
                         </div>
                                                 <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\4_3.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">Energy-efficient heating & cooling</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">Energy-efficient heating & cooling</h3>
                             </div>
                         </div>
                                                 <div class="carousel-item">
                             <div class="parallax-wrapper">
                                 <img src="assets\img\lifestyle\4_4.jpg">
                             </div>
-                            <div class="absolute inset-0 bg-black/20"></div>
+                            <div class="absolute inset-0"></div>
                             <div class="slide-text-overlay">
-                                <h3 class="text-2xl lg:text-3xl font-serif italic">High-speed internet</h3>
+                                <h3 class="font-section-subheading text-2xl lg:text-3xl leading-snug">High-speed internet</h3>
                             </div>
                         </div>
                         <div class="carousel-dots"></div>
