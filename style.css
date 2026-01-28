@@ -25,6 +25,11 @@
     src: url('assets/fonts/arial/ARIAL.TTF') format('truetype');
 }
 
+@font-face {
+    font-family: 'ARB 08 Extreme Roman';
+    src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas/ARB_08_extreme_roman.otf') format('opentype');
+}
+
 /* DECLARATIONS FOR FONT FILES END HERE */
 
 :root {
@@ -59,11 +64,29 @@ body {
     font-family: 'Cerebri Sans Pro Italic', sans-serif;
 }
 
-.font-numbers-or-buttons {
+.font-number-or-button {
     font-family: 'Arial Regular', sans-serif;
 }
 
+.font-tagline {
+    font-family: 'ARB 08 Extreme Roman', serif;
+}
+
 /* DEFINITIONS FOR FONT CLASSES END HERE */
+
+/* Menu Link Hover Effects */
+.menu-link {
+    display: inline-flex;
+    align-items: center;
+    opacity: 0.5;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Text Reveal Mask */
+.char-mask {
+    overflow: hidden;
+}
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
