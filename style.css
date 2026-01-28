@@ -30,6 +30,11 @@
     src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas/ARB_08_extreme_roman.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'GT Super Display Light';
+    src: url('assets/fonts/gt-super/GT-Super-Display-Light.otf') format('opentype');
+}
+
 /* DECLARATIONS FOR FONT FILES END HERE */
 
 :root {
@@ -70,6 +75,10 @@ body {
 
 .font-tagline {
     font-family: 'ARB 08 Extreme Roman', serif;
+}
+
+.font-hero-heading {
+    font-family: 'GT Super Display Light', serif;
 }
 
 /* DEFINITIONS FOR FONT CLASSES END HERE */
