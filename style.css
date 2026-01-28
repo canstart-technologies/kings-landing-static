@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'Radiant Charisma';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/radiant-charisma/RadiantCharismaDEMO-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'ARB 08 Extreme Roman';
+    font-style: normal;
+    font-weight: normal;
+    src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas/ARB 08_an_CAS.ttf') format('truetype');
+}
+
+:root {
+    --gold: #D4AF37;
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    overflow-x: hidden;
+    background-color: #FDFBF7;
+    color: #111827;
+}
+
+/* Use these utility classes to control fonts centrally */
+.font-heading {
+    font-family: 'Radiant Charisma', serif;
+    font-style: normal;
+    font-weight: normal;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 3px; }
+
+/* Modal Styles */
+.modal {
+    opacity: 0; visibility: hidden; transition: all 0.5s ease;
+}
+.modal.active {
+    opacity: 1; visibility: visible;
+}
