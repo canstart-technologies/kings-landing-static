@@ -35,6 +35,11 @@
     src: url('assets/fonts/gt-super/GT-Super-Display-Light.otf') format('opentype');
 }
 
+@font-face {
+    font-family: 'Cormorant Garamond Regular';
+    src: url('assets/fonts/cormorant-garamond/CormorantGaramond-Regular.ttf') format('truetype');
+}
+
 /* DECLARATIONS FOR FONT FILES END HERE */
 
 :root {
@@ -79,6 +84,11 @@ body {
 
 .font-hero-heading {
     font-family: 'GT Super Display Light', serif;
+}
+
+.font-hero-subheading {
+    font-family: 'Cormorant Garamond Regular', serif;
+    font-weight: 600;
 }
 
 /* DEFINITIONS FOR FONT CLASSES END HERE */
@@ -202,3 +212,66 @@ body {
 }
 
 /* DEFINITIONS FOR LIFESTYLE PAGE END HERE */
+
+/* DEFINITIONS FOR GALLERY PAGE BEGIN HERE */
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+.gallery-item img {
+    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+.gallery-overlay {
+    background: rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+/* Lenis Recommended CSS */
+html.lenis, html.lenis body {
+    height: auto;
+}
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* DEFINITIONS FOR GALLERY PAGE END HERE */
+
+/* DEFINITIONS FOR CONTACT PAGE BEGIN HERE */
+
+/* Form Styles */
+.form-input {
+    width: 100%;
+    background: transparent;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 1rem 0;
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.125rem;
+    transition: all 0.3s ease;
+}
+.form-input:focus {
+    outline: none;
+    border-bottom-color: #D4AF37;
+}
+.form-input::placeholder {
+    color: rgba(0,0,0,0.3);
+}
+
+/* DEFINITIONS FOR CONTACT PAGE END HERE */

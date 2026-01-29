@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gallery - King's Landing</title>
     <link rel="icon" type="image/png" href="assets/img/logo/Logo_favicon.png">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <!-- GSAP & SplitType -->
@@ -13,204 +14,6 @@
     <script src="https://unpkg.com/split-type"></script>
     <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
-    <style>
-        /* Font Face Declarations */
-        @font-face {
-            font-family: 'UVN Dinh Hon';
-            src: url('assets/fonts/UVN Dinh Hon.woff') format('woff');
-        }
-
-        /* Cormorant Garamond Webfont */
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 300;
-            src: local('Cormorant Garamond Light'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Light.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 300;
-            src: local('Cormorant Garamond Light Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-LightItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Cormorant Garamond Regular'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Regular.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 400;
-            src: local('Cormorant Garamond Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Italic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 500;
-            src: local('Cormorant Garamond Medium'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Medium.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 500;
-            src: local('Cormorant Garamond Medium Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-MediumItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 600;
-            src: local('Cormorant Garamond SemiBold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBold.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 600;
-            src: local('Cormorant Garamond SemiBold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-SemiBoldItalic.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: normal;
-            font-weight: 700;
-            src: local('Cormorant Garamond Bold'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-Bold.woff') format('woff');
-        }
-
-        @font-face {
-            font-family: 'Cormorant Garamond';
-            font-style: italic;
-            font-weight: 700;
-            src: local('Cormorant Garamond Bold Italic'), url('assets/fonts/cormorant-garamond-webfont/CormorantGaramond-BoldItalic.woff') format('woff');
-        }
-
-        /* Libre Baskerville Webfont */
-        @font-face {
-            font-family: 'Libre Baskerville';
-            font-style: normal;
-            font-weight: 400;
-            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Libre Baskerville';
-            font-style: italic;
-            font-weight: 400;
-            src: url('assets/fonts/Libre_Baskerville/LibreBaskerville-Italic-VariableFont_wght.ttf') format('truetype');
-        }
-
-        /* Imported Cormorant Garamond (Latienne Pro alternative) and Manrope (Euclid Square alternative) */
-        @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap');
-
-        /* Tangerine Webfont */
-        @font-face {
-            font-family: 'Tangerine';
-            font-style: normal;
-            font-weight: 400;
-            src: url('assets/fonts/Tangerine/Tangerine-Regular.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Tangerine';
-            font-style: normal;
-            font-weight: 700;
-            src: url('assets/fonts/Tangerine/Tangerine-Bold.ttf') format('truetype');
-        }
-
-        /* New Fonts */
-        @font-face {
-            font-family: 'Montserrat';
-            src: url('assets/fonts/montserrat.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'Radiant Charisma';
-            src: url('assets/fonts/radiant-charisma.ttf') format('truetype');
-        }
-
-        @font-face {
-            font-family: 'ARB 08 Extreme Roman';
-            src: url('assets/fonts/arb-08-extreme-roman-aug-32-cas.ttf') format('truetype');
-        }
-
-        :root {
-            --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        body {
-            font-family: 'Manrope', sans-serif;
-            overflow-x: hidden;
-            background-color: #f9fafb;
-        }
-
-        .font-latienne, .serif, .font-serif, h1, h2, h3, h4, h5, h6 {
-            font-family: 'Cormorant Garamond', serif;
-        }
-
-        .menu-link {
-            display: inline-flex;
-            align-items: center;
-            opacity: 0.5;
-            position: relative;
-            cursor: pointer;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1a1a1a; 
-            border-radius: 3px;
-        }
-
-        /* Gallery Specific Styles */
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .gallery-item img {
-            transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-        .gallery-overlay {
-            background: rgba(0,0,0,0.2);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        /* Lenis Recommended CSS */
-        html.lenis, html.lenis body {
-            height: auto;
-        }
-        .lenis.lenis-smooth {
-            scroll-behavior: auto !important;
-        }
-        .lenis.lenis-smooth [data-lenis-prevent] {
-            overscroll-behavior: contain;
-        }
-        .lenis.lenis-stopped {
-            overflow: hidden;
-        }
-        .lenis.lenis-scrolling iframe {
-            pointer-events: none;
-        }
-    </style>
 </head>
 <body class="bg-[#FDFBF7] text-gray-900 antialiased selection:bg-gray-900 selection:text-white">
 
@@ -303,8 +106,8 @@
         <!-- Header -->
         <div class="max-w-7xl mx-auto mb-24 lg:mb-32 text-center">
             <span class="text-xs font-medium tracking-[0.2em] uppercase text-gray-500 mb-6 block opacity-0" id="gallery-label"></span>
-            <h1 class="text-6xl lg:text-8xl mb-8 opacity-0" id="gallery-title" style="font-family: 'Cormorant Garamond', serif; font-weight: 400;">PHOTO GALLERY</h1>
-            <p class="max-w-3xl mx-auto text-2xl lg:text-xl font-light text-gray-600 leading-relaxed opacity-0" id="gallery-desc" style="font-family: 'Libre Baskerville', serif; font-weight: 400;">
+            <h1 class="font-hero-heading text-6xl lg:text-8xl uppercase mb-8 opacity-100 translate-y-10" id="gallery-title">Photo Gallery</h1>
+            <p class="font-hero-subheading text-2xl lg:text-3xl leading-relaxed opacity-100 translate-y-10 max-w-4xl tracking-wide mx-auto" id="gallery-desc">
                 Immerse yourself in curated visuals showcasing interiors, exteriors, and the breathtaking beauty of Chail and Kumarhatti.
             </p>
         </div>
@@ -321,7 +124,7 @@
                         <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\gallery_interiors\r1c1.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
                             </div>
                         </div>
                     </div>
@@ -330,7 +133,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\gallery_interiors\r2c1.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
                             </div>
                         </div>
                     </div>
@@ -339,7 +142,7 @@
                         <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r3c1.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Moments by the Water</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Moments by the Water</span>
                             </div>
                         </div>
                     </div>
@@ -348,7 +151,7 @@
                         <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r4c1.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Landscape</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Landscape</span>
                             </div>
                         </div>
                     </div>
@@ -357,7 +160,7 @@
                         <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r5c1.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Rashtriya Military School, Chail</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Rashtriya Military School, Chail</span>
                             </div>
                         </div>
                     </div>
@@ -366,7 +169,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r6c1.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Landscape</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Landscape</span>
                             </div>
                         </div>
                     </div>
@@ -376,7 +179,7 @@
                         <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
                             <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Facade</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Facade</span>
                             </div>
                         </div>
                     </div>
@@ -387,7 +190,7 @@
                         <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
                             <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Lounge</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Lounge</span>
                             </div>
                         </div>
                     </div>
@@ -401,7 +204,7 @@
                         <div class="aspect-[4/3] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\gallery_interiors\r1c2.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Bedroom</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Bedroom</span>
                             </div>
                         </div>
                     </div>
@@ -410,7 +213,7 @@
                         <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\gallery_interiors\r2c2.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Kitchen</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Kitchen</span>
                             </div>
                         </div>
                     </div>
@@ -419,7 +222,7 @@
                         <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r3c2.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Spring Blossom</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Spring Blossom</span>
                             </div>
                         </div>
                     </div>
@@ -428,7 +231,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r4c2.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Site Location, Chail</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Site Location, Chail</span>
                             </div>
                         </div>
                     </div>
@@ -437,7 +240,7 @@
                         <div class="aspect-[4/5] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r5c2.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Golden Skies</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Golden Skies</span>
                             </div>
                         </div>
                     </div>
@@ -446,7 +249,7 @@
                         <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r6c2.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Palace</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Chail Palace</span>
                             </div>
                         </div>
                     </div>
@@ -456,7 +259,7 @@
                         <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
                             <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Morning Rays</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Morning Rays</span>
                             </div>
                         </div>
                     </div>
@@ -467,7 +270,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-200 relative">
                             <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Materiality</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Materiality</span>
                             </div>
                         </div>
                     </div>
@@ -481,7 +284,7 @@
                         <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\gallery_interiors\r1c3.jpg" class="w-full h-full object-cover hover:grayscale-0 transition-all duration-700">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Living Area</span>
                             </div>
                         </div>
                     </div>
@@ -490,7 +293,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\gallery_interiors\r2c3.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Bathroom</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Bathroom</span>
                             </div>
                         </div>
                     </div>
@@ -499,7 +302,7 @@
                         <div class="aspect-[3/4] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r3c3.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Sun Shining Through</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Sun Shining Through</span>
                             </div>
                         </div>
                     </div>
@@ -508,7 +311,7 @@
                         <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r4c3.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Site Location, Chail</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Site Location, Chail</span>
                             </div>
                         </div>
                     </div>
@@ -517,7 +320,7 @@
                         <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r5c3.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Deodar-lined Roads</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Deodar-lined Roads</span>
                             </div>
                         </div>
                     </div>
@@ -526,7 +329,7 @@
                         <div class="aspect-square overflow-hidden bg-gray-200 relative">
                             <img src="assets\img\gallery\r6c3.jpg" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Coming Home</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Coming Home</span>
                             </div>
                         </div>
                     </div>
@@ -536,7 +339,7 @@
                         <div class="aspect-[2/3] overflow-hidden bg-gray-200 relative">
                             <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Morning Light</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Morning Light</span>
                             </div>
                         </div>
                     </div>
@@ -547,7 +350,7 @@
                         <div class="aspect-[16/9] overflow-hidden bg-gray-200 relative">
                             <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover">
                             <div class="gallery-overlay absolute inset-0 flex items-center justify-center">
-                                <span class="text-white font-serif italic text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Poolside</span>
+                                <span class="font-section-subheading text-white text-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 transform translate-y-4 group-hover:translate-y-0">Poolside</span>
                             </div>
                         </div>
                     </div>
@@ -565,7 +368,7 @@
         </button>
         <div class="relative w-full h-full flex items-center justify-center">
             <img id="lightbox-img" src="" class="max-w-full max-h-full object-contain shadow-2xl scale-95 transition-transform duration-500">
-            <div id="lightbox-caption" class="absolute bottom-4 left-0 w-full text-center text-white/80 font-serif italic text-2xl tracking-wide opacity-0 translate-y-4 transition-all duration-500 delay-200"></div>
+            <div id="lightbox-caption" class="font-section-subheading absolute bottom-4 left-0 w-full text-center text-white text-3xl opacity-0 tracking-wide translate-y-4 transition-all duration-500 delay-200"></div>
         </div>
     </div>
 
