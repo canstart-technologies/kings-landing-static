@@ -40,6 +40,11 @@
     src: url('assets/fonts/cormorant-garamond/CormorantGaramond-Regular.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Libre Baskerville Regular';
+    src: url('assets/fonts/libre-baskerville/LibreBaskerville-Bold.ttf') format('truetype');
+}
+
 /* DECLARATIONS FOR FONT FILES END HERE */
 
 :root {
@@ -89,6 +94,10 @@ body {
 .font-hero-subheading {
     font-family: 'Cormorant Garamond Regular', serif;
     font-weight: 600;
+}
+
+.font-marquee-text {
+    font-family: 'Libre Baskerville Regular', serif;
 }
 
 /* DEFINITIONS FOR FONT CLASSES END HERE */
